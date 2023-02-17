@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\SocialiteController;
+use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,23 +20,26 @@ use App\Http\Controllers\SocialiteController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/login', [LoginController::class, "index"])->middleware('guest');
+Route::post('/login', [LoginController::class, "login"])->name('login');
+Route::get('/auth/google/redirect', [SocialiteController::class, 'redirecttogoogle']);
+Route::get('/auth/google/callback', [SocialiteController::class, 'handlegooglecallback']);
+Route::get('/register', [RegisterController::class, "index"])->middleware('guest');
+Route::post('/register', [RegisterController::class, "register"])->name('register');
+Route::post('/logout', [LoginController::class, "logout"])->middleware('auth');
+Route::get('/lupa-password', [ForgotPasswordController::class, 'forgotpassword']);
+Route::post('/lupa-password', [ForgotPasswordController::class, 'createtoken']);
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'resetpassword'])->name('reset-password');
+Route::post('/reset-password', [ForgotPasswordController::class, 'sendresetpassword']);
+
+// Route::post('/hubungi-mail', [EmailController::class, "hubungi"]);
+// Route::get('/hubungi-mail', [EmailController::class, "hubungi"]);
+// Route::post('/registrasi-mail', [EmailController::class, "registrasi"]);
+// Route::get('/registrasi-mail', [EmailController::class, "registrasi"]);
+
+Route::group(['middleware'=>['auth','role:1']], function()
+{
+    Route::get('/admin', [DashboardController::class, "admin"])->name('dashboard-admin');
+    Route::get('/profile-admin', [DashboardController::class, "profileadmin"]);
 });
-
-
-
-/**
- * socialite auth
- */
-Route::get('/auth/redirect', [SocialiteController::class, 'redirectToGoogle']);
-Route::get('/auth/callback', [SocialiteController::class, 'handleGoogleCallback']);
-// Route untuk mengarahkan pengguna ke halaman login Google
-// Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
-
-// Route untuk menangani callback setelah pengguna login
-// Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
