@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+/**
+ * socialite auth
+ */
+Route::get('/auth/redirect', [SocialiteController::class, 'redirectToGoogle']);
+Route::get('/auth/callback', [SocialiteController::class, 'handleGoogleCallback']);
+// Route untuk mengarahkan pengguna ke halaman login Google
+// Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
+
+// Route untuk menangani callback setelah pengguna login
+// Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
