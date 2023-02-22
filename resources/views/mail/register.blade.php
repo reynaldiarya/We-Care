@@ -106,7 +106,7 @@
 
   <!-- start preheader -->
   <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
-    A preheader is the short summary text that follows the subject line when an email is viewed in the inbox.
+    Selamat Datang, {{ $body_email['name'] }}. Terima kasih telah mendaftar di {{ $body_email['title'] }}. Berikut detail registrasi Anda:
   </div>
   <!-- end preheader -->
 
@@ -124,9 +124,9 @@
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
-              <a href="https://exlev.com" target="_blank" rel="noopener noreferrer" style="display: inline-block;">
+              {{-- <a href="https://exlev.com" target="_blank" rel="noopener noreferrer" style="display: inline-block;">
                 <img src="https://exlev.com/wp-content/uploads/2022/02/exlev-favicon.png" alt="Logo" border="0" width="48" style="display: block; width: 48px; max-width: 48px; min-width: 48px;">
-              </a>
+              </a> --}}
             </td>
           </tr>
         </table>
@@ -153,8 +153,8 @@
           <!-- start copy -->
           <tr>
             <td bgcolor="#ffffff" align="left" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <h1 style="margin: 0 0 12px; font-size: 32px; font-weight: 400; line-height: 48px;">Welcome, {{ $body_email['name'] }}!</h1>
-              <p style="margin: 0;">Thank you for signing up with Exlev Indonesia. Berikut detail registrasi Anda:</p>
+              <h1 style="margin: 0 0 12px; font-size: 32px; font-weight: 400; line-height: 48px;">Selamat Datang, {{ $body_email['name'] }}!</h1>
+              <p style="margin: 0;">Terima kasih telah mendaftar di {{ $body_email['title'] }}. Berikut detail registrasi Anda:</p>
             </td>
           </tr>
           <!-- end copy -->
@@ -162,10 +162,9 @@
           <!-- start body -->
           <tr>
             <td bgcolor="#ffffff" align="left" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0;">Name: {{ $body_email['name'] }}</p>
+              <p style="margin: 0;">Nama: {{ $body_email['name'] }}</p>
               <p style="margin: 0;">Email: {{ $body_email['email'] }}</p>
-              <p style="margin: 0;">Role: {{ $body_email['role'] }}</p>
-              <p style="margin: 0;">Phone Number: {{ $body_email['phone_number'] }}</p>
+              <p style="margin: 0;">Nomor Telepon: {{ $body_email['phone_number'] }}</p>
             </td>
           </tr>
           <!-- end body -->
@@ -173,7 +172,7 @@
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
-              <p style="margin: 0;">Cheers,<br> Exlev Indonesia</p>
+              <p style="margin: 0;">Salam hangat,<br> {{ $body_email['title'] }}</p>
             </td>
           </tr>
           <!-- end copy -->
@@ -201,7 +200,7 @@
           <!-- start unsubscribe -->
           <tr>
             <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
-              <p style="margin: 0;">Perum Bangau Putih Permai, Kedungwaru, Tulungagung, Jawa Timur, 66229</p>
+              <p style="margin: 0;">Surabaya, Jawa Timur, Indonesia</p>
             </td>
           </tr>
           <!-- end unsubscribe -->

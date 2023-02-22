@@ -4,21 +4,33 @@
     <div class="col-lg-5 col-12">
         <div id="auth-left">
             <div class="auth-logo">
-                <a href="/"><img style="width: 300px; height: 100%"  src="assets/images/logo/wecare.png" alt="Logo"></a>
+                <a href="/"><img style="width: 300px; height: 100%"  src="/assets/images/logo/wecare.png" alt="Logo"></a>
             </div>
             <h1 class="auth-title">Log in.</h1>
             <p class="auth-subtitle mb-3">Masuk dengan data Anda yang Anda masukkan saat pendaftaran.</p>
+            @isset($registrasi)
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Akun berhasil dibuat silahkan login
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endisset
+            @if(session()->has('salah'))
+            <div class="alert alert-danger alert-dismissible show fade">
+                {{ session('salah')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
 
-            <form method="POST" action="/login">
+            <form method="POST" action="/login" data-parsley-validate>
                 @csrf
                 <div class="form-group position-relative has-icon-left mb-3">
-                    <input type="text" name="email" class="form-control form-control" placeholder="Email">
+                    <input type="email" name="email" class="form-control form-control" placeholder="Email" data-parsley-type="email" data-parsley-error-message="Masukkan format email yang valid.">
                     <div class="form-control-icon">
                         <i class="bi bi-envelope"></i>
                     </div>
                 </div>
                 <div class="form-group position-relative has-icon-left mb-3">
-                    <input type="password" name="password" class="form-control form-control" placeholder="Password">
+                    <input type="password" name="password" class="form-control form-control" placeholder="Password" data-parsley-minlength="8" data-parsley-error-message="Kata sandi harus lebih besar dari atau sama dengan 8.">
                     <div class="form-control-icon">
                         <i class="bi bi-shield-lock"></i>
                     </div>
@@ -30,14 +42,14 @@
                      Login dengan Google</a>
             </form>
             <div class="text-center mt-3">
-                <p class="text-gray-600">Sudah memiliki akun? <a href="register" class="font-bold">Daftar</a>.</p>
+                <p class="text-gray-600">Sudah memiliki akun? <a href="/register" class="font-bold">Daftar</a>.</p>
                 <p><a class="font-bold" href="/lupa-password">Lupa password?</a>.</p>
             </div>
         </div>
     </div>
     <div class="col-lg-7 d-none d-lg-block">
         <div id="auth-right">
-            <img src="assets/images/bg/clarity-login.png" style="background-size: cover; height: 100%" alt="clarity login">
+            <img src="/assets/images/bg/clarity-login.png" style="background-size: cover; height: 100%" alt="clarity login">
         </div>
     </div>
 </div>

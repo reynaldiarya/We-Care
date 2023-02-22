@@ -20,55 +20,52 @@ class ForgotPasswordController extends Controller
     }
 
 
-    public function createtoken(Request $req)
+    public function createtoken(Request $request)
     {
 
-        $req->validate([
+        $request->validate([
             'email' => 'required|email|exists:users',
         ]);
 
         $token = Str::random(64);
 
         DB::table('password_resets')->insert([
-            'email' => $req->email,
+            'email' => $request->email,
             'token' => $token,
             'created_at' => now()
             ]);
 
-        Mail::send('mail.forgot-password', ['token' => $token], function($message) use($req){
-            $message->to($req->email);
+        Mail::send('mail.forgot-password', ['token' => $token, 'title' => 'We Care'], function($message) use($request){
+            $message->to($request->email);
             $message->subject('Reset Password');
         });
 
-        return back()->with('message', 'Kami telah mengirim email tautan reset kata sandi Anda!');
+        return back()->with('sukses', 'Kami telah mengirim email tautan reset kata sandi Anda!');
     }
 
     public function resetpassword($token) {
+        $email = DB::table('password_resets')->where(['token' => $token])->value('email');
         return view('auth.forgot-password-form', [
             'token' => $token,
+            'email' => $email,
             'title' => self::title
         ]);
     }
 
 
-    public function sendresetpassword(Request $req)
+    public function sendresetpassword(Request $request)
     {
-        $req->validate([
+        $request->validate([
             'email' => 'required|email|exists:users',
-            'password' => 'required|string|min:6|confirmed',
-            'password_confirmation' => 'required'
+            'password' => 'required|string|min:8',
+            'password_confirm' => 'required'
         ]);
-
-        $updatePassword = DB::table('password_resets')->where(['email' => $req->email, 'token' => $req->token])->first();
-
+        $updatePassword = DB::table('password_resets')->where(['email' => $request->email, 'token' => $request->token])->first();
         if(!$updatePassword){
-            return back()->withInput()->with('error', 'Invalid token!');
+            return back()->withInput()->with('message', 'Invalid token!');
         }
-
-        $user = User::where('email', $req->email)->update(['password' => Hash::make($req->password)]);
-
-        DB::table('password_resets')->where(['email'=> $req->email])->delete();
-
+        $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
+        DB::table('password_resets')->where(['token'=> $request->token])->delete();
         return redirect('/login')->with('message', 'Kata sandi Anda telah diubah!');
     }
 }

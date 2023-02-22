@@ -10,7 +10,7 @@ use App\Mail\Register;
 
 class RegisterController extends Controller
 {
-    const title = 'Register - Backlink';
+    const title = 'Register - We Care';
 
     public function index()
     {
@@ -21,30 +21,37 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $valid =  $request->validate([
-            'name' => 'required',
-            'email' => 'email|unique:users|required',
-            'phone_number' => 'numeric|required',
-            'password' => 'min:8|required',
-            'password_confirm' => 'min:8|required|same:password'
+        $email  = User::where('email', $request['email'])->first();
+        if ($email != null) {
+            return back()->with('salah', 'Email telah terdaftar');
+        }else{
+            $valid =  $request->validate([
+                'name' => 'required',
+                'email' => 'email|unique:users|required',
+                'phone_number' => 'numeric|required',
+                'password' => 'min:8|required',
+                'password_confirm' => 'min:8|required|same:password'
 
-        ]);
-        $valid['password'] = Hash::make($request->password);
-        User::create($valid);
+            ]);
+            $valid['password'] = Hash::make($request->password);
+            User::create($valid);
+        }
 
-        // $body_email = [
-        //     'name' => $request->input('name'),
-        //     'email' => $request->input('email'),
-        //     'role' => $request->input('role'),
-        //     'phone_number' => $request->input('phone_number'),
-        // ];
 
-        // $tujuan = $request->get('email');
-        // Mail::to($tujuan)->send(new Register($body_email));
+        $body_email = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone_number' => $request->input('phone_number'),
+            'title' => 'We Care'
+        ];
+
+        $tujuan = $request->get('email');
+        Mail::to($tujuan)->send(new Register($body_email));
         return view('auth.login', [
             'registrasi' => 'true',
-            'email' => $valid['email'],
-            'title' => 'Login - Backlink'
+            'title' => 'Login - We Care'
         ]);
+
+
     }
 }

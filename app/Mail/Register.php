@@ -31,7 +31,7 @@ class Register extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Welcome to Backlink',
+            subject: 'Welcome to We Care',
         );
     }
 

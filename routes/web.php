@@ -27,7 +27,7 @@ Route::get('/auth/google/redirect', [SocialiteController::class, 'redirecttogoog
 Route::get('/auth/google/callback', [SocialiteController::class, 'handlegooglecallback']);
 Route::get('/register', [RegisterController::class, "index"])->middleware('guest');
 Route::post('/register', [RegisterController::class, "register"])->name('register');
-Route::post('/logout', [LoginController::class, "logout"])->middleware('auth');
+Route::post('/logout', [DashboardController::class, "logout"])->middleware('auth');
 Route::get('/lupa-password', [ForgotPasswordController::class, 'forgotpassword']);
 Route::post('/lupa-password', [ForgotPasswordController::class, 'createtoken']);
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'resetpassword'])->name('reset-password');
@@ -38,7 +38,7 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'sendresetpassw
 // Route::post('/registrasi-mail', [EmailController::class, "registrasi"]);
 // Route::get('/registrasi-mail', [EmailController::class, "registrasi"]);
 
-Route::group(['middleware'=>['auth','role:1']], function()
+Route::group(['middleware'=>['auth','role:0']], function()
 {
     Route::get('/admin', [DashboardController::class, "admin"])->name('dashboard-admin');
     Route::get('/profile-admin', [DashboardController::class, "profileadmin"]);

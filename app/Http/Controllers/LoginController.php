@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    const title = 'Login - Backlink';
+    const title = 'Login - We Care';
 
     public function index()
     {
@@ -16,10 +16,10 @@ class LoginController extends Controller
         ]);
     }
 
-    public function login(Request $req)
+    public function login(Request $request)
     {
 
-        $data = $req->validate([
+        $data = $request->validate([
             'email' => 'email|required',
             'password' => 'required'
         ]);
@@ -27,19 +27,11 @@ class LoginController extends Controller
         $email = $data['email'];
         $password = $data['password'];
 
-        if (Auth::attempt(array('email' => $email, 'password' => $password, 'role' => 'admin'))) {
-            $req->session()->regenerate();
+        if (Auth::attempt(array('email' => $email, 'password' => $password, 'role' => '2'))) {
+            $request->session()->regenerate();
             return redirect('/admin');
         }
 
-        return back()->with('salah', 'Silahkan cek kembali email atau password anda')->with('email', $email);
-    }
-
-    public function logout(Request $req)
-    {
-        Auth::logout();
-        $req->session()->invalidate();
-        $req->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/login')->with('salah', 'Email atau kata sandi Anda salah!');
     }
 }

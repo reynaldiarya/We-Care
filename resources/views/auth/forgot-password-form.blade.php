@@ -6,27 +6,34 @@
             <div class="auth-logo">
                 <a href="/"><img style="width: 300px; height: 100%"  src="/assets/images/logo/wecare.png" alt="Logo"></a>
             </div>
-            <h1 class="auth-title">Lupa Password</h1>
-            <p class="auth-subtitle mb-3">Masukkan email Anda dan kami akan mengirimkan link reset password</p>
+            <h1 class="auth-title">Reset Password</h1>
             @if(session()->has('message'))
             <div class="alert alert-danger alert-dismissible fade show">
                 {{ session('message')}}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-            @if(session()->has('sukses'))
-            <div class="alert alert-success alert-dismissible fade show">
-                {{ session('sukses')}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
 
-            <form method="POST" action="/lupa-password">
+            <form method="POST" action="/reset-password" data-parsley-validate>
                 @csrf
+                <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group position-relative has-icon-left mb-3">
-                    <input type="email" name="email" class="form-control form-control" placeholder="Email">
+                    <input disabled type="email" name="emailshow" class="form-control form-control" value="{{ $email }}">
+                    <input type="hidden" name="email" value="{{ $email }}">
                     <div class="form-control-icon">
                         <i class="bi bi-envelope"></i>
+                    </div>
+                </div>
+                <div class="form-group position-relative has-icon-left mb-3">
+                    <input required type="password" name="password" class="form-control form-control" id="password" placeholder="Password" data-parsley-minlength="8" data-parsley-error-message="Kata sandi harus lebih besar dari atau sama dengan 8.">
+                    <div class="form-control-icon">
+                        <i class="bi bi-shield-lock"></i>
+                    </div>
+                </div>
+                <div class="form-group position-relative has-icon-left mb-3">
+                    <input required type="password" name="password_confirm" class="form-control form-control" placeholder="Confirm Password" data-parsley-equalto="#password" data-parsley-error-message="Kata sandi tidak cocok.">
+                    <div class="form-control-icon">
+                        <i class="bi bi-shield-lock"></i>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block shadow-lg mt-3">Kirim</button>
