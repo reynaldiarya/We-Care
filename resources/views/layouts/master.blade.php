@@ -25,18 +25,15 @@
                 @yield('content')
                 <footer>
                     <div class="footer clearfix mb-0 text-muted">
-                        <div class="float-start">
-                            <p>2023 &copy; Mazer</p>
-                        </div>
                         <div class="float-end">
-                            <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                    href="https://saugi.me">Saugi</a></p>
+                            <p>2023 &copy; We Care</p>
                         </div>
                     </div>
                 </footer>
             </div>
         </div>
     </div>
+    <script src="/assets/js/initTheme.js"></script>
     <script src="/assets/js/bootstrap.js"></script>
     <script src="/assets/js/app.js"></script>
     @yield('script')

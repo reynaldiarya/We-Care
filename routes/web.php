@@ -23,15 +23,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, "index"])->middleware('guest');
 Route::post('/login', [LoginController::class, "login"])->name('login');
-Route::get('/auth/google/redirect', [SocialiteController::class, 'redirecttogoogle']);
-Route::get('/auth/google/callback', [SocialiteController::class, 'handlegooglecallback']);
+Route::get('/auth/google/redirect', [SocialiteController::class, "redirecttogoogle"]);
+Route::get('/auth/google/callback', [SocialiteController::class, "handlegooglecallback"]);
 Route::get('/register', [RegisterController::class, "index"])->middleware('guest');
 Route::post('/register', [RegisterController::class, "register"])->name('register');
 Route::post('/logout', [DashboardController::class, "logout"])->middleware('auth');
-Route::get('/lupa-password', [ForgotPasswordController::class, 'forgotpassword']);
-Route::post('/lupa-password', [ForgotPasswordController::class, 'createtoken']);
-Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'resetpassword'])->name('reset-password');
-Route::post('/reset-password', [ForgotPasswordController::class, 'sendresetpassword']);
+Route::get('/lupa-password', [ForgotPasswordController::class, "forgotpassword"]);
+Route::post('/lupa-password', [ForgotPasswordController::class, "createtoken"]);
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, "resetpassword"])->name('reset-password');
+Route::post('/reset-password', [ForgotPasswordController::class, "sendresetpassword"]);
 
 // Route::post('/hubungi-mail', [EmailController::class, "hubungi"]);
 // Route::get('/hubungi-mail', [EmailController::class, "hubungi"]);
@@ -41,5 +41,9 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'sendresetpassw
 Route::group(['middleware'=>['auth','role:0']], function()
 {
     Route::get('/admin', [DashboardController::class, "admin"])->name('dashboard-admin');
-    Route::get('/profile-admin', [DashboardController::class, "profileadmin"]);
+    Route::get('/admin/profil', [DashboardController::class, "profileadmin"]);
+    Route::post('/admin/profil-update', [DashboardController::class, "updateprofileadmin"]);
+    Route::post('/admin/password-update', [DashboardController::class, "updatepasswordadmin"]);
+    Route::get('/admin/donatur', [DashboardController::class, "donatur"]);
+    Route::get('/admin/transaksi', [DashboardController::class, "transaksi"]);
 });

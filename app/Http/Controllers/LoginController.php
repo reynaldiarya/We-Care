@@ -27,7 +27,7 @@ class LoginController extends Controller
         $email = $data['email'];
         $password = $data['password'];
 
-        if (Auth::attempt(array('email' => $email, 'password' => $password, 'role' => '2'))) {
+        if (Auth::attempt(array('email' => $email, 'password' => $password, 'role' => '0'))) {
             $request->session()->regenerate();
             return redirect('/admin');
         }
