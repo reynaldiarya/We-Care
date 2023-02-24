@@ -38,8 +38,7 @@ Route::post('/reset-password', [ForgotPasswordController::class, "sendresetpassw
 // Route::post('/registrasi-mail', [EmailController::class, "registrasi"]);
 // Route::get('/registrasi-mail', [EmailController::class, "registrasi"]);
 
-Route::group(['middleware'=>['auth','role:0']], function()
-{
+Route::group(['middleware' => ['auth', 'role:0']], function () {
     Route::get('/admin', [DashboardController::class, "admin"])->name('dashboard-admin');
     Route::get('/admin/profil', [DashboardController::class, "profileadmin"]);
     Route::post('/admin/profil-update', [DashboardController::class, "updateprofileadmin"]);

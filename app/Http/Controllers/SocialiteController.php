@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class SocialiteController extends Controller
 {
@@ -22,7 +23,18 @@ class SocialiteController extends Controller
 
             if ($user != null) {
                 auth()->login($user, true);
-                return redirect('/');
+                if ($user->role == 0) {
+                    return redirect('/admin');
+                } else if ($user->role == 1) {
+                    return redirect('/');
+                }
+                // if (Auth::where('role') == 0) {
+                //     return redirect('/admin');
+                // } else if (Auth::where('role') == 1) {
+                //     return redirect('/');
+                // }
+                // auth()->login($user, true);
+                // return redirect('/');
             } else {
                 $create = User::Create([
                     'email'             => $user_google->getEmail(),
