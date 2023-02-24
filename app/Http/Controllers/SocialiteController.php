@@ -28,13 +28,6 @@ class SocialiteController extends Controller
                 } else if ($user->role == 1) {
                     return redirect('/');
                 }
-                // if (Auth::where('role') == 0) {
-                //     return redirect('/admin');
-                // } else if (Auth::where('role') == 1) {
-                //     return redirect('/');
-                // }
-                // auth()->login($user, true);
-                // return redirect('/');
             } else {
                 $create = User::Create([
                     'email'             => $user_google->getEmail(),

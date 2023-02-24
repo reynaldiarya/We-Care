@@ -27,6 +27,15 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function pegawai()
+    {
+        $pegawai = User::all()->where('role', 0);
+        return view('admin.pegawai', [
+            'title' => self::title,
+            'pegawai' => $pegawai,
+        ]);
+    }
+
     public function donatur()
     {
         $donatur = User::all()->where('role', 1);
