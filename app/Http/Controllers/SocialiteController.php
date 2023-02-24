@@ -28,7 +28,7 @@ class SocialiteController extends Controller
                     'email'             => $user_google->getEmail(),
                     'name'              => $user_google->getName(),
                     'google_id'         => $user_google->getId(),
-                    'role'              => 2,
+                    'role'              => 1,
                     'password'          => 0,
                     'email_verified_at' => now()
                 ]);

@@ -13,7 +13,7 @@ class DashboardController extends Controller
 
     public function admin()
     {
-        $jumlahuser = User::all()->where('role', 2)->count();
+        $jumlahuser = User::all()->where('role', 1)->count();
         return view('admin.home', [
             'title' => self::title,
             'jumlahuser' => $jumlahuser,
@@ -29,7 +29,7 @@ class DashboardController extends Controller
 
     public function donatur()
     {
-        $donatur = User::all()->where('role', 2);
+        $donatur = User::all()->where('role', 1);
         return view('admin.donatur', [
             'title' => self::title,
             'donatur' => $donatur,
