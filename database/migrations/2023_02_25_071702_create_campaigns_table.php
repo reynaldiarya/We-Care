@@ -13,9 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_verify', function (Blueprint $table) {
+        Schema::create('campaigns', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('category_id');
+            $table->string('foto');
+            $table->string('judul');
+            $table->string('deskripsi');
+            $table->foreignId('lokasi_id');
             $table->foreignId('user_id');
-            $table->string('token');
+            $table->date('tgl_mulai');
+            $table->date('tgl_akhir');
+            $table->integer('target');
             $table->timestamps();
         });
     }
@@ -27,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_verify');
+        Schema::dropIfExists('campaigns');
     }
 };

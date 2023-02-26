@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_verify', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
+            $table->id();
+            $table->string('judul');
+            $table->date('tgl_terbit');
             $table->foreignId('user_id');
-            $table->string('token');
+            $table->string('gambar');
+            $table->text('isi');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_verify');
+        Schema::dropIfExists('blogs');
     }
 };

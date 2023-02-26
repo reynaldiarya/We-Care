@@ -19,6 +19,12 @@ class SocialiteController extends Controller
     {
         try {
             $user_google    = Socialite::driver('google')->user();
+            $user_by_email  = User::where('email', $user_google->getEmail())->first();
+            if ($user_by_email !=null){
+                if ($user_by_email->google_id == null){
+                    $user_google_id = User::where('email', $user_google->getEmail())->update(['google_id' => $user_google->getId()]);
+                }
+            }
             $user           = User::where('google_id', $user_google->getId())->first();
 
             if ($user != null) {

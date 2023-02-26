@@ -60,6 +60,12 @@
             </li>
             <li class="sidebar-item {{ request()->is('admin/transaksi') ? 'active' : '' }}">
                 <a href="/admin/transaksi" class='sidebar-link'>
+                    <i class="bi bi-bullseye"></i>
+                    <span>Campaign</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ request()->is('admin/transaksi') ? 'active' : '' }}">
+                <a href="/admin/transaksi" class='sidebar-link'>
                     <i class="bi bi-wallet-fill"></i>
                     <span>Transaksi</span>
                 </a>

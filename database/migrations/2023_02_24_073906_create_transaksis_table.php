@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('campaign_id');
+            $table->integer('nominal');
+            $table->date('tgl_transaksi');
+            $table->string('keterangan');
+            $table->integer('status_transaksi');
             $table->timestamps();
         });
     }

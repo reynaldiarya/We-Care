@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_verify', function (Blueprint $table) {
-            $table->foreignId('user_id');
-            $table->string('token');
+        Schema::create('lokasi_campaigns', function (Blueprint $table) {
+            $table->id();
+            $table->string('lokasi');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_verify');
+        Schema::dropIfExists('lokasi_campaigns');
     }
 };

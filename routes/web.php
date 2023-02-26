@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth', 'role:0']], function () {
     Route::post('/admin/profil-update', [DashboardController::class, "updateprofileadmin"]);
     Route::post('/admin/password-update', [DashboardController::class, "updatepasswordadmin"]);
     Route::get('/admin/pegawai', [DashboardController::class, "pegawai"]);
+    Route::post('/admin/tambah-pegawai', [DashboardController::class, "tambahpegawai"]);
     Route::get('/admin/donatur', [DashboardController::class, "donatur"]);
     Route::get('/admin/transaksi', [DashboardController::class, "transaksi"]);
 });
