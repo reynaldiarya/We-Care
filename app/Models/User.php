@@ -23,8 +23,16 @@ class User extends Authenticatable
         'phone_number',
         'password',
         'google_id',
+        'role',
         'email_verified_at',
     ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $guard = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,4 +52,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function userverify()
+    {
+        return $this->hasOne(UserVerify::class);
+    }
 }

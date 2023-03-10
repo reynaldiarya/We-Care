@@ -20,25 +20,17 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function logout(Request $req)
+    {
+        Auth::logout();
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
+        return redirect('/');
+    }
+
     public function profileadmin()
     {
         return view('admin.profile', [
-            'title' => self::title,
-        ]);
-    }
-
-    public function donatur()
-    {
-        $donatur = User::all()->where('role', 1);
-        return view('admin.donatur', [
-            'title' => self::title,
-            'donatur' => $donatur,
-        ]);
-    }
-
-    public function transaksi()
-    {
-        return view('admin.transaksi', [
             'title' => self::title,
         ]);
     }
@@ -84,11 +76,48 @@ class DashboardController extends Controller
         return back()->with('message', 'Kata sandi berhasil diperbarui');
     }
 
-    public function logout(Request $req)
+    public function pegawai()
     {
-        Auth::logout();
-        $req->session()->invalidate();
-        $req->session()->regenerateToken();
-        return redirect('/');
+        $pegawai = User::all()->where('role', 0)->where('id', '!=', Auth::user()->id);
+        return view('admin.pegawai', [
+            'title' => self::title,
+            'pegawai' => $pegawai,
+        ]);
     }
+
+    public function tambahpegawai(Request $request)
+    {
+        $valid = $request->validate([
+            'name' => 'required|string',
+            'email' => 'email|required|unique:users',
+            'phone_number' => 'required|numeric',
+            'role' => 'required|numeric',
+            'password' => 'required|string|min:8',
+            'password_confirm' => 'required'
+        ]);
+        $valid['password'] = Hash::make($request->password);
+        User::create($valid);
+        return back()->with('message', 'Pegawai berhasil ditambahkan');
+
+    }
+
+    public function donatur()
+    {
+        $donatur = User::all()->where('role', 1);
+        return view('admin.donatur', [
+            'title' => self::title,
+            'donatur' => $donatur,
+        ]);
+    }
+
+    public function transaksi()
+    {
+        return view('admin.transaksi', [
+            'title' => self::title,
+        ]);
+    }
+
+
+
+
 }

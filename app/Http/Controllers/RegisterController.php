@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Register;
+use Illuminate\Support\Str;
+use App\Models\UserVerify;
 
 class RegisterController extends Controller
 {
@@ -34,24 +36,27 @@ class RegisterController extends Controller
 
             ]);
             $valid['password'] = Hash::make($request->password);
-            User::create($valid);
+            $createuser = User::create($valid);
+            $token = Str::random(64);
+            UserVerify::create([
+                'user_id' => $createuser->id,
+                'token' => $token
+            ]);
+            $body_email = [
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'phone_number' => $request->input('phone_number'),
+                'token' => $token,
+                'title' => 'We Care'
+            ];
+
+            $tujuan = $request->get('email');
+            Mail::to($tujuan)->send(new Register($body_email));
+            return view('auth.login', [
+                'registrasi' => 'true',
+                'title' => 'Login - We Care'
+            ]);
         }
-
-
-        $body_email = [
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone_number' => $request->input('phone_number'),
-            'title' => 'We Care'
-        ];
-
-        $tujuan = $request->get('email');
-        Mail::to($tujuan)->send(new Register($body_email));
-        return view('auth.login', [
-            'registrasi' => 'true',
-            'title' => 'Login - We Care'
-        ]);
-
 
     }
 }

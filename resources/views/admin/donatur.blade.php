@@ -28,11 +28,11 @@
                         </thead>
                         <tbody>
                             @foreach ($donatur as $item)
-                            <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>{{ $item->phone_number }}</td>
-                            </tr>
+                                <tr>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->phone_number }}</td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

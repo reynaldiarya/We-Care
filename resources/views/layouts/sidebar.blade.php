@@ -40,26 +40,36 @@
     </div>
     <div class="sidebar-menu">
         <ul class="menu">
-            @if (Auth::user()->role == '0')
-                <li class="sidebar-item">
-                    <a href="/admin" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="/admin/donatur" class='sidebar-link'>
-                        <i class="bi bi-people-fill"></i>
-                        <span>Donatur</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="/admin/transaksi" class='sidebar-link'>
-                        <i class="bi bi-wallet-fill"></i>
-                        <span>Transaksi</span>
-                    </a>
-                </li>
-            @endif
+            <li class="sidebar-item {{ request()->is('admin') ? 'active' : '' }}">
+                <a href="/admin" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ request()->is('admin/pegawai') ? 'active' : '' }}">
+                <a href="/admin/pegawai" class='sidebar-link'>
+                    <i class="bi bi-person-fill-gear"></i>
+                    <span>Pegawai</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ request()->is('admin/donatur') ? 'active' : '' }}">
+                <a href="/admin/donatur" class='sidebar-link'>
+                    <i class="bi bi-people-fill"></i>
+                    <span>Donatur</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ request()->is('admin/transaksi') ? 'active' : '' }}">
+                <a href="/admin/transaksi" class='sidebar-link'>
+                    <i class="bi bi-bullseye"></i>
+                    <span>Campaign</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ request()->is('admin/transaksi') ? 'active' : '' }}">
+                <a href="/admin/transaksi" class='sidebar-link'>
+                    <i class="bi bi-wallet-fill"></i>
+                    <span>Transaksi</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
