@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('campaign_id');
-            $table->integer('nominal');
+            $table->integer('nominal_transaksi');
             $table->date('tgl_transaksi');
             $table->string('keterangan');
             $table->integer('status_transaksi');

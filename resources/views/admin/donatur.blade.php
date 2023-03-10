@@ -21,14 +21,18 @@
                     <table class="table" id="table1">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Nomor Telepon</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php $i = 0 @endphp
                             @foreach ($donatur as $item)
                                 <tr>
+                                    @php $i++ @endphp
+                                    <td>{{ $i }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone_number }}</td>

@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->date('tgl_terbit');
+            $table->string('judul_blog');
+            $table->date('tgl_terbit_blog');
             $table->foreignId('user_id');
-            $table->string('gambar');
-            $table->text('isi');
+            $table->string('gambar_blog');
+            $table->text('isi_blog');
             $table->timestamps();
         });
     }

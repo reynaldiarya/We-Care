@@ -65,7 +65,7 @@
                                                     data-parsley-error-message="Masukkan format nomor telepon yang valid." />
                                             </div>
                                             <div class="col-sm-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                <button type="submit" class="btn btn-primary me-1 mb-1">Kirim</button>
                                             </div>
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
                                                     data-parsley-error-message="Kata sandi tidak cocok." />
                                             </div>
                                             <div class="col-sm-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                <button type="submit" class="btn btn-primary me-1 mb-1">Kirim</button>
                                             </div>
                                         </div>
                                     </div>
