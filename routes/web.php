@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('mainPage.home');
+});
 
 Route::get('/login', [LoginController::class, "index"])->middleware('guest');
 Route::post('/login', [LoginController::class, "login"])->name('login');
