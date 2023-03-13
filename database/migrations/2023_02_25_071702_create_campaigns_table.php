@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('tgl_mulai_campaign');
             $table->date('tgl_akhir_campaign');
             $table->integer('target_campaign');
+            $table->integer('status_campaign');
             $table->timestamps();
         });
     }

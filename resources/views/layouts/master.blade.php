@@ -26,7 +26,7 @@
                 <footer>
                     <div class="footer clearfix mb-0 text-muted">
                         <div class="float-end">
-                            <p>2023 &copy; We Care</p>
+                            <p><?php echo date('Y'); ?> &copy; We Care</p>
                         </div>
                     </div>
                 </footer>

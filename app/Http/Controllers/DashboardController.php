@@ -76,28 +76,4 @@ class DashboardController extends Controller
         return back()->with('message', 'Kata sandi berhasil diperbarui');
     }
 
-    // public function pegawai()
-    // {
-    //     $pegawai = User::all()->where('role', 0)->where('id', '!=', Auth::user()->id);
-    //     return view('admin.pegawai', [
-    //         'title' => self::title,
-    //         'pegawai' => $pegawai,
-    //     ]);
-    // }
-
-    // public function tambahpegawai(Request $request)
-    // {
-    //     $valid = $request->validate([
-    //         'name' => 'required|string',
-    //         'email' => 'email|required|unique:users',
-    //         'phone_number' => 'required|numeric',
-    //         'role' => 'required|numeric',
-    //         'password' => 'required|string|min:8',
-    //         'password_confirm' => 'required'
-    //     ]);
-    //     $valid['password'] = Hash::make($request->password);
-    //     User::create($valid);
-    //     return back()->with('message', 'Pegawai berhasil ditambahkan');
-
-    // }
 }

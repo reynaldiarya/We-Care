@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lokasi_campaigns', function (Blueprint $table) {
+        Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
-            $table->string('lokasi');
+            $table->foreignId('user_id');
+            $table->foreignId('campaign_id');
+            $table->integer('nominal_transaksi');
+            $table->date('tgl_transaksi');
+            $table->string('keterangan');
+            $table->integer('status_transaksi');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lokasi_campaigns');
+        Schema::dropIfExists('transaksi');
     }
 };

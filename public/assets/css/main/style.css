@@ -80,7 +80,7 @@
 }
 
 .carosal-area {
-    background-image: url("img/carosal-bg.jpg");
+    background-image: url("/img/carosal-bg.jpg");
     background-size: cover;
 }
 
@@ -289,7 +289,7 @@
 }
 
 .donate_section {
-    background-image: url("img/donate-bg.jpg");
+    background-image: url("/img/donate-bg.jpg");
     background-size: cover;
 }
 
@@ -504,7 +504,7 @@
     text-align: center;
 }
 
-.our_cuauses h2. {
+.our_cuauses h2 {
     color: #3c354e;
     font-family: "Roboto", sans-serif;
     font-size: 32px;
@@ -838,7 +838,7 @@
 }
 
 .carosal_bottom {
-    background-image: url(img/carosal_bottom_bg.jpg);
+    background-image: url("/img/carosal_bottom_bg.jpg");
     background-size: 100% 100%;
     height: 575px;
 }
@@ -1081,7 +1081,7 @@
 }
 
 .block-wrapper {
-    background-image: url(img/count.jpg);
+    background-image: url("/img/count.jpg");
     background-size: 100% 100%;
 }
 
@@ -1125,6 +1125,16 @@
 .clear {
     clear: both;
 }
-.footer_carosal_icon .owl-nav{
+
+.footer_carosal_icon .owl-nav {
     display: none;
+}
+
+.dark {
+    background-color: rgb(37, 37, 37);
+    -webkit-text-fill-color: rgb(255, 255, 255);
+}
+
+.light {
+    background-color: rgb(255, 255, 255);
 }

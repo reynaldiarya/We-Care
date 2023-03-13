@@ -52,6 +52,12 @@
                     <span>Donatur</span>
                 </a>
             </li>
+            <li class="sidebar-item {{ request()->is('admin/pegawai') ? 'active' : '' }}">
+                <a href="/admin/pegawai" class='sidebar-link'>
+                    <i class="bi bi-person-fill-check"></i>
+                    <span>Pegawai</span>
+                </a>
+            </li>
             <li class="sidebar-item has-sub {{ request()->is('admin/campaign*') ? 'active' : '' }}">
                 <a href="#" class="sidebar-link">
                     <i class="bi bi-bullseye"></i>
@@ -64,39 +70,22 @@
                     <li class="submenu-item">
                         <a href="/admin/campaign/berita">Berita</a>
                     </li>
+                    <li class="submenu-item">
+                        <a href="/admin/campaign/kategori">Kategori</a>
+                    </li>
                 </ul>
             </li>
-            <li class="sidebar-item {{ request()->is('admin/transaksi') ? 'active' : '' }}">
-                <a href="/admin/transaksi" class='sidebar-link'>
+            <li class="sidebar-item {{ request()->is('admin/transaksi-donasi') ? 'active' : '' }}">
+                <a href="/admin/transaksi-donasi" class='sidebar-link'>
                     <i class="bi bi-wallet-fill"></i>
-                    <span>Transaksi</span>
+                    <span>Transaksi Donasi</span>
                 </a>
             </li>
-            <li class="sidebar-item {{ request()->is('admin/blog') ? 'active' : '' }}">
-                <a href="/admin/blog" class='sidebar-link'>
+            <li class="sidebar-item {{ request()->is('admin/artikel-blog') ? 'active' : '' }}">
+                <a href="/admin/artikel-blog" class='sidebar-link'>
                     <i class="bi bi-archive-fill"></i>
-                    <span>Blog</span>
+                    <span>Artikel Blog</span>
                 </a>
-            </li>
-            <li class="sidebar-item has-sub {{ request()->is('admin/campaign*') ? 'active' : '' }}">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-gear-fill"></i>
-                    <span>Pengaturan Web</span>
-                </a>
-                <ul class="submenu">
-                    <li class="submenu-item">
-                        <a href="/admin/campaign/daftar-campaign">Sampul Depan</a>
-                    </li>
-                    <li class="submenu-item">
-                        <a href="/admin/campaign/berita">Tentang</a>
-                    </li>
-                    <li class="submenu-item">
-                        <a href="/admin/campaign/berita">Lokasi</a>
-                    </li>
-                    <li class="submenu-item">
-                        <a href="/admin/campaign/berita">Pegawai</a>
-                    </li>
-                </ul>
             </li>
         </ul>
     </div>

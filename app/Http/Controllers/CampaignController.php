@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
 use App\Models\Berita;
+use App\Models\Kategori;
 
 class CampaignController extends Controller
 {
@@ -71,5 +72,29 @@ class CampaignController extends Controller
         $blog->isi_berita = $request->input('isi');
         $blog->save();
         return redirect('/admin/campaign/berita')->with('message', 'Artikel berhasil ditambahkan');
+    }
+
+    public function kategori()
+    {
+        $kategori = Kategori::all();
+        return view('admin.kategori', [
+            'title' => 'Kategori - We Care',
+            'kategori' => $kategori,
+        ]);
+    }
+
+    public function tambahkategori(Request $request)
+    {
+        $valid = $request->validate([
+            'nama_kategori' => 'required|string|unique:kategori'
+        ]);
+        Kategori::create($valid);
+        return back()->with('message', 'Kategori berhasil ditambahkan');
+    }
+
+    public function deletekategori()
+    {
+        Kategori::where('id', request('id'))->delete();
+        return back()->with('message', 'Kategori berhasil dihapus');
     }
 }

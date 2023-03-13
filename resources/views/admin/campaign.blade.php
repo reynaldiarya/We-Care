@@ -18,6 +18,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+        @if (count($errors) > 0)
+                                    @foreach ($errors->all() as $error)
+                                        <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                                            {{ $error }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                        </div>
+                                    @endforeach
+                                @endif
 
         <!-- Basic Tables start -->
         <section class="section">
@@ -34,11 +43,11 @@
                                 <th>No</th>
                                 <th>Judul</th>
                                 <th>Kategori</th>
-                                <th>Tanggal Terbit</th>
                                 <th>Penggalang Dana</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Tanggal Akhir</th>
                                 <th>Target</th>
+                                <th>Status</th>
                                 <th>Tindakan</th>
                             </tr>
                         </thead>

@@ -7,6 +7,7 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\VerifikasiAkunController;
@@ -25,10 +26,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* Halaman Utama */
 Route::get('/', function () {
-    return view('mainPage.home');
+    return view('landing.home');
 });
 
+/* Login & Register */
 Route::get('/login', [LoginController::class, "index"])->middleware('guest');
 Route::post('/login', [LoginController::class, "login"])->name('login');
 Route::get('/auth/google/redirect', [SocialiteController::class, "redirecttogoogle"]);
@@ -54,10 +57,11 @@ Route::group(['middleware' => ['auth', 'role:0']], function () {
     Route::post('/admin/profil-update', [DashboardController::class, "updateprofileadmin"]);
     Route::post('/admin/password-update', [DashboardController::class, "updatepasswordadmin"]);
     Route::post('/logout', [DashboardController::class, "logout"]);
-    // Route::get('/admin/pegawai', [DashboardController::class, "pegawai"]);
-    // Route::post('/admin/tambah-pegawai', [DashboardController::class, "tambahpegawai"]);
-    /* Admin Donatur */
+    /* Admin Data User */
     Route::get('/admin/donatur', [DonaturController::class, "donatur"]);
+    Route::get('/admin/pegawai', [PegawaiController::class, "pegawai"]);
+    Route::post('/admin/pegawai/tambah-pegawai', [PegawaiController::class, "tambahpegawai"]);
+    Route::post('/admin/pegawai/hapus-pegawai', [PegawaiController::class, "deletepegawai"]);
     /* Admin Campaign */
     Route::get('/admin/campaign/daftar-campaign', [CampaignController::class, "campaign"]);
     Route::get('/admin/campaign/berita', [CampaignController::class, "news"]);
@@ -66,14 +70,18 @@ Route::group(['middleware' => ['auth', 'role:0']], function () {
     Route::post('/admin/campaign/berita/post-tambah-berita', [CampaignController::class, "posttambahberita"]);
     Route::get('/admin/campaign/berita/edit-berita/{id}', [CampaignController::class, "editberita"]);
     Route::post('/admin/campaign/berita/post-edit-berita', [CampaignController::class, "posteditberita"]);
+    Route::get('/admin/campaign/kategori', [CampaignController::class, "kategori"]);
+    Route::post('/admin/campaign/kategori/tambah-kategori', [CampaignController::class, "tambahkategori"]);
+    Route::post('/admin/campaign/kategori/hapus-kategori', [CampaignController::class, "deletekategori"]);
     /* Admin Transaksi */
-    Route::get('/admin/transaksi', [TransaksiController::class, "transaksi"]);
+    Route::get('/admin/transaksi-donasi', [TransaksiController::class, "transaksi"]);
     /* Admin Blog */
-    Route::get('/admin/blog', [BlogController::class, "blog"]);
+    Route::get('/admin/artikel-blog', [BlogController::class, "blog"]);
     Route::post('/admin/hapus-artikel', [BlogController::class, "deleteartikel"])->name('hapus-artikel');
     Route::get('/admin/tambah-artikel', [BlogController::class, "tambahartikel"]);
     Route::post('/admin/tambah-artikel/upload-gambar', [BlogController::class, "uploadgambar"])->name('upload-gambar-artikel');
     Route::post('/admin/post-tambah-artikel', [BlogController::class, "posttambahartikel"]);
     Route::get('/admin/edit-artikel/{id}', [BlogController::class, "editartikel"]);
     Route::post('/admin/post-edit-artikel', [BlogController::class, "posteditartikel"]);
+
 });
