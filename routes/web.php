@@ -27,9 +27,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 /* Halaman Utama */
+
 Route::get('/', function () {
     return view('landing.home');
 });
+
+Route::get('/startCampaign', function () {
+    return view('landing.createCampaign');
+});
+
+Route::post('/createCampaign', [CampaignController::class, "createCampaign"]);
 
 /* Login & Register */
 Route::get('/login', [LoginController::class, "index"])->middleware('guest');
@@ -83,5 +90,4 @@ Route::group(['middleware' => ['auth', 'role:0']], function () {
     Route::post('/admin/post-tambah-artikel', [BlogController::class, "posttambahartikel"]);
     Route::get('/admin/edit-artikel/{id}', [BlogController::class, "editartikel"]);
     Route::post('/admin/post-edit-artikel', [BlogController::class, "posteditartikel"]);
-
 });

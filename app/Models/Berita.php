@@ -9,4 +9,13 @@ class Berita extends Model
 {
     use HasFactory;
     public $table = "berita";
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
 }

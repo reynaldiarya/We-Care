@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -17,6 +18,13 @@ class DashboardController extends Controller
         return view('admin.home', [
             'title' => self::title,
             'jumlahuser' => $jumlahuser,
+        ]);
+    }
+
+    public function cust()
+    {
+        return view('landing.home', [
+            "campaign" => Campaign::all()
         ]);
     }
 
@@ -75,5 +83,4 @@ class DashboardController extends Controller
         $user->save();
         return back()->with('message', 'Kata sandi berhasil diperbarui');
     }
-
 }

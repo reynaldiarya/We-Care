@@ -123,82 +123,7 @@
             </div>
         </div>
     </section>
-    <section class="events_section_area">
-        <h2>UPCOMING EVENTS</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br> incididunt ut labore et
-            dolore magna aliqua. </p>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-xs-12">
-                    <div class="events_single">
-                        <img src="img/events_single_one.jpg" alt="">
-                        <p><span class="event_left"><i class="material-icons">access_time</i>1:00 pm - 3:00 pm</span><span
-                                class="event_right"><i class="material-icons">location_on</i>California Street</span></p>
-                        <div class="clear"></div>
-                        <h3>Education For Children</h3>
-                        <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam,</h6>
-                    </div>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <div class="events_single">
-                        <img src="img/events_single_two.jpg" alt="">
-                        <p><span class="event_left"><i class="material-icons">access_time</i>1:00 pm - 3:00 pm</span><span
-                                class="event_right"><i class="material-icons">location_on</i>California Street</span></p>
-                        <h3>Education For Children</h3>
-                        <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam,</h6>
-                    </div>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <div class="events_single">
-                        <img src="img/events_single_three.jpg" alt="">
-                        <p><span class="event_left"><i class="material-icons">access_time</i>1:00 pm - 3:00 pm</span><span
-                                class="event_right"><i class="material-icons">location_on</i>California Street</span></p>
-                        <h3>Education For Children</h3>
-                        <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam,</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-
-    <div class="block-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-6 for-border">
-                    <div class="block">
-                        <p><i class="material-icons">favorite</i></p>
-                        <p class="counter-wrapper"><span class="fb"></span></p>
-                        <p class="text-block">CAUSES</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-6 for-border">
-                    <div class="block">
-                        <p><i class="material-icons">language</i></p>
-                        <p class="counter-wrapper"><span class="code"></span></p>
-                        <p class="text-block">PLACES</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-6 for-border">
-                    <div class="block">
-                        <p><i class="material-icons">person_add</i></p>
-                        <p class="counter-wrapper"><span class="bike"></span></p>
-                        <p class="text-block">VOLUNTEERS</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-6 for-border">
-                    <div class="block">
-                        <p><i class="material-icons">people</i></p>
-                        <p class="counter-wrapper"><span class="coffee"></span></p>
-                        <p class="text-block">SAVED</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <section class="our_cuauses">
         <h2>OUR CAUSES</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br> incididunt ut labore et
@@ -284,7 +209,85 @@
             </div>
         </div>
     </section>
-    <section class="donors">
+
+    {{-- <section class="events_section_area">
+        <h2>UPCOMING EVENTS</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br> incididunt ut labore et
+            dolore magna aliqua. </p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <div class="events_single">
+                        <img src="img/events_single_one.jpg" alt="">
+                        <p><span class="event_left"><i class="material-icons">access_time</i>1:00 pm - 3:00 pm</span><span
+                                class="event_right"><i class="material-icons">location_on</i>California Street</span></p>
+                        <div class="clear"></div>
+                        <h3>Education For Children</h3>
+                        <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam,</h6>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="events_single">
+                        <img src="img/events_single_two.jpg" alt="">
+                        <p><span class="event_left"><i class="material-icons">access_time</i>1:00 pm - 3:00 pm</span><span
+                                class="event_right"><i class="material-icons">location_on</i>California Street</span></p>
+                        <h3>Education For Children</h3>
+                        <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam,</h6>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="events_single">
+                        <img src="img/events_single_three.jpg" alt="">
+                        <p><span class="event_left"><i class="material-icons">access_time</i>1:00 pm - 3:00 pm</span><span
+                                class="event_right"><i class="material-icons">location_on</i>California Street</span></p>
+                        <h3>Education For Children</h3>
+                        <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam,</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> --}}
+
+    <div class="block-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-6 for-border">
+                    <div class="block">
+                        <p><i class="material-icons">favorite</i></p>
+                        <p class="counter-wrapper"><span class="fb"></span></p>
+                        <p class="text-block">CAUSES</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6 for-border">
+                    <div class="block">
+                        <p><i class="material-icons">language</i></p>
+                        <p class="counter-wrapper"><span class="code"></span></p>
+                        <p class="text-block">PLACES</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6 for-border">
+                    <div class="block">
+                        <p><i class="material-icons">person_add</i></p>
+                        <p class="counter-wrapper"><span class="bike"></span></p>
+                        <p class="text-block">VOLUNTEERS</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6 for-border">
+                    <div class="block">
+                        <p><i class="material-icons">people</i></p>
+                        <p class="counter-wrapper"><span class="coffee"></span></p>
+                        <p class="text-block">SAVED</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- <section class="donors">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -345,8 +348,9 @@
                 </div>
             </div>
         </div>
-    </section>
-    <div class="clear"></div>
+    </section> --}}
+
+    {{-- <div class="clear"></div>
     <section class="volunteer_area">
         <h2>Our Volunteer</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br> incididunt ut labore et
@@ -425,9 +429,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <section class="carosal_bottom">
+    {{-- <section class="carosal_bottom">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -466,7 +470,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
+
     <section class="letast_news">
         <h2>latest news</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br> incididunt ut labore et
@@ -562,11 +567,11 @@
             if (switchButton.checked) {
                 body.classList.add("dark");
                 body.classList.remove("light");
-                change.innerHTML = "Dark Theme";
+                change.innerHTML = "Dark Mode";
             } else {
                 body.classList.add("light");
                 body.classList.remove("dark");
-                change.innerHTML = "Light Theme";
+                change.innerHTML = "Light Mode";
             }
         });
     </script>

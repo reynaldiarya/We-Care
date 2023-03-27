@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_inisiator');
             $table->foreignId('category_id');
             $table->string('foto_campaign');
             $table->string('judul_campaign');

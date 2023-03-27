@@ -8,4 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class Campaign extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nama_inisiator',
+        'category_id',
+        'foto_campaign',
+        'judul_campaign',
+        'deskripsi_campaign',
+        'lokasi_id',
+        'user_id',
+        'tgl_mulai_campaign',
+        'tgl_akhir_campaign',
+        'target_campaign',
+        'status_campaign',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
+    public function Berita()
+    {
+        return $this->hasMany(Berita::class);
+    }
 }
