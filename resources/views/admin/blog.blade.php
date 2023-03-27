@@ -19,14 +19,13 @@
             </div>
         @endif
         @if (count($errors) > 0)
-                                    @foreach ($errors->all() as $error)
-                                        <div class="alert alert-danger alert-dismissible show fade" role="alert">
-                                            {{ $error }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
-                                        </div>
-                                    @endforeach
-                                @endif
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                    {{ $error }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endforeach
+        @endif
 
         <!-- Basic Tables start -->
         <section class="section">

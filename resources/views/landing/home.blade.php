@@ -481,76 +481,28 @@
     </section> --}}
 
     <section class="letast_news">
-        <h2>latest news</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br> incididunt ut labore et
-            dolore magna aliqua. </p>
+        <h2>Artikel Terbaru</h2>
+        {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br> incididunt ut labore et
+            dolore magna aliqua. </p> --}}
         <div class="container">
             <div class="row">
+                @foreach ($blog as $item)
                 <div class="col-md-4">
                     <div class="single_news">
-                        <img src="img/news_images_1.jpg" alt="">
+                        <img src="{{asset('/storage/images/thumbnail/'. $item->gambar_blog)}}" alt="">
                         <div class="texts">
-                            <p class="date"><a href="#">30 May, 2017</a></p>
-                            <h3>Wood Work Adds Value To <br> Your Property Five</h3>
-                            <p class="test">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. </p>
-                            <h3><a href="#">READ MORE</a></h3>
+                            <p class="date">{{ date('j F, Y', strtotime($item->tgl_terbit_blog)) }}</p>
+                            <h3><a href="/blog/{{ $item->slug_blog }}"
+                                >{{ $item->judul_blog }}</a></h3>
+                            <p class="test">{!! Str::limit($item->isi_blog, 100) !!}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="single_news">
-                        <img src="img/news_images_2.jpg" alt="">
-                        <div class="texts">
-                            <p class="date"><a href="#">30 May, 2017</a></p>
-                            <h3>Wood Work Adds Value To <br> Your Property Five</h3>
-                            <p class="test">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. </p>
-                            <h3><a href="#">READ MORE</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="single_news">
-                        <img src="img/news_images_3.jpg" alt="">
-                        <div class="texts">
-                            <p class="date"><a href="#">30 May, 2017</a></p>
-                            <h3>Wood Work Adds Value To <br> Your Property Five</h3>
-                            <p class="test">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. </p>
-                            <h3><a href="#">READ MORE</a></h3>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
 
-    <section class="footer_carosal">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="footer_carosal_icon owl-carousel owl-theme">
-                        <div class="item">
-                            <img src="img/microsoft.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="img/envato.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="img/yahoo.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="img/jquery.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="img/amazon.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"

@@ -21,6 +21,7 @@ class Campaign extends Model
         'tgl_akhir_campaign',
         'target_campaign',
         'status_campaign',
+        'slug_campaign',
     ];
 
     public function user()

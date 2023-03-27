@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DonaturController;
@@ -28,15 +29,9 @@ use Illuminate\Support\Facades\Route;
 
 /* Halaman Utama */
 
-Route::get('/', function () {
-    return view('landing.home');
-});
-
-Route::get('/startCampaign', function () {
-    return view('landing.createCampaign');
-});
-
-Route::post('/createCampaign', [CampaignController::class, "createCampaign"]);
+Route::get('/', [LandingController::class, "index"]);
+Route::get('/buat-campaign', [CampaignController::class, "buatcampaigndonatur"]);
+Route::post('/createCampaign', [CampaignController::class, "createcampaigndonatur"]);
 
 /* Login & Register */
 Route::get('/login', [LoginController::class, "index"])->middleware('guest');

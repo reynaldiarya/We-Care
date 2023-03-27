@@ -12,7 +12,9 @@ class CampaignController extends Controller
 {
     public function campaign()
     {
+        $campaign = Campaign::all();
         return view('admin.campaign', [
+            'campaign'  => $campaign,
             'title' => 'Daftar Campaign - We Care',
         ]);
     }
@@ -99,21 +101,29 @@ class CampaignController extends Controller
         return back()->with('message', 'Kategori berhasil dihapus');
     }
 
-    public function createCampaign(Request $request)
+    public function buatcampaigndonatur()
+    {
+        $kategori = Kategori::all();
+        return view('landing.createcampaign', [
+            'title' => 'Kategori - We Care',
+            'kategori' => $kategori,
+        ]);
+    }
+
+    public function createcampaigndonatur(Request $request)
     {
         if ($request->isMethod('post')) {
             Campaign::create([
                 'user_id' => $request->user_id,
-                'nama_inisiator' => $request->nama_inisiator,
                 'category_id' => $request->category_id,
-                'foto_campaign' => $request->file('image')->store('image', 'public'),
+                'foto_campaign' => $request->file('image')->store('storage/images/campaign', 'public'),
                 'judul_campaign' => $request->judul_campaign,
                 'deskripsi_campaign' => $request->deskripsi_campaign,
-                'lokasi_id' => $request->lokasi,
+                // 'lokasi_id' => $request->lokasi,
                 'tgl_mulai_campaign' => Carbon::now(),
                 'tgl_akhir_campaign' => $request->tgl_akhir,
                 'target_campaign' => $request->target_campaign,
-                'status_campaign' => 1,
+                'status_campaign' => 0,
             ]);
             return redirect('/');
         }

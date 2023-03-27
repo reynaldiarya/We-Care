@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_inisiator');
             $table->foreignId('category_id');
             $table->string('foto_campaign');
             $table->string('judul_campaign');
             $table->string('deskripsi_campaign');
-            $table->foreignId('lokasi_id');
+            // $table->foreignId('lokasi_id');
             $table->foreignId('user_id');
             $table->date('tgl_mulai_campaign');
             $table->date('tgl_akhir_campaign');
             $table->integer('target_campaign');
             $table->integer('status_campaign');
+            $table->text('slug_campaign');
             $table->timestamps();
         });
     }
