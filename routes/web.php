@@ -29,7 +29,11 @@ use Illuminate\Support\Facades\Route;
 /* Halaman Utama */
 
 Route::get('/', function () {
+<<<<<<< Updated upstream
     return view('landing.home');
+=======
+    return view('landingPage');
+>>>>>>> Stashed changes
 });
 
 Route::get('/startCampaign', function () {
