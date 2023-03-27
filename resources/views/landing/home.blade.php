@@ -1,4 +1,12 @@
 @extends('landing.master')
+@section('style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endsection
 @section('content')
     <section class="carosal-area"
         style="background:url(img/carosal-bg.jpg); background-size:cover; background-attachment: fixed; background-position: center; background-repeat: no-repeat; height:80vh">
@@ -545,34 +553,9 @@
     </section>
 @endsection
 @section('script')
-    <script>
-        var nav = document.querySelector('nav');
-        if (window.innerWidth <= 990) {
-            nav.classList.add('bg-dark', 'shadow');
-        } else {
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 100) {
-                    nav.classList.add('bg-dark', 'shadow');
-                } else {
-                    nav.classList.remove('bg-dark', 'shadow');
-                }
-            });
-        }
-
-        var switchButton = document.getElementById("flexSwitchCheckDefault");
-        var change = document.getElementById("theme");
-        var body = document.getElementsByTagName("body")[0];
-
-        switchButton.addEventListener("click", function() {
-            if (switchButton.checked) {
-                body.classList.add("dark");
-                body.classList.remove("light");
-                change.innerHTML = "Dark Mode";
-            } else {
-                body.classList.add("light");
-                body.classList.remove("dark");
-                change.innerHTML = "Light Mode";
-            }
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/js/pages/animationCounter.min.js"></script>
+    <script src="/assets/js/pages/active.js"></script>
 @endsection

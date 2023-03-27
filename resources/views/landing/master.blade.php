@@ -9,14 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet">
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @yield('style')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,10 +23,10 @@
 <body>
     <div class="wrapper">
         <header class="header">
-            <nav class="navbar navbar-dark navbar-expand-lg fixed-top py-4">
+            <nav class="navbar navbar-dark navbar-expand-lg fixed-top">
                 <div class="container">
                     <a class="navbar-brand" href="#">
-                        <h2>WeCare</h2>
+                        <h2>We Care</h2>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -172,12 +165,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+        integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="{{ asset('/assets/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('/assets/js/pages/animationCounter.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/pages/active.js') }}"></script>
+    <script>
+        var nav = document.querySelector('nav');
+        if (window.innerWidth <= 990) {
+            nav.classList.add('bg-dark', 'shadow');
+        } else {
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 100) {
+                    nav.classList.add('bg-dark', 'shadow');
+                } else {
+                    nav.classList.remove('bg-dark', 'shadow');
+                }
+            });
+        }
+
+        var switchButton = document.getElementById("flexSwitchCheckDefault");
+        var change = document.getElementById("theme");
+        var body = document.getElementsByTagName("body")[0];
+
+        switchButton.addEventListener("click", function() {
+            if (switchButton.checked) {
+                body.classList.add("dark");
+                body.classList.remove("light");
+                change.innerHTML = "Dark Theme";
+            } else {
+                body.classList.add("light");
+                body.classList.remove("dark");
+                change.innerHTML = "Light Theme";
+            }
+        });
+    </script>
     @yield('script')
 </body>
 </html>

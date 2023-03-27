@@ -29,11 +29,7 @@ use Illuminate\Support\Facades\Route;
 /* Halaman Utama */
 
 Route::get('/', function () {
-<<<<<<< Updated upstream
     return view('landing.home');
-=======
-    return view('landingPage');
->>>>>>> Stashed changes
 });
 
 Route::get('/startCampaign', function () {
@@ -56,9 +52,12 @@ Route::post('/lupa-password', [ForgotPasswordController::class, "createtoken"]);
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, "resetpassword"])->name('reset-password');
 Route::post('/reset-password', [ForgotPasswordController::class, "sendresetpassword"]);
 
-
 /* Verifikasi Email */
 Route::get('/verifikasi/{token}', [VerifikasiAkunController::class, "verifikasiakun"])->name('verifikasi-akun');
+
+/* Blog */
+Route::get('/blog', [BlogController::class, "blogview"]);
+Route::get('/blog/{slug}', [BlogController::class, "blogviewdetail"]);
 
 /* Dashboard Admin */
 Route::group(['middleware' => ['auth', 'role:0']], function () {

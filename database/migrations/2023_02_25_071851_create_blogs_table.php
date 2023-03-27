@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('gambar_blog');
             $table->text('isi_blog');
+            $table->text('slug_blog');
             $table->timestamps();
         });
     }

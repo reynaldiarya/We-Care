@@ -16,6 +16,29 @@ class BlogController extends Controller
         ]);
     }
 
+    public function blogview()
+    {
+        $blog = Blog::with('user')->paginate(9);
+        return view('landing.blog', [
+            'title' => 'Blog - We Care',
+            'blog'  => $blog,
+        ]);
+    }
+
+    public function blogviewdetail($slug)
+    {
+        $blog = Blog::where('slug_blog', $slug)->first();
+        if ($blog != null) {
+            $artikel = Blog::with('user')->where('slug_blog', $slug)->get();
+            return view('landing.artikelblog', [
+                'title' => 'Blog - We Care',
+                'artikel'  => $artikel,
+            ]);
+        } else {
+            return view('errors.404');
+        }
+    }
+
     public function deleteartikel()
     {
         Blog::where('id', request('id'))->delete();
@@ -66,14 +89,16 @@ class BlogController extends Controller
         $imagename = time() . '.' . $request->gambar->extension();
         $request->gambar->move(public_path('storage/images/thumbnail'), $imagename);
 
+        $slug = str()->slug($valid['judul']);
         $blog = new Blog;
         $blog->judul_blog = $request->input('judul');
         $blog->tgl_terbit_blog = $request->input('tgl_terbit');
         $blog->user_id = $request->input('user_id');
         $blog->gambar_blog = $imagename;
         $blog->isi_blog = $request->input('isi');
+        $blog->slug_blog = $slug;
         $blog->save();
-        return redirect('/admin/blog')->with('message', 'Artikel berhasil ditambahkan');
+        return redirect('/admin/artikel-blog')->with('message', 'Artikel berhasil ditambahkan');
     }
 
     public function posteditartikel(Request $request)
@@ -101,6 +126,6 @@ class BlogController extends Controller
 
 
 
-        return redirect('/admin/blog')->with('message', 'Artikel berhasil diedit');
+        return redirect('/admin/artikel-blog')->with('message', 'Artikel berhasil diedit');
     }
 }
