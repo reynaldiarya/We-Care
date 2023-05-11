@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, "index"]);
 Route::get('/buat-campaign', [CampaignController::class, "buatcampaigndonatur"]);
 Route::post('/createCampaign', [CampaignController::class, "createcampaigndonatur"]);
+Route::post('/logout', [DashboardController::class, "logout"]);
 
 /* Login & Register */
 Route::get('/login', [LoginController::class, "index"])->middleware('guest');
@@ -54,6 +55,9 @@ Route::get('/verifikasi/{token}', [VerifikasiAkunController::class, "verifikasia
 Route::get('/blog', [BlogController::class, "blogview"]);
 Route::get('/blog/{slug}', [BlogController::class, "blogviewdetail"]);
 
+/* Campaign */
+Route::get('/campaign/{id}', [CampaignController::class, "index"]);
+
 /* Dashboard Admin */
 Route::group(['middleware' => ['auth', 'role:0']], function () {
     /* Dashboard Admin */
@@ -61,7 +65,6 @@ Route::group(['middleware' => ['auth', 'role:0']], function () {
     Route::get('/admin/profil', [DashboardController::class, "profileadmin"]);
     Route::post('/admin/profil-update', [DashboardController::class, "updateprofileadmin"]);
     Route::post('/admin/password-update', [DashboardController::class, "updatepasswordadmin"]);
-    Route::post('/logout', [DashboardController::class, "logout"]);
     /* Admin Data User */
     Route::get('/admin/donatur', [DonaturController::class, "donatur"]);
     Route::get('/admin/pegawai', [PegawaiController::class, "pegawai"]);

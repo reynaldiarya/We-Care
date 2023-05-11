@@ -10,6 +10,14 @@ use Carbon\Carbon;
 
 class CampaignController extends Controller
 {
+    public function index($id)
+    {
+        $campaign = Campaign::findOrFail($id);
+        return view('landing.campaign', [
+            'campaign'  => $campaign,
+        ]);
+    }
+
     public function campaign()
     {
         $campaign = Campaign::all();
@@ -18,6 +26,14 @@ class CampaignController extends Controller
             'title' => 'Daftar Campaign - We Care',
         ]);
     }
+
+    // public function home()
+    // {
+    //     $campaign = Campaign::all();
+    //     return view('landing.home', [
+    //         'campaign'  => $campaign,
+    //     ]);
+    // }
 
     public function news()
     {

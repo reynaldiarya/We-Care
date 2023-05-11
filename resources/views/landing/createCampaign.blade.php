@@ -11,21 +11,12 @@
                         <div class="col-md-6">
                             <label class="form-label">Email</label>
                             <input type="text" class="form-control" disabled value="{{ Auth::user()->email }}">
-                            </input>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Nama</label>
                             <input disabled type="text" class="form-control" value="{{ Auth::user()->name }}">
                             <input name="user_id" type="hidden" class="form-control" value="{{ Auth::user()->id }}" required>
-                            </input>
                         </div>
-                        {{-- <div class="col-md-6">
-                            <label class="form-label">Nama Inisiator</label>
-                            <select name="nama_inisiator" type="text" class="form-select" readonly
-                                aria-label="Default select example" required>
-                                <option value="{{ Auth::user()->name }}" readonly>{{ Auth::user()->name }}</option>
-                            </select>
-                        </div> --}}
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Kategori Campaign</label>
@@ -43,16 +34,6 @@
                     <label class="form-label">Deskripsi Campaign</label>
                     <textarea name="deskripsi_campaign" type="text" class="form-control" cols="30" rows="10" required></textarea>
                 </div>
-                {{-- <div class="mb-3">
-                    <label class="form-label">Lokasi Campaign</label>
-                    <select name="lokasi" class="form-select" aria-label="Default select example">
-                        <option value="0">Jawa Timur</option>
-                        <option value="1">Jawa Tengah</option>
-                        @foreach ($services as $service)
-            <option value="{{ $service->id }}">{{ $service->services_name }}</option>
-            @endforeach
-                    </select>
-                </div> --}}
                 <div class="mb-3 mt-3">
                     <label class="form-label">Target Dana</label>
                     <input name="target_campaign" type="number" class="form-control" required>
