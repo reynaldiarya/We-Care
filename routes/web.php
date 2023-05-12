@@ -12,6 +12,7 @@ use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\VerifikasiAkunController;
+use App\Http\Controllers\MidtransCallbackController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,7 +29,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 /* Halaman Utama */
-
 Route::get('/', [LandingController::class, "index"]);
 Route::get('/buat-campaign', [CampaignController::class, "buatcampaigndonatur"]);
 Route::post('/createCampaign', [CampaignController::class, "createcampaigndonatur"]);
@@ -50,6 +50,9 @@ Route::post('/reset-password', [ForgotPasswordController::class, "sendresetpassw
 
 /* Verifikasi Email */
 Route::get('/verifikasi/{token}', [VerifikasiAkunController::class, "verifikasiakun"])->name('verifikasi-akun');
+
+/* Callback Midtrans */
+Route::post('/transaksi/callback', [MidtransCallbackController::class, 'receive']);
 
 /* Blog */
 Route::get('/blog', [BlogController::class, "blogview"]);

@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Facade;
-
 return [
-    'MERCHANT_ID' => env('MIDTRANS_MERCHANT_ID'),
-    'CLIENT_KEY' => env('MIDTRANS_CLIENT_KEY'),
-    'SERVER_KEY' => env('MIDTRANS_SERVER_KEY'),
+    'mercant_id' => env('MIDTRANS_MERCHAT_ID'),
+    'client_key' => env('MIDTRANS_CLIENT_KEY'),
+    'server_key' => env('MIDTRANS_SERVER_KEY'),
+
+    'is_production' => env('MIDTRANS_IS_PRODUCTION', false),
+    'is_sanitized' => false,
+    'is_3ds' => false,
 ];
