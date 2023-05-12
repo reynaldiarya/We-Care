@@ -9,4 +9,13 @@ class Transaksi extends Model
 {
     use HasFactory;
     public $table = "transaksi";
+    protected $fillable = [
+        'id',
+        'user_id',
+        'campaign_id',
+        'nominal_transaksi',
+        'tgl_transaksi',
+        'keterangan',
+        'status_transaksi',
+    ];
 }

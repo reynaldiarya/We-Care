@@ -57,6 +57,9 @@ Route::get('/blog/{slug}', [BlogController::class, "blogviewdetail"]);
 
 /* Campaign */
 Route::get('/campaign/{id}', [CampaignController::class, "index"]);
+Route::get('/donasi/{id}', [TransaksiController::class, "index"]);
+Route::post('/donasi', [TransaksiController::class, "create"]);
+Route::get('/checkout/{id}', [TransaksiController::class, "checkout"]);
 
 /* Dashboard Admin */
 Route::group(['middleware' => ['auth', 'role:0']], function () {

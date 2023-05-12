@@ -149,7 +149,7 @@
                 <li class="list-group-item">Doa dari donatur ketiga.</li>
               </ul>
               <hr>
-              <div class="row px-2"><a href="donasi/{{ $campaign->id }}" class="btn" style="background-color: #2B7A77; border-radius:50px; color:#ffffff">Donasi Sekarang</a></div>
+              <div class="row px-2"><a href="/donasi/{{ $campaign->id }}" class="btn" style="background-color: #2B7A77; border-radius:50px; color:#ffffff">Donasi Sekarang</a></div>
             </div>
           </div>
         </div>
