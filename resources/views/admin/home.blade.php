@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-8">
                                     <h6 class="text-muted font-semibold">Campaign</h6>
-                                    <h6 class="font-extrabold mb-0">1</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $jumlahcampaign }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-8">
                                     <h6 class="text-muted font-semibold">Total Dana Terkumpul</h6>
-                                    <h6 class="font-extrabold mb-0">Rp 999.999.999.999</h6>
+                                    <h6 class="font-extrabold mb-0">Rp{{ number_format($jumlahdanaterkumpul, 2, ',', '.') }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -94,15 +94,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+
                                                 @php $i = 0 @endphp
-                                                {{-- @foreach ($collection as $item) --}}
+                                                @foreach ($nominalterbanyak as $item)
                                                 <tr>
                                                     @php $i++ @endphp
                                                     <td>{{ $i }}</td>
-                                                    <td class="text-bold-500">Michael Right</td>
-                                                    <td>$15/hr</td>
+                                                    <td class="text-bold-500">{{ $item->user->name }}</td>
+                                                    <td>Rp{{ number_format($item->max, 2, ',', '.') }}</td>
                                                 </tr>
-                                                {{-- @endforeach --}}
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -135,14 +136,14 @@
                                             </thead>
                                             <tbody>
                                                 @php $i = 0 @endphp
-                                                {{-- @foreach ($collection as $item) --}}
+                                                @foreach ($donasiterbanyak as $item)
                                                 <tr>
                                                     @php $i++ @endphp
                                                     <td>{{ $i }}</td>
-                                                    <td class="text-bold-500">Michael Right</td>
-                                                    <td>$15/hr</td>
+                                                    <td class="text-bold-500">{{ $item->user->name }}</td>
+                                                    <td>Rp{{ number_format($item->total, 2, ',', '.') }}</td>
                                                 </tr>
-                                                {{-- @endforeach --}}
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

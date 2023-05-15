@@ -32,15 +32,31 @@
                         </thead>
                         <tbody>
                             @php $i = 0 @endphp
-                            {{-- @foreach ($donatur as $item)
+                            @foreach ($transaksi as $item)
                                 <tr>
                                     @php $i++ @endphp
                                     <td>{{ $i }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->email }}</td>
-                                    <td>{{ $item->phone_number }}</td>
+                                    <td>{{ $item->campaign->judul_campaign }}</td>
+                                    <td>{{ $item->tgl_transaksi }}</td>
+                                    <td>{{ $item->nominal_transaksi }}</td>
+                                    <td>{{ $item->keterangan }}</td>
+                                    <td>
+                                        @if ($item->status_transaksi == 0)
+                                            Pending
+                                        @endif
+                                        @if ($item->status_transaksi == 1)
+                                            Sukses
+                                        @endif
+                                        @if ($item->status_transaksi == 2)
+                                            Kedaluwarsa
+                                        @endif
+                                        @if ($item->status_transaksi == 2)
+                                            Dibatalkan
+                                        @endif
+                                    </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
