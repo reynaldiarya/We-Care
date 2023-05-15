@@ -1,0 +1,65 @@
+.item {
+    display: block;
+}
+
+/* Menyembunyikan navbar di tampilan desktop */
+@media (min-width: 768px) {
+    .dekstop {
+        display: block;
+    }
+
+    .mobile {
+        display: none;
+    }
+}
+
+/* Menampilkan navbar di tampilan mobile */
+@media (max-width: 767px) {
+    .dekstop {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+}
+
+.container-input {
+    position: relative;
+}
+
+.input {
+    width: 150px;
+    padding: 10px 0px 10px 40px;
+    border-radius: 9999px;
+    border: solid 1px #2B7A77;
+    transition: all .2s ease-in-out;
+    outline: none;
+    opacity: 1;
+}
+
+.container-input svg {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0, -50%);
+}
+
+.input:focus {
+    opacity: 1;
+    width: 250px;
+}
+
+.splide__arrow {
+    background-color: #435ebe;
+    opacity: 100%;
+}
+
+.splide__arrow svg {
+    fill: #fff
+}
+
+.splide__pagination__page.is-active{
+    background-color: #435ebe;
+    opacity: 100%;
+}

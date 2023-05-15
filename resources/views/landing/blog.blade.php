@@ -7,7 +7,7 @@
 @endsection
 @section('content')
     <header class="masthead"
-        style="background:linear-gradient(-45deg,#36d1dc,#5b86e5,#ee7752,#e73c7e,#23a6d5,#23d5ab);background-size:400% 400%;-webkit-animation:Gradient 15s ease infinite;-moz-animation:Gradient 15s ease infinite;animation:Gradient 15s ease infinite;top:0;left:0;right:0;width:100%;z-index:999;height:48px;">
+        style="background-color: #435ebe">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">

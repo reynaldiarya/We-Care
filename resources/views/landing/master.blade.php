@@ -5,199 +5,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>We Care</title>
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet">
-
     @yield('style')
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
-        integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/assets/css/main/style.css">
-    <link rel="stylesheet" href="/assets/css/main/responsive.css">
+    <link rel="stylesheet" href="/css/splide.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/hover.css">
+    <link rel="stylesheet" href="/css/landing.css">
 </head>
 
-<body>
-    <div class="wrapper">
-        <header class="header">
-            <nav class="navbar navbar-dark navbar-expand-lg fixed-top">
-                <div class="container">
-                    <a class="navbar-brand" href="#">
-                        <h2>We Care</h2>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <div class="nav-link">
+
+<body style="font-family: poppins; background-color:#F8F9FA;" id="body">
+    <section class="shadow-sm" id="searchbar">
+        <nav class="row navbar p-3 mobile" style="background-color:#435ebe;">
+            <div class="container justify-content-between">
+                <a href="/" class="navbar-brand" style="color: #ffffff;">
+                    <img style="width: 35px; height: 100%" src="/assets/images/logo/logo.png"
+                        alt="Logo">
+                </a>
+                <form class="d-flex" role="search">
+                    <div class="container-input">
+                        <input type="text" placeholder="Pencarian" name="text" class="input" aria-label="Search"
+                            id="searchbox">
+                        <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </form>
+            </div>
+        </nav>
+
+
+        <nav class="navbar dekstop" style="background-color:#435ebe;">
+            <div class="container py-2 px-4">
+                <a href="/" class="navbar-brand" style="color: #ffffff;">
+                    <img style="width: 35px; height: 100%" src="/assets/images/logo/logo.png"
+                        alt="Logo">
+                </a>
+                <a href="/donasi-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Donasi Saya</a>
+                <a href="/campaign-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Campaign Saya</a>
+                <a href="/verifikasi-akun" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Verifikasi Akun</a>
+                @auth
+                    <div class="nav-item px-2">
+                        <div class="dropdown">
+                            <button style="color:#ffffff" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="/profil"><i class="icon-mid bi bi-person me-2"></i> Profil
+                                        Saya</a>
+                                </li>
+                                <hr class="dropdown-divider">
+                                </li>
+                                <li>
                                     <form action="/logout" method="post">
                                         @csrf
                                         <button type="submit" class="dropdown-item" href="/logout"><i
-                                        class="icon-mid bi bi-box-arrow-left me-2"></i>
-                                        @auth
-                                        Logout
-                                        @else
-                                        Login
-                                        @endauth
-                                        </button>
+                                                class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</button>
                                     </form>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="d-flex">
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Search</button>
-                            </form>
-                            <div class="form-check form-switch ms-3 mt-2 text-white">
-                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                <label id="theme" class="form-check-label" for="flexSwitchCheckDefault">Light Mode</label>
-                            </div>
-                        </div>
+                                </li>
+                            </ul>
+                          </div>
+
                     </div>
-                </div>
-            </nav>
+                @else
+                    <a href="/login" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Login</a>
+                @endauth
+                <form class="ms-auto d-flex" role="search">
+                    <div class="container-input">
+                        <input type="text" placeholder="Pencarian" name="text" class="input" aria-label="Search"
+                            id="searchbox2">
+                        <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M790.588 1468.235c-373.722 0-677.647-303.924-677.647-677.647 0-373.722 303.925-677.647 677.647-677.647 373.723 0 677.647 303.925 677.647 677.647 0 373.723-303.924 677.647-677.647 677.647Zm596.781-160.715c120.396-138.692 193.807-319.285 193.807-516.932C1581.176 354.748 1226.428 0 790.588 0S0 354.748 0 790.588s354.748 790.588 790.588 790.588c197.647 0 378.24-73.411 516.932-193.807l516.028 516.142 79.963-79.963-516.142-516.028Z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </form>
+            </div>
+        </nav>
 
-        </header>
+    </section>
 
-        <div>
-            @yield('content')
-        </div>
+    <nav class="fixed-bottom mb-4 mobile">
+        <div class="container-fluid" style="width: 100%;">
+            <div class="container d-flex align-items-center justify-content-center shadow"
+                style="background-image: linear-gradient(to bottom right, #364b98, #435ebe); height:75px; border-radius:750px; width: 97%; border: solid #ffffff 5px; margin: 0px; padding: 0px;">
 
-
-        <footer class="footer">
-            <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <div class="footer-charity-text">
-                            <h2>HELP CHARITY</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris </p>
-                            <hr>
-                            <p><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a
-                                    href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a
-                                    href="#"><i class="fa fa-behance" aria-hidden="true"></i></a><a
-                                    href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></p>
-                        </div>
+
+                    <div class="col mx-3">
+                        <a href="mailto:bemfv.unair@email.com"><img src="assets/img/home-icon-pink.png" alt=""
+                                id="chat" style="height: 50px"></a>
                     </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-5">
-                                <div class="footer-text one">
-                                    <h3>RECENT POST</h3>
-                                    <ul>
-                                        <li><a href="#"><i class="material-icons">keyboard_arrow_right</i>
-                                                Consectetur Adipisicing Elit</a></li>
-                                        <li><a href="#"><i class="material-icons">keyboard_arrow_right</i>
-                                                Consectetur Adipisicing </a></li>
-                                        <li><a href="#"><i class="material-icons">keyboard_arrow_right</i>
-                                                Consectetur Adipisicing Elit</a></li>
-                                        <li><a href="#"><i class="material-icons">keyboard_arrow_right</i>
-                                                Consectetur Adipisicing</a></li>
-                                        <li><a href="#"><i class="material-icons">keyboard_arrow_right</i>
-                                                Consectetur Adipisicing Elit</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-3">
-                                <div class="footer-text two">
-                                    <h3>USEFUL LINKS</h3>
-                                    <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">Causes</a></li>
-                                        <li><a href="#">Event</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-4">
-                                <div class="footer-text one">
-                                    <h3>CONTACT US</h3>
-                                    <ul>
-                                        <li><a href="#"><i class="material-icons">location_on</i>1 Street,
-                                                derby, FL 2147, USA</a></li>
-                                        <li><a href="#"><i
-                                                    class="material-icons">email</i>dartthemes@gmail.com</a></li>
-                                        <li><a href="#"><i class="material-icons">call</i>+123456789</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+
+                    <div class="col mx-3">
+                        <a href=""><img src="assets/img/home-icon-pink.png" alt=""
+                                style="height: 50px"></a>
+                    </div>
+                    <div class="col mx-3">
+                        <a href=""
+                            @auth data-bs-toggle="modal" data-bs-target="#profile" @else data-bs-toggle="modal" data-bs-target="#pesan" @endauth><img
+                                src="assets/img/ava-icon-white.png" alt="" style="height: 50px"></a>
                     </div>
                 </div>
+
             </div>
-            <div id="footer" class="footer_bottom">
-                <p><?php echo date('Y'); ?> &copy; We Care</p>
-            </div>
-        </footer>
+        </div>
+    </nav>
+
+    <div>
+        @yield('content')
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
-        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
-        integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <footer class="py-3" style="background-color: rgb(255, 255, 255); border-radius: 20px;"
+        class="py-3">
+            <p class="text-center text-muted mt-3">&copy; <?php echo date('Y'); ?> We Care</p>
+          </footer>
+
+    <script src="{{ asset('js/splide.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script>
-        var nav = document.querySelector('nav');
-        if (window.innerWidth <= 990) {
-            nav.classList.add('bg-dark', 'shadow');
-        } else {
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 100) {
-                    nav.classList.add('bg-dark', 'shadow');
+        var splide = new Splide('.splide', {
+            perPage: window.innerWidth <= 480 ? 1 : 3, // menampilkan 1 slide pada tampilan mobile
+            rewind: true,
+        });
+
+        // tambahkan event listener untuk memeriksa perubahan lebar layar dan menyesuaikan jumlah slide yang ditampilkan
+        window.addEventListener('resize', function() {
+            splide.options.perPage = window.innerWidth <= 480 ? 1 : 3;
+            splide.destroy(false);
+            splide.mount();
+        });
+
+        splide.mount();
+    </script>
+
+    <script>
+        const search = document.getElementById('searchbox');
+        const body = document.getElementById('body');
+        const resultspace = document.getElementById('result');
+        const categoryspace = document.getElementById('category');
+        const items = body.querySelectorAll('.item');
+
+        search.addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            items.forEach(function(item) {
+                const filterData = item.getAttribute('data-filter').toLowerCase();
+                if (filterData.includes(filter)) {
+                    item.style.display = 'block';
+                    resultspace.classList.add("d-none");
+                    categoryspace.classList.add("d-none");
                 } else {
-                    nav.classList.remove('bg-dark', 'shadow');
+                    item.style.display = 'none';
+                    resultspace.classList.remove("d-none");
+                    categoryspace.classList.add("d-none");
                 }
             });
-        }
 
-        var switchButton = document.getElementById("flexSwitchCheckDefault");
-        var change = document.getElementById("theme");
-        var body = document.getElementsByTagName("body")[0];
-
-        switchButton.addEventListener("click", function() {
-            if (switchButton.checked) {
-                body.classList.add("dark");
-                body.classList.remove("light");
-                change.innerHTML = "Dark Theme";
-            } else {
-                body.classList.add("light");
-                body.classList.remove("dark");
-                change.innerHTML = "Light Theme";
-            }
-        });
+        }); //end event listener
     </script>
+
+    <script>
+        const search2 = document.getElementById('searchbox2');
+        search2.addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            items.forEach(function(item) {
+                const filterData = item.getAttribute('data-filter').toLowerCase();
+                if (filterData.includes(filter)) {
+                    item.style.display = 'block';
+                    resultspace.classList.add("d-none");
+                    categoryspace.classList.add("d-none");
+                    // categoryspace.classList.add("d-none");
+                } else {
+                    item.style.display = 'none';
+                    resultspace.classList.remove("d-none");
+                    categoryspace.classList.add("d-none");
+                    // categoryspace.classList.remove("d-none");
+                }
+            });
+
+        }); //end event listener
+    </script>
+
     @yield('script')
 </body>
+
 </html>

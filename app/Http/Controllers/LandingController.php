@@ -16,10 +16,11 @@ class LandingController extends Controller
         $kategori = Kategori::all();
         $all_campaign = Campaign::all();
         $campaign = Campaign::latest()->paginate(6);
-        $blog = Blog::latest()->paginate(3);
+        $blog = Blog::latest()->limit(3)->get();
         return view('landing.home', [
             'kategori' => $kategori,
             'blog' => $blog,
+            'title' => 'We Care',
             'campaign'  => $campaign,
             'search' => $all_campaign,
         ]);
