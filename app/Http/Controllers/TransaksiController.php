@@ -15,8 +15,10 @@ class TransaksiController extends Controller
 {
     public function transaksi()
     {
+        $transaksi = Transaksi::with('user')->get();
         return view('admin.transaksi', [
             'title' => 'Transaksi - We Care',
+            'transaksi' => $transaksi,
         ]);
     }
     public function index($id)

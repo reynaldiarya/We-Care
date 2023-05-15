@@ -72,4 +72,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Berita::class);
     }
+
+    public function campaign()
+    {
+        return $this->hasMany(Campaign::class);
+    }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
 }
