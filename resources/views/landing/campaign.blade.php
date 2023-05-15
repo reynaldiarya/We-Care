@@ -149,7 +149,7 @@
                 <li class="list-group-item">Doa dari donatur ketiga.</li>
               </ul>
               <hr>
-              <div class="row px-2"><a href="/donasi/{{ $campaign->id }}" class="btn" style="background-color: #2B7A77; border-radius:50px; color:#ffffff">Donasi Sekarang</a></div>
+              <div class="row px-2"><a data-bs-toggle="modal" data-bs-target="#create" class="btn" style="background-color: #2B7A77; border-radius:50px; color:#ffffff">Donasi Sekarang</a></div>
             </div>
           </div>
         </div>
@@ -157,8 +157,85 @@
     </div>
     <div style="height:100px"></div>
   </section>
+  <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title px-3 fs-5" id="staticBackdropLabel">Detail Donasi</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form id="donation-form" method="post" action="/donasi">
+              @csrf
+              <div class="form-group">
+                <label for="nama">Nama Donatur</label>
+                <div class="mb-3" hidden>
+                  <input type="text" class="form-control" name="user_id" value="{{ Auth::user()->id }}">
+                  <input type="text" class="form-control" name="campaign_id" value="{{ $campaign->id }}">
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" id="nama" class="form-control" value="{{ Auth::user()->name }}" disabled>
+                  <input type="hidden" name="nama" id="nama-hidden" class="form-control" value="{{ Auth::user()->name }}">
+                  <button class="btn btn-outline-secondary" style="background-color: #3AAFA9; color:#fff" onclick="toggleForm()" type="button">Kirim Sebagai Anonim</button>
+                </div>
+                
+              </div>
+              <div class="form-group p-2">
+                <label for="nomor-kartu">Jumlah Donasi</label>
+                <input type="text" onkeyup="addCurrency(this)" class="form-control" id="nominal" name="nominal" required>
+              </div>
+              <div class="form-group p-2">
+                <label for="nomor-kartu">Pesan / Do'a</label>
+                <textarea name="pesan" type="input" class="form-control" rows="7" required></textarea>
+              </div>
+              <div class="row p-2">
+                <button type="submit" class="btn btn-primary col" style="border-radius: 50px; background-color:#2B7A77">Bayar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function toggleForm() {
+  var namaInput = document.getElementById("nama");
+  var namaHidden = document.getElementById("nama-hidden");
+  var anonimButton = document.querySelector(".btn-outline-secondary");
 
+  if (namaInput.disabled) {
+    namaInput.disabled = false;
+    namaInput.value = "{{ __('Anonim') }}";
+    namaInput.addEventListener('input', function() {
+  namaHidden.value = namaInput.value;
+});
+    anonimButton.textContent = "Kirim Sebagai User";
+  } else {
+    namaInput.disabled = true;
+    namaInput.value = "{{ Auth::user()->name }}";
+    namaHidden.value = "{{ Auth::user()->name }}";
+    anonimButton.textContent = "Kirim Sebagai Anonim";
+  }
+}
 
+  </script>
+  <script>
+    function addCurrency(element) {
+  // Ambil nilai input
+  let value = element.value;
+
+  // Hapus karakter selain angka
+  value = value.replace(/[^\d]/g, '');
+
+  // Tambahkan "Rp." di depan nilai
+  value = "Rp" + value;
+
+  // Assign nilai yang sudah diubah kembali ke input
+  element.value = value;
+}
+
+  </script>
   <script src="{{ asset('js/splide.js') }}"></script>
   <script src="{{ asset('js/bootstrap.js') }}"></script>
 </body>

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->string('nama');
             $table->foreignId('campaign_id');
             $table->integer('nominal_transaksi');
             $table->date('tgl_transaksi');

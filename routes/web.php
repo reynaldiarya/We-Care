@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 /* Halaman Utama */
+
 Route::get('/', [LandingController::class, "index"]);
 Route::get('/buat-campaign', [CampaignController::class, "buatcampaigndonatur"]);
 Route::post('/createCampaign', [CampaignController::class, "createcampaigndonatur"]);

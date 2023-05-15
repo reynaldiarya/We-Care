@@ -15,7 +15,7 @@ class Campaign extends Model
         'foto_campaign',
         'judul_campaign',
         'deskripsi_campaign',
-        'lokasi_id',
+        'dana_terkumpul',
         'user_id',
         'tgl_mulai_campaign',
         'tgl_akhir_campaign',

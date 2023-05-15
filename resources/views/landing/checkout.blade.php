@@ -60,7 +60,7 @@
 
   </style>
 </head>
-<section class="shadow-sm fixed-top" id="searchbar">
+<section class="shadow-sm sticky-top" id="searchbar">
   <nav class="row navbar p-3 mobile" style="background-color:#3AAFA9;">
   <div class="container justify-content-center">
     <button class="btn" style="border-radius: 50px; background-color:#F8F9FA"><a href="/" style="text-decoration: none; color:black">
@@ -129,18 +129,38 @@
                     <label for="message" class="form-label">Pesan / Do'a</label>
                     <input type="text" class="form-control" value="{{ $transaksi->keterangan }}" id="message" name="pesan" disabled>
                   </div>
-                  <a href="#" id="pay-button" class="btn btn-success">Pay Now</a>
-                  {{-- <button type="submit" class="btn btn-primary">Donasi Sekarang</button> --}}
+                  <div class="row p-2"><a href="#" id="pay-button" class="btn btn-success">Pay Now</a></div>
             </div>
           </div>
     </div>
   </section>
-  <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
-<script>
-    document.getElementById('pay-button').onclick = function(){
-        snap.pay('{{ $snapToken }}');
-    };
-</script>
+  <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+  <script type="text/javascript">
+    // For example trigger on button clicked, or any time you need
+    var payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', function () {
+      // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+      window.snap.pay('{{ $snapToken }}', {
+        onSuccess: function(result){
+          /* You may add your own implementation here */
+          window.location.href = '/campaign/{{ $campaign->id }}';
+          alert("payment success!"); console.log(result);
+        },
+        onPending: function(result){
+          /* You may add your own implementation here */
+          alert("wating your payment!"); console.log(result);
+        },
+        onError: function(result){
+          /* You may add your own implementation here */
+          alert("payment failed!"); console.log(result);
+        },
+        onClose: function(){
+          /* You may add your own implementation here */
+          alert('you closed the popup without finishing the payment');
+        }
+      })
+    });
+  </script>
   <script src="{{ asset('js/splide.js') }}"></script>
   <script src="{{ asset('js/bootstrap.js') }}"></script>
 </body>

@@ -29,16 +29,19 @@ class TransaksiController extends Controller
 
     public function create(Request $request)
     {
+        $nominal = (int) str_replace(['Rp', '.', ','], '', $request->input('nominal'));
         if ($request->isMethod('post')) {
             $transaksi = Transaksi::create([
                 'user_id' => $request->user_id,
                 'campaign_id' => $request->campaign_id,
-                'nominal_transaksi' => $request->nominal,
+                'nominal_transaksi' => $nominal,
+                'nama' => $request->nama,
                 'tgl_transaksi' => Carbon::now(),
                 'keterangan' => $request->pesan,
                 'status_transaksi' => 0,
             ]);
             $id = $transaksi->id;
+
             return redirect('/checkout/' . $id)->with('success', 'Donasi berhasil dilakukan');
         }
         return view('/');

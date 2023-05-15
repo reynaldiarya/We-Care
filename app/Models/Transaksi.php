@@ -11,6 +11,7 @@ class Transaksi extends Model
     public $table = "transaksi";
     protected $fillable = [
         'id',
+        'nama',
         'user_id',
         'campaign_id',
         'nominal_transaksi',

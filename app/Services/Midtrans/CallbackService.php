@@ -54,11 +54,18 @@ class CallbackService extends Midtrans
         return $this->transaksi;
     }
 
+    public function getAmount()
+    {
+        return $this->notification->gross_amount;
+    }
+
     protected function _createLocalSignatureKey()
     {
-        return hash('sha512',
+        return hash(
+            'sha512',
             $this->notification->order_id . $this->notification->status_code .
-            $this->notification->gross_amount . $this->serverKey);
+                $this->notification->gross_amount . $this->serverKey
+        );
     }
 
     protected function _handleNotification()
