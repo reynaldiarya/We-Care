@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->string('foto_campaign');
             $table->string('judul_campaign');
-            $table->string('deskripsi_campaign');
+            $table->text('deskripsi_campaign');
             $table->foreignId('user_id');
             $table->date('tgl_mulai_campaign');
             $table->date('tgl_akhir_campaign');

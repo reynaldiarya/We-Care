@@ -11,7 +11,7 @@
                             alt="Banner Campaign">
                         <div class="card-body">
                             <h5 class="card-title">{{ $campaign->judul_campaign }}</h5>
-                            <p class="card-text">{{ $campaign->deskripsi_campaign }}</p>
+                            <p class="card-text">{!! $campaign->deskripsi_campaign !!}</p>
                             <hr>
                             <div class="d-flex justify-content-between">
                                 <div class="row">

@@ -15,10 +15,14 @@ class CampaignController extends Controller
     {
         $campaign = Campaign::where('slug_campaign', $slug)->first();
         $doa = Transaksi::where('campaign_id', $campaign->id)->limit(3)->get();
-        return view('landing.campaign', [
-            'campaign'  => $campaign,
-            'doa' => $doa,
-        ]);
+        if ($campaign->status_campaign == 1) {
+            return view('landing.campaign', [
+                'campaign'  => $campaign,
+                'doa' => $doa,
+            ]);
+        }else{
+            return view('errors.404');
+        }
     }
 
     public function campaign()
@@ -28,6 +32,20 @@ class CampaignController extends Controller
             'campaign'  => $campaign,
             'title' => 'Daftar Campaign - We Care',
         ]);
+    }
+
+    public function editstatuscampaign(Request $request)
+    {
+        $valid = $request->validate([
+            'id' => 'required',
+            'status' => 'required',
+        ]);
+        $id = $request->input('id');
+        $updateverifikasi = Campaign::where(['id' => $id])->update([
+            'status_campaign' => $request->input('status'),
+        ]);
+
+        return redirect('/admin/campaign/daftar-campaign')->with('message', 'Status berhasil diedit');
     }
 
     // public function home()
@@ -120,13 +138,29 @@ class CampaignController extends Controller
         return back()->with('message', 'Kategori berhasil dihapus');
     }
 
-    public function buatcampaigndonatur()
+    // public function buatcampaigndonatur()
+    // {
+    //     $kategori = Kategori::all();
+    //     return view('landing.createcampaign', [
+    //         'title' => 'Kategori - We Care',
+    //         'kategori' => $kategori,
+    //     ]);
+    // }
+
+    public function uploadgambarcampaign(Request $request)
     {
-        $kategori = Kategori::all();
-        return view('landing.createcampaign', [
-            'title' => 'Kategori - We Care',
-            'kategori' => $kategori,
-        ]);
+
+        $path_url = 'storage/images/campaign';
+        if ($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+            $request->file('upload')->move(public_path($path_url), $fileName);
+            $url = asset($path_url . '/' . $fileName);
+        }
+
+        return response()->json(['url' => $url]);
     }
 
     public function createcampaigndonatur(Request $request)

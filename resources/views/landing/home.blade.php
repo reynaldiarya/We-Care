@@ -57,24 +57,21 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" class="row g-3" action="/buat-campaign"enctype="multipart/form-data">
+                            <form method="post" action="/buat-campaign"enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <form class="row g-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label">Email</label>
-                                            <input type="text" class="form-control" disabled
-                                                value="{{ Auth::user()->email }}">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Nama</label>
-                                            <input disabled type="text" class="form-control"
-                                                value="{{ Auth::user()->name }}">
-                                            <input name="user_id" type="hidden" class="form-control"
-                                                value="{{ Auth::user()->id }}" required>
-                                        </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email</label>
+                                        <input type="text" class="form-control" disabled value="{{ Auth::user()->email }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nama</label>
+                                        <input disabled type="text" class="form-control" value="{{ Auth::user()->name }}">
+                                        <input name="user_id" type="hidden" class="form-control" value="{{ Auth::user()->id }}"
+                                            required>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3 mt-3">
                                     <label class="form-label">Kategori Campaign</label>
                                     <select name="category_id" class="form-select" aria-label="Default select example">
                                         @foreach ($kategori as $item)
@@ -86,23 +83,25 @@
                                     <label class="form-label">Judul Campaign</label>
                                     <input name="judul_campaign" type="text" class="form-control" required>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3 mt-3">
                                     <label class="form-label">Deskripsi Campaign</label>
-                                    <textarea name="deskripsi_campaign" type="text" class="form-control" cols="30" rows="10" required></textarea>
+                                    <textarea name="deskripsi_campaign" id="editor" type="text" class="form-control"></textarea>
                                 </div>
                                 <div class="mb-3 mt-3">
                                     <label class="form-label">Target Dana</label>
                                     <input name="target_campaign" type="number" class="form-control" required>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3 mt-3">
                                     <label class="form-label">Tanggal Akhir Campaign</label>
                                     <input name="tgl_akhir" type="date" class="form-control" required>
                                 </div>
-                                <div class="form-group mt-2">
+                                <div class="form-group mt-3">
                                     <strong>Banner Campaign</strong>
                                     <input class="form-control" type="file" name="image" id="formFile" required>
                                 </div>
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <div class="text-center mt-3">
+                                    <button type="submit" class="btn btn-success">Kirim</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -154,7 +153,8 @@
                             class="splide__slide d-flex justify-content-center px-2 py-1"
                             style="text-decoration: none; color:black">
                             <div class="card hvr-grow" style="width: 95%;  border-color: #435ebe;">
-                                <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top"
+                                    alt="...">
                                 <div class="card-body">
                                     <div class="card-title">
                                         <h5>{{ $item->judul_campaign }}</h5>
@@ -364,6 +364,9 @@
     </section>
 @endsection
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/36.0.1/ckeditor.min.js"
+        integrity="sha512-m1b22NPZjHOJ4PEMtKYmqK7s9UOKOQ2o7e+tTMfPLqGDN1jXUeE0JHSOVkuF3UIWDk/tLvbhv/Qjgb3c8G1k6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var splide = new Splide('.splide', {
             perPage: window.innerWidth <= 480 ? 1 : 3, // menampilkan 1 slide pada tampilan mobile
@@ -438,5 +441,114 @@
             });
 
         }); //end event listener
+    </script>
+    <script>
+        //Define an adapter to upload the files
+        class MyUploadAdapter {
+            constructor(loader) {
+                // The file loader instance to use during the upload. It sounds scary but do not
+                // worry — the loader will be passed into the adapter later on in this guide.
+                this.loader = loader;
+
+                // URL where to send files.
+                this.url = '{{ route('upload-gambar-campaign') }}';
+
+                //
+            }
+            // Starts the upload process.
+            upload() {
+                return this.loader.file.then(
+                    (file) =>
+                    new Promise((resolve, reject) => {
+                        this._initRequest();
+                        this._initListeners(resolve, reject, file);
+                        this._sendRequest(file);
+                    })
+                );
+            }
+            // Aborts the upload process.
+            abort() {
+                if (this.xhr) {
+                    this.xhr.abort();
+                }
+            }
+            // Initializes the XMLHttpRequest object using the URL passed to the constructor.
+            _initRequest() {
+                const xhr = (this.xhr = new XMLHttpRequest());
+                // Note that your request may look different. It is up to you and your editor
+                // integration to choose the right communication channel. This example uses
+                // a POST request with JSON as a data structure but your configuration
+                // could be different.
+                // xhr.open('POST', this.url, true);
+                xhr.open("POST", this.url, true);
+                xhr.setRequestHeader("x-csrf-token", "{{ csrf_token() }}");
+                xhr.responseType = "json";
+            }
+            // Initializes XMLHttpRequest listeners.
+            _initListeners(resolve, reject, file) {
+                const xhr = this.xhr;
+                const loader = this.loader;
+                const genericErrorText = `Couldn't upload file: ${file.name}.`;
+                xhr.addEventListener("error", () => reject(genericErrorText));
+                xhr.addEventListener("abort", () => reject());
+                xhr.addEventListener("load", () => {
+                    const response = xhr.response;
+                    // This example assumes the XHR server's "response" object will come with
+                    // an "error" which has its own "message" that can be passed to reject()
+                    // in the upload promise.
+                    //
+                    // Your integration may handle upload errors in a different way so make sure
+                    // it is done properly. The reject() function must be called when the upload fails.
+                    if (!response || response.error) {
+                        return reject(response && response.error ? response.error.message : genericErrorText);
+                    }
+                    // If the upload is successful, resolve the upload promise with an object containing
+                    // at least the "default" URL, pointing to the image on the server.
+                    // This URL will be used to display the image in the content. Learn more in the
+                    // UploadAdapter#upload documentation.
+                    resolve({
+                        default: response.url,
+                    });
+                });
+                // Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded
+                // properties which are used e.g. to display the upload progress bar in the editor
+                // user interface.
+                if (xhr.upload) {
+                    xhr.upload.addEventListener("progress", (evt) => {
+                        if (evt.lengthComputable) {
+                            loader.uploadTotal = evt.total;
+                            loader.uploaded = evt.loaded;
+                        }
+                    });
+                }
+            }
+            // Prepares the data and sends the request.
+            _sendRequest(file) {
+                // Prepare the form data.
+                const data = new FormData();
+                data.append("upload", file);
+                // Important note: This is the right place to implement security mechanisms
+                // like authentication and CSRF protection. For instance, you can use
+                // XMLHttpRequest.setRequestHeader() to set the request headers containing
+                // the CSRF token generated earlier by your application.
+                // Send the request.
+                this.xhr.send(data);
+            }
+            // ...
+        }
+
+        function SimpleUploadAdapterPlugin(editor) {
+            editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+                // Configure the URL to the upload script in your back-end here!
+                return new MyUploadAdapter(loader);
+            };
+        }
+
+        //Initialize the ckeditor
+        ClassicEditor.create(document.querySelector("#editor"), {
+            extraPlugins: [SimpleUploadAdapterPlugin],
+        }).catch((error) => {
+            console.error(error);
+        });
     </script>
 @endsection

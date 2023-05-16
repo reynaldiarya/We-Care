@@ -58,8 +58,9 @@ Route::get('/blog', [BlogController::class, "blogview"]);
 Route::get('/blog/{slug}', [BlogController::class, "blogviewdetail"]);
 
 /* Buat Campaign */
-Route::get('/buat-campaign', [CampaignController::class, "buatcampaigndonatur"]);
+// Route::get('/buat-campaign', [CampaignController::class, "buatcampaigndonatur"]);
 Route::post('/buat-campaign', [CampaignController::class, "createcampaigndonatur"]);
+Route::post('/upload-gambar-campaign', [CampaignController::class, "uploadgambarcampaign"])->name('upload-gambar-campaign');
 
 /* Verifikasi Akun */
 Route::get('/verifikasi-akun/{id}', [VerifikasiAkunController::class, "verifikasiakunktp"]);
@@ -93,6 +94,7 @@ Route::group(['middleware' => ['auth', 'role:0']], function () {
     Route::post('/admin/pegawai/hapus-pegawai', [PegawaiController::class, "deletepegawai"]);
     /* Admin Campaign */
     Route::get('/admin/campaign/daftar-campaign', [CampaignController::class, "campaign"]);
+    Route::post('/admin/campaign/daftar-campaign/edit-status-campaign', [CampaignController::class, "editstatuscampaign"]);
     Route::get('/admin/campaign/berita', [CampaignController::class, "news"]);
     Route::get('/admin/campaign/berita/tambah-berita', [CampaignController::class, "tambahnews"]);
     Route::post('/admin/campaign/berita/tambah-berita/upload-gambar', [CampaignController::class, "uploadgambar"])->name('upload-gambar-berita');

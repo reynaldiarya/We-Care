@@ -90,11 +90,13 @@
                                                     <i data-feather="x"></i>
                                                 </button>
                                             </div>
-                                            <form action="#">
+                                            <form action="/admin/campaign/daftar-campaign/edit-status-campaign" method="POST">
+                                                @csrf
                                                 <div class="modal-body">
                                                     <label>Edit Status</label>
+                                                    <input type="hidden" class="form-control" name="id" value="{{ $item->id }}">
                                                     <div class="form-group">
-                                                        <select class="form-select" id="basicSelect">
+                                                        <select class="form-select" id="basicSelect" name="status">
                                                             <option disabled selected value="{{ $item->status_campaign }}">
                                                                 @if ($item->status_campaign == 0)
                                                                     Pending
@@ -106,7 +108,6 @@
                                                                     Ditolak
                                                                 @endif
                                                             </option>
-                                                            <option value="0">Pending</option>
                                                             <option value="1">Disetujui</option>
                                                             <option value="2">Ditolak</option>
                                                         </select>
@@ -119,7 +120,7 @@
                                                         <i class="bx bx-x d-block d-sm-none"></i>
                                                         <span class="d-none d-sm-block">Batal</span>
                                                     </button>
-                                                    <button type="button" class="btn btn-primary ml-1"
+                                                    <button type="submit" class="btn btn-primary ml-1"
                                                         data-bs-dismiss="modal">
                                                         <i class="bx bx-check d-block d-sm-none"></i>
                                                         <span class="d-none d-sm-block">Ubah</span>
