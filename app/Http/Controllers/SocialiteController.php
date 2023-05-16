@@ -33,6 +33,8 @@ class SocialiteController extends Controller
                     return redirect('/admin');
                 } else if ($user->role == 1) {
                     return redirect('/');
+                } else if ($user->role == 2) {
+                    return redirect('/');
                 }
             } else {
                 $create = User::Create([

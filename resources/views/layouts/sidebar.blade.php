@@ -58,6 +58,20 @@
                     <span>Pegawai</span>
                 </a>
             </li>
+            <li class="sidebar-item has-sub {{ request()->is('admin/penggalang-dana*') ? 'active' : '' }}">
+                <a href="#" class="sidebar-link">
+                    <i class="bi bi-person-hearts"></i>
+                    <span>Penggalang Dana</span>
+                </a>
+                <ul class="submenu">
+                    <li class="submenu-item">
+                        <a href="/admin/penggalang-dana/daftar-penggalang-dana">Daftar Penggalang Dana</a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="/admin/penggalang-dana/verifikasi-akun">Verifikasi Akun</a>
+                    </li>
+                </ul>
+            </li>
             <li class="sidebar-item has-sub {{ request()->is('admin/campaign*') ? 'active' : '' }}">
                 <a href="#" class="sidebar-link">
                     <i class="bi bi-bullseye"></i>

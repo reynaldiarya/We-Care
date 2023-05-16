@@ -8,7 +8,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Daftar Campaign</h3>
+                    <h3>Data Verifikasi Akun</h3>
                 </div>
             </div>
         </div>
@@ -30,46 +30,43 @@
         <!-- Basic Tables start -->
         <section class="section">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">Daftar Campaign
-                </div>
+                <div class="card-header">Data Verifikasi Akun</div>
                 <div class="card-body">
                     <table class="table" id="table1">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Judul</th>
-                                <th>Kategori</th>
-                                <th>Penggalang Dana</th>
-                                <th>Tanggal Mulai</th>
-                                <th>Tanggal Akhir</th>
-                                <th>Target</th>
+                                <th>Nama</th>
+                                <th>Nomor KTP</th>
+                                <th>Nama Sesuai KTP</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Alamat</th>
+                                <th>Foto KTP</th>
                                 <th>Status</th>
                                 <th>Tindakan</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php $i = 0 @endphp
-                            @foreach ($campaign as $item)
+                            @foreach ($verifikasiakun as $item)
                                 <tr>
                                     @php $i++ @endphp
                                     <td>{{ $i }}</td>
-                                    <td>{{ $item->judul_campaign }}</td>
-                                    <td>{{ $item->category->nama_kategori }}</td>
                                     <td>{{ $item->user->name }}</td>
-                                    <td>{{ $item->tgl_mulai_campaign }}</td>
-                                    <td>{{ $item->tgl_akhir_campaign }}</td>
-                                    <td>{{ $item->target_campaign }}</td>
-                                    <td>
-                                        @if ($item->status_campaign == 0)
-                                            Pending
-                                        @endif
-                                        @if ($item->status_campaign == 1)
-                                            Disetujui
-                                        @endif
-                                        @if ($item->status_campaign == 2)
-                                            Ditolak
-                                        @endif
-                                    </td>
+                                    <td>{{ $item->nomor_ktp }}</td>
+                                    <td>{{ $item->nama_ktp }}</td>
+                                    <td>{{ $item->tanggal_lahir }}</td>
+                                    <td>{{ $item->alamat }}</td>
+                                    <td><img src="{{ asset($item->foto_ktp) }}" height="150px" alt=""></td>
+                                    <td>@if ($item->status_verifikasi == 0)
+                                        Pending
+                                    @endif
+                                    @if ($item->status_verifikasi == 1)
+                                        Disetujui
+                                    @endif
+                                    @if ($item->status_verifikasi == 2)
+                                        Ditolak
+                                    @endif</td>
                                     <td>
                                         <button type="button" class="btn" data-bs-toggle="modal"
                                             data-bs-target="#edit{{ $item->id }}">
@@ -90,23 +87,24 @@
                                                     <i data-feather="x"></i>
                                                 </button>
                                             </div>
-                                            <form action="#">
+                                            <form action="/admin/penggalang-dana/edit-status-verifikasi-akun" method="POST">
+                                                @csrf
                                                 <div class="modal-body">
                                                     <label>Edit Status</label>
                                                     <div class="form-group">
-                                                        <select class="form-select" id="basicSelect">
-                                                            <option disabled selected value="{{ $item->status_campaign }}">
-                                                                @if ($item->status_campaign == 0)
+                                                        <input type="hidden" name="id" value="{{ $item->user_id }}">
+                                                        <select class="form-select" id="basicSelect" name="status">
+                                                            <option disabled selected value="{{ $item->status_verifikasi }}">
+                                                                @if ($item->status_verifikasi == 0)
                                                                     Pending
                                                                 @endif
-                                                                @if ($item->status_campaign == 1)
+                                                                @if ($item->status_verifikasi == 1)
                                                                     Disetujui
                                                                 @endif
-                                                                @if ($item->status_campaign == 2)
+                                                                @if ($item->status_verifikasi == 2)
                                                                     Ditolak
                                                                 @endif
                                                             </option>
-                                                            <option value="0">Pending</option>
                                                             <option value="1">Disetujui</option>
                                                             <option value="2">Ditolak</option>
                                                         </select>
@@ -119,7 +117,7 @@
                                                         <i class="bx bx-x d-block d-sm-none"></i>
                                                         <span class="d-none d-sm-block">Batal</span>
                                                     </button>
-                                                    <button type="button" class="btn btn-primary ml-1"
+                                                    <button type="submit" class="btn btn-primary ml-1"
                                                         data-bs-dismiss="modal">
                                                         <i class="bx bx-check d-block d-sm-none"></i>
                                                         <span class="d-none d-sm-block">Ubah</span>
@@ -133,6 +131,7 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
         </section>
         <!-- Basic Tables end -->
     </div>

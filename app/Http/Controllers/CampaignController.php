@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use Illuminate\Http\Request;
 use App\Models\Berita;
 use App\Models\Kategori;
+use App\Models\Transaksi;
 use Carbon\Carbon;
 
 class CampaignController extends Controller
@@ -13,8 +14,10 @@ class CampaignController extends Controller
     public function index($id)
     {
         $campaign = Campaign::findOrFail($id);
+        $doa = Transaksi::where('campaign_id', $id)->limit(3)->get();
         return view('landing.campaign', [
             'campaign'  => $campaign,
+            'doa' => $doa,
         ]);
     }
 
@@ -132,7 +135,7 @@ class CampaignController extends Controller
             Campaign::create([
                 'user_id' => $request->user_id,
                 'category_id' => $request->category_id,
-                'foto_campaign' => $request->file('image')->store('storage/images/campaign', 'public'),
+                'foto_campaign' => $request->file('image')->store('images/campaign', 'public'),
                 'judul_campaign' => $request->judul_campaign,
                 'deskripsi_campaign' => $request->deskripsi_campaign,
                 // 'lokasi_id' => $request->lokasi,

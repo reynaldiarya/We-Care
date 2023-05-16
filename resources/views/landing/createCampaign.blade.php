@@ -1,6 +1,5 @@
 @extends('landing.master')
 @section('content')
-    <div style="height: 13vh; background-color:#212529"></div>
     <div class="container mt-4 mb-4">
         <h1 class="py-4 mb-4">Start Campaign</h1>
         @auth
@@ -54,40 +53,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="centering p-4">
-                <a href="{{ route('login') }}"><button type="submit" class="btn btn-success">Login</button></a>
+                <a href="{{ route('login') }}"><button type="submit" class="btn" style="">Login</button></a>
             </div>
         @endauth
     </div>
-@endsection
-@section('script')
-    <script>
-        var nav = document.querySelector('nav');
-        if (window.innerWidth <= 990) {
-            nav.classList.add('bg-dark', 'shadow');
-        } else {
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 0) {
-                    nav.classList.add('bg-dark', 'shadow');
-                } else {
-                    nav.classList.remove('bg-dark', 'shadow');
-                }
-            });
-        }
-
-        var switchButton = document.getElementById("flexSwitchCheckDefault");
-        var change = document.getElementById("theme");
-        var body = document.getElementsByTagName("body")[0];
-
-        switchButton.addEventListener("click", function() {
-            if (switchButton.checked) {
-                body.classList.add("dark");
-                body.classList.remove("light");
-                change.innerHTML = "Dark Mode";
-            } else {
-                body.classList.add("light");
-                body.classList.remove("dark");
-                change.innerHTML = "Light Mode";
-            }
-        });
-    </script>
 @endsection

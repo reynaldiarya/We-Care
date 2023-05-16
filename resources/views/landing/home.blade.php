@@ -165,7 +165,7 @@
                                             style="background-color:#435ebe"></div>
                                     </div>
                                     <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
-                                    <p class="card-text">Aktif hingga : {{ $item->tgl_akhir_campaign }}</p>
+                                    <p class="card-text">Aktif hingga : {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}</p>
                                 </div>
                             </div>
                         </a>
@@ -291,7 +291,7 @@
                                     style="background-color:#435ebe"></div>
                             </div>
                             <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
-                            <p class="card-text">Aktif hingga : {{ $item->tgl_akhir_campaign }}</p>
+                            <p class="card-text">Aktif hingga : {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}</p>
                         </div>
                     </a>
                 @endforeach
@@ -343,7 +343,7 @@
                                 style="background-color:#435ebe"></div>
                         </div>
                         <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
-                        <p class="card-text">Aktif hingga : {{ $item->tgl_akhir_campaign }}</p>
+                        <p class="card-text">Aktif hingga : {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}</p>
                     </div>
                 </a>
             @endforeach

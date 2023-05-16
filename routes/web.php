@@ -31,8 +31,6 @@ use Illuminate\Support\Facades\Route;
 /* Halaman Utama */
 
 Route::get('/', [LandingController::class, "index"]);
-Route::get('/buat-campaign', [CampaignController::class, "buatcampaigndonatur"]);
-Route::post('/createCampaign', [CampaignController::class, "createcampaigndonatur"]);
 Route::post('/logout', [DashboardController::class, "logout"]);
 
 /* Login & Register */
@@ -59,6 +57,19 @@ Route::post('/transaksi/callback', [MidtransCallbackController::class, 'receive'
 Route::get('/blog', [BlogController::class, "blogview"]);
 Route::get('/blog/{slug}', [BlogController::class, "blogviewdetail"]);
 
+/* Buat Campaign */
+Route::get('/buat-campaign', [CampaignController::class, "buatcampaigndonatur"]);
+Route::post('/buat-campaign', [CampaignController::class, "createcampaigndonatur"]);
+
+/* Verifikasi Akun */
+Route::get('/verifikasi-akun/{id}', [VerifikasiAkunController::class, "verifikasiakunktp"]);
+Route::post('/kirim-verifikasi-akun', [VerifikasiAkunController::class, "kirimverifikasiakunktp"]);
+
+/* Profil */
+Route::get('/profil', [DashboardController::class, "profileuser"]);
+Route::post('/profil-update', [DashboardController::class, "updateprofileuser"]);
+Route::post('/password-update', [DashboardController::class, "updatepassworduser"]);
+
 /* Campaign */
 Route::get('/campaign/{id}', [CampaignController::class, "index"]);
 Route::get('/donasi/{id}', [TransaksiController::class, "index"]);
@@ -75,6 +86,9 @@ Route::group(['middleware' => ['auth', 'role:0']], function () {
     /* Admin Data User */
     Route::get('/admin/donatur', [DonaturController::class, "donatur"]);
     Route::get('/admin/pegawai', [PegawaiController::class, "pegawai"]);
+    Route::get('/admin/penggalang-dana/daftar-penggalang-dana', [DonaturController::class, "penggalangdana"]);
+    Route::get('/admin/penggalang-dana/verifikasi-akun', [DonaturController::class, "verifikasiakun"]);
+    Route::post('/admin/penggalang-dana/edit-status-verifikasi-akun', [VerifikasiAkunController::class, "editstatusverifikasi"]);
     Route::post('/admin/pegawai/tambah-pegawai', [PegawaiController::class, "tambahpegawai"]);
     Route::post('/admin/pegawai/hapus-pegawai', [PegawaiController::class, "deletepegawai"]);
     /* Admin Campaign */

@@ -82,4 +82,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaksi::class);
     }
+
+    public function verifikasiakun()
+    {
+        return $this->hasOne(VerifikasiAkun::class);
+    }
 }

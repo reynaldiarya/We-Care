@@ -49,7 +49,7 @@
                 </a>
                 <a href="/donasi-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Donasi Saya</a>
                 <a href="/campaign-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Campaign Saya</a>
-                <a href="/verifikasi-akun" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Verifikasi Akun</a>
+                <a href="/verifikasi-akun/{{ Auth::user()->id }}" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Verifikasi Akun</a>
                 @auth
                     <div class="nav-item px-2">
                         <div class="dropdown">

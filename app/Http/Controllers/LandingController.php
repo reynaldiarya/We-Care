@@ -14,8 +14,8 @@ class LandingController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        $all_campaign = Campaign::all();
-        $campaign = Campaign::latest()->paginate(6);
+        $all_campaign = Campaign::all()->where('status_campaign', 1);
+        $campaign = Campaign::latest()->where('status_campaign', 1)->paginate(6);
         $blog = Blog::latest()->limit(3)->get();
         return view('landing.home', [
             'kategori' => $kategori,

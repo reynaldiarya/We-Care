@@ -94,4 +94,52 @@ class DashboardController extends Controller
         $user->save();
         return back()->with('message', 'Kata sandi berhasil diperbarui');
     }
+
+    public function profileuser()
+    {
+        return view('landing.profile', [
+            'title' => 'Profil - We Care',
+        ]);
+    }
+
+    public function updateprofileuser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'email|required|unique:users,email,' . Auth::user()->id,
+            'phone_number' => 'required|numeric'
+        ]);
+
+
+        $user = User::findOrFail(Auth::user()->id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone_number = $request->input('phone_number');
+
+        $user->save();
+        return back()->with('message', 'Profil berhasil diperbarui');
+    }
+
+    public function updatepassworduser(Request $request)
+    {
+        $request->validate([
+            'email' => 'email|required|unique:users,email,' . Auth::user()->id,
+            'password' => 'required|string|min:8',
+            'password_baru' => 'required|string|min:8',
+            'konfirmasi_password' => 'required'
+        ]);
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        if (!is_null($request->input('password') & $request->input('password_baru') & $request->input('konfirmasi_password'))) {
+            if (Hash::check($request->input('password'), $user->password)) {
+                $user->password = Hash::make($request->input('password_baru'));
+            } else {
+                return redirect()->back()->withInput()->with('salah', 'Password sekarang tidak cocok dengan akun Anda');
+            }
+        }
+
+        $user->save();
+        return back()->with('message', 'Kata sandi berhasil diperbarui');
+    }
 }
