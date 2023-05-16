@@ -57,7 +57,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" class="row g-3" action="/createCampaign"enctype="multipart/form-data">
+                            <form method="post" class="row g-3" action="/buat-campaign"enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <form class="row g-3">
@@ -141,7 +141,7 @@
         </div>
     </section>
 
-    <section data-filter="item" class="item splide my-3" aria-labelledby="carousel-heading" id="item"
+    <section data-filter="item" class="item splide my-3" aria-labelledby="carousel-heading" id="campaign"
         style="background-color: rgb(253, 253, 253); border-radius: 20px;">
         <div class="container p-4">
             <div class="col" style="width: 75%;">
@@ -150,11 +150,11 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     @foreach ($campaign as $item)
-                        <a href="campaign/{{ $item->id }}"
+                        <a href="campaign/{{ $item->slug_campaign }}"
                             class="splide__slide d-flex justify-content-center px-2 py-1"
                             style="text-decoration: none; color:black">
                             <div class="card hvr-grow" style="width: 95%;  border-color: #435ebe;">
-                                <img src="storage/{{ $item->foto_campaign }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <div class="card-title">
                                         <h5>{{ $item->judul_campaign }}</h5>
@@ -165,7 +165,8 @@
                                             style="background-color:#435ebe"></div>
                                     </div>
                                     <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
-                                    <p class="card-text">Aktif hingga : {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}</p>
+                                    <p class="card-text">Aktif hingga :
+                                        {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}</p>
                                 </div>
                             </div>
                         </a>
@@ -277,7 +278,7 @@
         <div class="container">
             <div class="row justify-content-center p-4">
                 @foreach ($search as $item)
-                    <a href="campaign/{{ $item->id }}" class="item card hvr-grow m-2"
+                    <a href="campaign/{{ $item->slug_campaign }}" class="item card hvr-grow m-2"
                         data-filter="{{ $item->judul_campaign }}"
                         style="width: 18rem; padding: 0px;  border-color: #435ebe; text-decoration: none; color:black">
                         <img src="storage/{{ $item->foto_campaign }}" class="card-img-top" alt="...">
@@ -291,7 +292,8 @@
                                     style="background-color:#435ebe"></div>
                             </div>
                             <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
-                            <p class="card-text">Aktif hingga : {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}</p>
+                            <p class="card-text">Aktif hingga : {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}
+                            </p>
                         </div>
                     </a>
                 @endforeach
@@ -329,10 +331,10 @@
         </div>
         <div class="row justify-content-center p-4">
             @foreach ($search as $item)
-                <a href="campaign/{{ $item->id }}" class="item card hvr-grow m-2"
+                <a href="campaign/{{ $item->slug_campaign }}" class="item card hvr-grow m-2"
                     data-filter="{{ $item->category_id }}"
                     style="width: 18rem; padding: 0px;  border-color: #435ebe; text-decoration: none; color:black">
-                    <img src="storage/{{ $item->foto_campaign }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <div class="card-title">
                             <h5>{{ $item->judul_campaign }}</h5>
@@ -362,6 +364,22 @@
     </section>
 @endsection
 @section('script')
+    <script>
+        var splide = new Splide('.splide', {
+            perPage: window.innerWidth <= 480 ? 1 : 3, // menampilkan 1 slide pada tampilan mobile
+            rewind: true,
+        });
+
+        // tambahkan event listener untuk memeriksa perubahan lebar layar dan menyesuaikan jumlah slide yang ditampilkan
+        window.addEventListener('resize', function() {
+            splide.options.perPage = window.innerWidth <= 480 ? 1 : 3;
+            splide.destroy(false);
+            splide.mount();
+        });
+
+        splide.mount();
+    </script>
+
     <!-- filter kesehatan -->
     <script>
         const kesehatan = document.getElementById('button_kesehatan');

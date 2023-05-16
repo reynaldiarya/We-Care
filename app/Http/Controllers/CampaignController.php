@@ -11,10 +11,10 @@ use Carbon\Carbon;
 
 class CampaignController extends Controller
 {
-    public function index($id)
+    public function index($slug)
     {
-        $campaign = Campaign::findOrFail($id);
-        $doa = Transaksi::where('campaign_id', $id)->limit(3)->get();
+        $campaign = Campaign::where('slug_campaign', $slug)->first();
+        $doa = Transaksi::where('campaign_id', $campaign->id)->limit(3)->get();
         return view('landing.campaign', [
             'campaign'  => $campaign,
             'doa' => $doa,
@@ -138,6 +138,7 @@ class CampaignController extends Controller
                 'foto_campaign' => $request->file('image')->store('images/campaign', 'public'),
                 'judul_campaign' => $request->judul_campaign,
                 'deskripsi_campaign' => $request->deskripsi_campaign,
+                'slug_campaign' => str()->slug($request['judul_campaign']),
                 // 'lokasi_id' => $request->lokasi,
                 'tgl_mulai_campaign' => Carbon::now(),
                 'tgl_akhir_campaign' => $request->tgl_akhir,

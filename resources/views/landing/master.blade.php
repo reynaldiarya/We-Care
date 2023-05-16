@@ -22,8 +22,7 @@
         <nav class="row navbar p-3 mobile" style="background-color:#435ebe;">
             <div class="container justify-content-between">
                 <a href="/" class="navbar-brand" style="color: #ffffff;">
-                    <img style="width: 35px; height: 100%" src="/assets/images/logo/logo.png"
-                        alt="Logo">
+                    <img style="width: 35px; height: 100%" src="/assets/images/logo/logo.png" alt="Logo">
                 </a>
                 <form class="d-flex" role="search">
                     <div class="container-input">
@@ -44,37 +43,39 @@
         <nav class="navbar dekstop" style="background-color:#435ebe;">
             <div class="container py-2 px-4">
                 <a href="/" class="navbar-brand" style="color: #ffffff;">
-                    <img style="width: 35px; height: 100%" src="/assets/images/logo/logo.png"
-                        alt="Logo">
+                    <img style="width: 35px; height: 100%" src="/assets/images/logo/logo.png" alt="Logo">
                 </a>
-                <a href="/donasi-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Donasi Saya</a>
-                <a href="/campaign-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Campaign Saya</a>
-                <a href="/verifikasi-akun/{{ Auth::user()->id }}" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Verifikasi Akun</a>
                 @auth
-                    <div class="nav-item px-2">
-                        <div class="dropdown">
-                            <button style="color:#ffffff" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ Auth::user()->name }}
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" href="/profil"><i class="icon-mid bi bi-person me-2"></i> Profil
-                                        Saya</a>
-                                </li>
-                                <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <form action="/logout" method="post">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item" href="/logout"><i
-                                                class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                          </div>
-
+                    <a href="/donasi-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Donasi
+                        Saya</a>
+                    <a href="/campaign-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Campaign
+                        Saya</a>
+                    <a href="/verifikasi-akun/{{ Auth::user()->id }}" class="nav-item px-2"
+                        style="color: #ffffff;text-decoration: none;">Verifikasi Akun</a>
+                    <div class="dropdown">
+                        <button style="color:#ffffff" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/profil"><i class="icon-mid bi bi-person me-2"></i> Profil
+                                    Saya</a>
+                            </li>
+                            <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item" href="/logout"><i
+                                            class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</button>
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 @else
+                    <a href="/#campaign" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Campaign</a>
+                    <a href="/blog" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Blog</a>
                     <a href="/login" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Login</a>
                 @endauth
                 <form class="ms-auto d-flex" role="search">
@@ -102,8 +103,8 @@
                 <div class="row">
 
                     <div class="col mx-3">
-                        <a href="mailto:bemfv.unair@email.com"><img src="assets/img/home-icon-pink.png" alt=""
-                                id="chat" style="height: 50px"></a>
+                        <a href="mailto:bemfv.unair@email.com"><img src="assets/img/home-icon-pink.png"
+                                alt="" id="chat" style="height: 50px"></a>
                     </div>
 
                     <div class="col mx-3">
@@ -125,28 +126,12 @@
         @yield('content')
     </div>
 
-        <footer class="py-3" style="background-color: rgb(255, 255, 255); border-radius: 20px;"
-        class="py-3">
-            <p class="text-center text-muted mt-3">&copy; <?php echo date('Y'); ?> We Care</p>
-          </footer>
+    <footer class="py-3" style="background-color: rgb(255, 255, 255); border-radius: 20px;" class="py-3">
+        <p class="text-center text-muted mt-3">&copy; <?php echo date('Y'); ?> We Care</p>
+    </footer>
 
     <script src="{{ asset('js/splide.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
-    <script>
-        var splide = new Splide('.splide', {
-            perPage: window.innerWidth <= 480 ? 1 : 3, // menampilkan 1 slide pada tampilan mobile
-            rewind: true,
-        });
-
-        // tambahkan event listener untuk memeriksa perubahan lebar layar dan menyesuaikan jumlah slide yang ditampilkan
-        window.addEventListener('resize', function() {
-            splide.options.perPage = window.innerWidth <= 480 ? 1 : 3;
-            splide.destroy(false);
-            splide.mount();
-        });
-
-        splide.mount();
-    </script>
 
     <script>
         const search = document.getElementById('searchbox');

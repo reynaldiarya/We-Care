@@ -71,7 +71,7 @@ Route::post('/profil-update', [DashboardController::class, "updateprofileuser"])
 Route::post('/password-update', [DashboardController::class, "updatepassworduser"]);
 
 /* Campaign */
-Route::get('/campaign/{id}', [CampaignController::class, "index"]);
+Route::get('/campaign/{slug}', [CampaignController::class, "index"]);
 Route::get('/donasi/{id}', [TransaksiController::class, "index"]);
 Route::post('/donasi', [TransaksiController::class, "create"]);
 Route::get('/checkout/{id}', [TransaksiController::class, "checkout"]);
