@@ -57,7 +57,7 @@
                                     <td>{{ $item->nama_ktp }}</td>
                                     <td>{{ $item->tanggal_lahir }}</td>
                                     <td>{{ $item->alamat }}</td>
-                                    <td><img src="{{ asset($item->foto_ktp) }}" height="150px" alt=""></td>
+                                    <td><img src="{{ asset('/storage/' .$item->foto_ktp) }}" height="150px" alt=""></td>
                                     <td>@if ($item->status_verifikasi == 0)
                                         Pending
                                     @endif
