@@ -139,8 +139,8 @@
                         </div>
                         <label>Nomor Telepon: </label>
                         <div class="form-group">
-                            <input required type="tel" name="phone_number" placeholder="Nomor Telepon" class="form-control"
-                                data-parsley-type="number"
+                            <input required type="tel" name="phone_number" placeholder="Nomor Telepon"
+                                class="form-control" data-parsley-type="number"
                                 data-parsley-error-message="Masukkan format nomor telepon yang valid." />
                         </div>
                         <label>Password: </label>

@@ -10,31 +10,34 @@
                         <img src="{{ asset('/storage/' . $campaign->foto_campaign) }}" class="card-img-top"
                             alt="Banner Campaign">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $campaign->judul_campaign }}</h5>
+                            <h2 class="card-title fw-bold">{{ $campaign->judul_campaign }}</h2>
                             <p class="card-text">{!! $campaign->deskripsi_campaign !!}</p>
                             <hr>
-                            <div class="d-flex justify-content-between">
-                                <div class="row">
-                                    <div class="col d-flex me-4">
-                                        <p class="me-1">Dana Terkumpul :</p>
-                                        <p style="margin:0px;" class="text-success me-3">
-                                            Rp{{ number_format($campaign->dana_terkumpul, 2, ',', '.') }}</p>
-                                    </div>
-                                    <div class="col d-flex me-4">
-                                        <p class="me-1">Target Dana Donasi :</p>
-                                        <p style="margin:0px;" class="text-success">
-                                            Rp{{ number_format($campaign->target_campaign, 2, ',', '.') }}</p>
-                                    </div>
-                                    <div class="col d-flex me-4">
-                                        <p class="me-1">Tanggal Berakhir :</p>
-                                        <p style="margin:0px;" class="text-muted">
-                                            {{ date('d-m-Y', strtotime($campaign->tgl_akhir_campaign)) }}</p>
-                                    </div>
+                            <div class="row d-flex justify-content-between">
+                                <div class="col me-4 my-2">
+                                    <p class="me-1 mb-0">Dana Terkumpul :</p>
+                                    <p class="text-success me-3">
+                                        Rp{{ number_format($campaign->dana_terkumpul, 2, ',', '.') }}</p>
+                                </div>
+                                <div class="col me-4 my-2">
+                                    <p class="me-1 mb-0">Target Dana Donasi :</p>
+                                    <p class="text-success">
+                                        Rp{{ number_format($campaign->target_campaign, 2, ',', '.') }}</p>
+                                </div>
+                                <div class="col me-4 my-2">
+                                    <p class="me-1 mb-0">Tanggal Berakhir :</p>
+                                    <p class="text-muted">
+                                        {{ date('d-m-Y', strtotime($campaign->tgl_akhir_campaign)) }}</p>
                                 </div>
                             </div>
                             <hr>
                             <h6>Berita Campaign</h6>
                             <p>Informasi terbaru mengenai campaign akan diupdate di sini.</p>
+                            @foreach ($berita as $item)
+                                <a class="text-decoration-none" href="{{ $campaign->slug_campaign }}/berita/{{ $item->slug_berita }}">
+                                    <p class="fw-bold text-dark">{{ $item->judul_berita }}</p>
+                                </a>
+                            @endforeach
                             <hr>
                             <h6>Doa dari Donatur</h6>
                             @foreach ($doa as $item)
@@ -54,15 +57,17 @@
         </div>
         <div style="height:100px"></div>
     </section>
+
+
     <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title px-3 fs-5" id="staticBackdropLabel">Detail Donasi</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
                 @auth
+                    <div class="modal-header">
+                        <h1 class="modal-title px-3 fs-5" id="staticBackdropLabel">Detail Donasi</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                     <div class="modal-body">
                         <div class="container">
                             <form id="donation-form" method="post" action="/donasi">
@@ -123,10 +128,18 @@
                         </div>
                     </div>
                 @else
-                    <script>
-                        window.location = "/login";
-                    </script>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Anda perlu login</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <a class="btn" style="border-radius: 50px; background-color:#435ebe; color:#ffffff"
+                                href="/login">Login</a>
+                        </div>
+                    </div>
                 @endauth
+
             </div>
         </div>
     </div>

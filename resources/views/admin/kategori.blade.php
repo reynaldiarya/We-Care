@@ -18,6 +18,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+        @if (session()->has('salah'))
+            <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                {{ session('salah') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         @if (count($errors) > 0)
             @foreach ($errors->all() as $error)
                 <div class="alert alert-danger alert-dismissible show fade" role="alert">
@@ -124,7 +130,8 @@
                     <div class="modal-body">
                         <label>Kategori: </label>
                         <div class="form-group">
-                            <input required type="text" name="nama_kategori" placeholder="Kategori" class="form-control" />
+                            <input required type="text" name="nama_kategori" placeholder="Kategori"
+                                class="form-control" />
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/splide.min.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/hover.css">
     <link rel="stylesheet" href="/css/landing.css">
@@ -20,7 +19,7 @@
 
 <body style="font-family: poppins; background-color:#F8F9FA;" id="body">
     <section class="shadow-sm" id="searchbar">
-        <nav class="row navbar p-3 mobile" style="background-color:#435ebe;">
+        <nav class="navbar p-3 mobile" style="background-color:#435ebe;">
             <div class="container justify-content-between">
                 <a href="/" class="navbar-brand" style="color: #ffffff;">
                     <img style="width: 35px; height: 100%" src="/assets/images/logo/logo.png" alt="Logo">
@@ -104,18 +103,18 @@
                 <div class="row">
 
                     <div class="col mx-3">
-                        <a href="mailto:bemfv.unair@email.com"><img src="assets/img/home-icon-pink.png"
+                        <a href="mailto:bemfv.unair@email.com"><img src="/assets/img/home-icon-pink.png"
                                 alt="" id="chat" style="height: 50px"></a>
                     </div>
 
                     <div class="col mx-3">
-                        <a href=""><img src="assets/img/home-icon-pink.png" alt=""
+                        <a href=""><img src="/assets/img/home-icon-pink.png" alt=""
                                 style="height: 50px"></a>
                     </div>
                     <div class="col mx-3">
                         <a href=""
                             @auth data-bs-toggle="modal" data-bs-target="#profile" @else data-bs-toggle="modal" data-bs-target="#pesan" @endauth><img
-                                src="assets/img/ava-icon-white.png" alt="" style="height: 50px"></a>
+                                src="/assets/img/ava-icon-white.png" alt="" style="height: 50px"></a>
                     </div>
                 </div>
 
@@ -127,7 +126,8 @@
         @yield('content')
     </div>
 
-    <footer class="py-3" style="background-color: rgb(255, 255, 255); border-radius: 20px;" class="py-3">
+    <footer class="py-3" style="background-color: rgb(255, 255, 255); border-radius: 20px 20px 0px 0px;"
+        class="py-3">
         <p class="text-center text-muted mt-3">&copy; <?php echo date('Y'); ?> We Care</p>
     </footer>
 

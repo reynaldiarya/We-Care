@@ -57,16 +57,19 @@
                                     <td>{{ $item->nama_ktp }}</td>
                                     <td>{{ $item->tanggal_lahir }}</td>
                                     <td>{{ $item->alamat }}</td>
-                                    <td><img src="{{ asset('/storage/' .$item->foto_ktp) }}" height="150px" alt=""></td>
-                                    <td>@if ($item->status_verifikasi == 0)
-                                        Pending
-                                    @endif
-                                    @if ($item->status_verifikasi == 1)
-                                        Disetujui
-                                    @endif
-                                    @if ($item->status_verifikasi == 2)
-                                        Ditolak
-                                    @endif</td>
+                                    <td><img src="{{ asset('/storage/' . $item->foto_ktp) }}" height="150px" alt="">
+                                    </td>
+                                    <td>
+                                        @if ($item->status_verifikasi == 0)
+                                            Pending
+                                        @endif
+                                        @if ($item->status_verifikasi == 1)
+                                            Disetujui
+                                        @endif
+                                        @if ($item->status_verifikasi == 2)
+                                            Ditolak
+                                        @endif
+                                    </td>
                                     <td>
                                         <button type="button" class="btn" data-bs-toggle="modal"
                                             data-bs-target="#edit{{ $item->id }}">
@@ -74,8 +77,8 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <div class="modal fade text-left" id="edit{{ $item->id }}" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel33" aria-hidden="true">
+                                <div class="modal fade text-left" id="edit{{ $item->id }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -87,14 +90,16 @@
                                                     <i data-feather="x"></i>
                                                 </button>
                                             </div>
-                                            <form action="/admin/penggalang-dana/edit-status-verifikasi-akun" method="POST">
+                                            <form action="/admin/penggalang-dana/edit-status-verifikasi-akun"
+                                                method="POST">
                                                 @csrf
                                                 <div class="modal-body">
                                                     <label>Edit Status</label>
                                                     <div class="form-group">
                                                         <input type="hidden" name="id" value="{{ $item->user_id }}">
                                                         <select class="form-select" id="basicSelect" name="status">
-                                                            <option disabled selected value="{{ $item->status_verifikasi }}">
+                                                            <option disabled selected
+                                                                value="{{ $item->status_verifikasi }}">
                                                                 @if ($item->status_verifikasi == 0)
                                                                     Pending
                                                                 @endif

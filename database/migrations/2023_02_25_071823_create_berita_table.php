@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('campaign_id');
             $table->string('gambar_berita');
             $table->text('isi_berita');
+            $table->text('slug_berita');
             $table->timestamps();
         });
     }

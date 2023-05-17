@@ -1,4 +1,7 @@
 @extends('landing.master')
+@section('style')
+    <link rel="stylesheet" href="/css/splide.min.css">
+@endsection
 @section('content')
     <section id="item" style="background-color: rgb(255, 255, 255); border-radius: 20px;" class="item my-3 "
         data-filter="item">
@@ -51,73 +54,76 @@
             <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    @if(Auth::user()->role == 2)
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="post" action="/buat-campaign"enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="form-label">Email</label>
-                                        <input type="text" class="form-control" disabled value="{{ Auth::user()->email }}">
+                    @if (Auth::user()->role == 2)
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="/buat-campaign"enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email</label>
+                                            <input type="text" class="form-control" disabled
+                                                value="{{ Auth::user()->email }}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Nama</label>
+                                            <input disabled type="text" class="form-control"
+                                                value="{{ Auth::user()->name }}">
+                                            <input name="user_id" type="hidden" class="form-control"
+                                                value="{{ Auth::user()->id }}" required>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Nama</label>
-                                        <input disabled type="text" class="form-control" value="{{ Auth::user()->name }}">
-                                        <input name="user_id" type="hidden" class="form-control" value="{{ Auth::user()->id }}"
-                                            required>
+                                    <div class="mb-3 mt-3">
+                                        <label class="form-label">Kategori Campaign</label>
+                                        <select name="category_id" class="form-select" aria-label="Default select example">
+                                            @foreach ($kategori as $item)
+                                                <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                </div>
-                                <div class="mb-3 mt-3">
-                                    <label class="form-label">Kategori Campaign</label>
-                                    <select name="category_id" class="form-select" aria-label="Default select example">
-                                        @foreach ($kategori as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-3 mt-3">
-                                    <label class="form-label">Judul Campaign</label>
-                                    <input name="judul_campaign" type="text" class="form-control" required>
-                                </div>
-                                <div class="mb-3 mt-3">
-                                    <label class="form-label">Deskripsi Campaign</label>
-                                    <textarea name="deskripsi_campaign" id="editor" type="text" class="form-control"></textarea>
-                                </div>
-                                <div class="mb-3 mt-3">
-                                    <label class="form-label">Target Dana</label>
-                                    <input name="target_campaign" type="number" class="form-control" required>
-                                </div>
-                                <div class="mb-3 mt-3">
-                                    <label class="form-label">Tanggal Akhir Campaign</label>
-                                    <input name="tgl_akhir" type="date" class="form-control" required>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <strong>Banner Campaign</strong>
-                                    <input class="form-control" type="file" name="image" id="formFile" required>
-                                </div>
-                                <div class="text-center mt-3">
-                                    <button type="submit" class="btn btn-success">Kirim</button>
-                                </div>
-                            </form>
+                                    <div class="mb-3 mt-3">
+                                        <label class="form-label">Judul Campaign</label>
+                                        <input name="judul_campaign" type="text" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label class="form-label">Deskripsi Campaign</label>
+                                        <textarea name="deskripsi_campaign" id="editor" type="text" class="form-control"></textarea>
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label class="form-label">Target Dana</label>
+                                        <input name="target_campaign" type="number" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label class="form-label">Tanggal Akhir Campaign</label>
+                                        <input name="tgl_akhir" type="date" class="form-control" required>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <strong>Banner Campaign</strong>
+                                        <input class="form-control" type="file" name="image" id="formFile" required>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <button type="submit" class="btn btn-success">Kirim</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
                     @else
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Verifikasi Akun Anda</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body text-center">
                                 <a class="btn" style="border-radius: 50px; background-color:#435ebe; color:#ffffff"
                                     href="/verifikasi-akun/.{{ Auth::user()->id }}">Verifikasi</a>
                             </div>
                         </div>
-                        @endif
+                    @endif
                 </div>
             </div>
         @endauth
@@ -377,7 +383,6 @@
     </section>
 @endsection
 @section('script')
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/36.0.1/ckeditor.min.js"
         integrity="sha512-m1b22NPZjHOJ4PEMtKYmqK7s9UOKOQ2o7e+tTMfPLqGDN1jXUeE0JHSOVkuF3UIWDk/tLvbhv/Qjgb3c8G1k6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -459,29 +464,29 @@
 
     <script>
         const back = document.getElementById('back');
-        back.addEventListener('click', function(){
+        back.addEventListener('click', function() {
             items.forEach(function(item) {
                 resultspace.classList.add("d-none");
                 categoryspace.classList.add("d-none");
                 item.style.display = 'block';
-                search2.value='';
-                search.value='';
+                search2.value = '';
+                search.value = '';
             });
         });
     </script>
 
-<script>
-    const back2 = document.getElementById('back2');
-    back2.addEventListener('click', function(){
-        items.forEach(function(item) {
-            resultspace.classList.add("d-none");
-            categoryspace.classList.add("d-none");
-            item.style.display = 'block';
-            search2.value='';
-            search.value='';
+    <script>
+        const back2 = document.getElementById('back2');
+        back2.addEventListener('click', function() {
+            items.forEach(function(item) {
+                resultspace.classList.add("d-none");
+                categoryspace.classList.add("d-none");
+                item.style.display = 'block';
+                search2.value = '';
+                search.value = '';
+            });
         });
-    });
-</script>
+    </script>
 
     <script>
         //Define an adapter to upload the files

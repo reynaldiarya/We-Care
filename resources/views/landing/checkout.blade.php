@@ -7,7 +7,11 @@
                 <img src="{{ asset('/storage/' . $campaign->foto_campaign) }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h4>{{ $campaign->judul_campaign }}</h4>
-                    <p>{{ $campaign->deskripsi_campaign }}</p>
+                    <p>{!! $campaign->deskripsi_campaign !!}</p>
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" value="{{ $transaksi->nama }}" name="nama" disabled>
+                    </div>
                     <div class="mb-3">
                         <label for="amount" class="form-label">Jumlah Donasi (IDR)</label>
                         <input type="number" class="form-control" value="{{ $transaksi->nominal_transaksi }}"
@@ -18,7 +22,8 @@
                         <input type="text" class="form-control" value="{{ $transaksi->keterangan }}" id="message"
                             name="pesan" disabled>
                     </div>
-                    <div class="row p-2"><a href="#" id="pay-button" class="btn" style="background-color: #435ebe; color: #fff">Bayar Sekarang</a></div>
+                    <div class="row p-2"><a href="#" id="pay-button" class="btn"
+                            style="background-color: #435ebe; color: #fff">Bayar Sekarang</a></div>
                 </div>
             </div>
         </div>

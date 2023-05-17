@@ -14,11 +14,27 @@ class CampaignController extends Controller
     public function index($slug)
     {
         $campaign = Campaign::where('slug_campaign', $slug)->first();
+        $berita = Berita::where('campaign_id', $campaign->id)->get();
         $doa = Transaksi::where('campaign_id', $campaign->id)->limit(3)->latest()->get();
         if ($campaign->status_campaign == 1) {
             return view('landing.campaign', [
                 'campaign'  => $campaign,
                 'doa' => $doa,
+                'berita' => $berita,
+            ]);
+        } else {
+            return view('errors.404');
+        }
+    }
+
+    public function berita($slug, $slugberita)
+    {
+        $campaign = Campaign::where('slug_campaign', $slug)->first();
+        $berita = Berita::where('slug_berita', $slugberita)->get();
+        if ($campaign->status_campaign == 1) {
+            return view('landing.beritacampaign', [
+                'campaign'  => $campaign,
+                'berita' => $berita,
             ]);
         } else {
             return view('errors.404');
@@ -60,7 +76,7 @@ class CampaignController extends Controller
     {
         $news = Berita::with('user')->get();
         return view('admin.berita', [
-            'title' => 'News Campaign - We Care',
+            'title' => 'Berita Campaign - We Care',
             'news'  => $news,
         ]);
     }
@@ -69,15 +85,24 @@ class CampaignController extends Controller
     {
         $campaign = Campaign::with('user')->get();
         return view('admin.tambahberita', [
-            'title' => 'News Campaign - We Care',
+            'title' => 'Berita Campaign - We Care',
             'campaign'  => $campaign,
+        ]);
+    }
+
+    public function editnews($id)
+    {
+        $berita = Berita::where(['id' => $id])->get();
+        return view('admin.editberita', [
+            'title' => 'Berita Campaign - We Care',
+            'berita'  => $berita,
         ]);
     }
 
     public function uploadgambar(Request $request)
     {
 
-        $path_url = 'storage/images/news';
+        $path_url = 'storage/images/berita';
         if ($request->hasFile('upload')) {
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
@@ -101,17 +126,50 @@ class CampaignController extends Controller
             'isi' => 'required',
         ]);
         $imagename = time() . '.' . $request->gambar->extension();
-        $request->gambar->move(public_path('storage/images/thumbnail'), $imagename);
+        $request->gambar->move(public_path('storage/images/berita'), $imagename);
 
-        $blog = new Berita;
-        $blog->judul_berita = $request->input('judul');
-        $blog->tgl_terbit_berita = $request->input('tgl_terbit');
-        $blog->user_id = $request->input('user_id');
-        $blog->campaign_id = $request->input('campaign_id');
-        $blog->gambar_berita = $imagename;
-        $blog->isi_berita = $request->input('isi');
-        $blog->save();
+        $berita = new Berita;
+        $berita->judul_berita = $request->input('judul');
+        $berita->slug_berita = str()->slug($request->input('judul'));
+        $berita->tgl_terbit_berita = $request->input('tgl_terbit');
+        $berita->user_id = $request->input('user_id');
+        $berita->campaign_id = $request->input('campaign_id');
+        $berita->gambar_berita = $imagename;
+        $berita->isi_berita = $request->input('isi');
+        $berita->save();
         return redirect('/admin/campaign/berita')->with('message', 'Artikel berhasil ditambahkan');
+    }
+
+    public function posteditberita(Request $request)
+    {
+        $valid = $request->validate([
+            'id' => 'required',
+            'judul' => 'required|string',
+            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=2048,max_height=2048',
+            'isi' => 'required',
+        ]);
+        $id = $request->input('id');
+        $berita = Berita::where(['id' => $id])->first();
+        if ($request->hasFile('gambar')) {
+            $imagename = time() . '.' . $request->gambar->extension();
+            $request->gambar->move(public_path('storage/images/thumbnail'), $imagename);
+            $berita->judul_berita = $request->input('judul');
+            $berita->gambar_berita = $imagename;
+            $berita->isi_berita = $request->input('isi');
+            $berita->save();
+        } else {
+            $berita->judul_berita = $request->input('judul');
+            $berita->isi_berita = $request->input('isi');
+            $berita->save();
+        }
+
+        return redirect('/admin/campaign/berita')->with('message', 'Artikel berhasil diedit');
+    }
+
+    public function deleteberita()
+    {
+        Berita::where('id', request('id'))->delete();
+        return back()->with('message', 'Berita berhasil dihapus');
     }
 
     public function kategori()
@@ -134,8 +192,12 @@ class CampaignController extends Controller
 
     public function deletekategori()
     {
-        Kategori::where('id', request('id'))->delete();
-        return back()->with('message', 'Kategori berhasil dihapus');
+        if (Campaign::where('category_id', request('id'))->first() != null) {
+            return back()->with('salah', 'Kategori tidak berhasil dihapus');
+        } else {
+            Kategori::where('id', request('id'))->delete();
+            return back()->with('message', 'Kategori berhasil dihapus');
+        }
     }
 
     // public function buatcampaigndonatur()

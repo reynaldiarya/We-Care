@@ -19,14 +19,13 @@
             </div>
         @endif
         @if (count($errors) > 0)
-                                    @foreach ($errors->all() as $error)
-                                        <div class="alert alert-danger alert-dismissible show fade" role="alert">
-                                            {{ $error }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
-                                        </div>
-                                    @endforeach
-                                @endif
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                    {{ $error }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endforeach
+        @endif
 
         <!-- Basic Tables start -->
         <section class="section">
@@ -54,12 +53,12 @@
                                 <tr>
                                     @php $i++ @endphp
                                     <td>{{ $i }}</td>
-                                    <td>{{ $item->judul }}</td>
-                                    <td>{{ $item->tgl_terbit }}</td>
+                                    <td>{{ $item->judul_berita }}</td>
+                                    <td>{{ $item->tgl_terbit_berita }}</td>
                                     <td>{{ $item->campaign->judul_campaign }}</td>
                                     <td>{{ $item->user->name }}</td>
                                     <td>
-                                        <a href="/admin/edit-artikel/{{ $item->id }}" class="btn">
+                                        <a href="/admin/campaign/berita/edit-berita/{{ $item->id }}" class="btn">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
                                         <button type="button" class="btn" data-bs-toggle="modal"
@@ -88,7 +87,8 @@
                                                     Anda tidak akan dapat memulihkan data ini!
                                                 </p>
                                             </div>
-                                            <form class="form form-vertical" method="POST" action="/admin/hapus-artikel">
+                                            <form class="form form-vertical" method="POST"
+                                                action="/admin/campaign/berita/hapus-berita">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $item->id }}" />
                                                 <div class="modal-footer">

@@ -73,6 +73,7 @@ Route::post('/password-update', [DashboardController::class, "updatepassworduser
 
 /* Campaign */
 Route::get('/campaign/{slug}', [CampaignController::class, "index"]);
+Route::get('/campaign/{slug}/berita/{slugberita}', [CampaignController::class, "berita"]);
 Route::get('/donasi/{id}', [TransaksiController::class, "index"]);
 Route::post('/donasi', [TransaksiController::class, "create"]);
 Route::get('/checkout/{id}', [TransaksiController::class, "checkout"]);
@@ -99,19 +100,25 @@ Route::group(['middleware' => ['auth', 'role:0']], function () {
     Route::get('/admin/campaign/berita/tambah-berita', [CampaignController::class, "tambahnews"]);
     Route::post('/admin/campaign/berita/tambah-berita/upload-gambar', [CampaignController::class, "uploadgambar"])->name('upload-gambar-berita');
     Route::post('/admin/campaign/berita/post-tambah-berita', [CampaignController::class, "posttambahberita"]);
-    Route::get('/admin/campaign/berita/edit-berita/{id}', [CampaignController::class, "editberita"]);
+    Route::get('/admin/campaign/berita/edit-berita/{id}', [CampaignController::class, "editnews"]);
     Route::post('/admin/campaign/berita/post-edit-berita', [CampaignController::class, "posteditberita"]);
+    Route::post('/admin/campaign/berita/hapus-berita', [CampaignController::class, "deleteberita"]);
     Route::get('/admin/campaign/kategori', [CampaignController::class, "kategori"]);
     Route::post('/admin/campaign/kategori/tambah-kategori', [CampaignController::class, "tambahkategori"]);
     Route::post('/admin/campaign/kategori/hapus-kategori', [CampaignController::class, "deletekategori"]);
+
     /* Admin Transaksi */
     Route::get('/admin/transaksi-donasi', [TransaksiController::class, "transaksi"]);
+
+
     /* Admin Blog */
     Route::get('/admin/artikel-blog', [BlogController::class, "blog"]);
     Route::post('/admin/hapus-artikel', [BlogController::class, "deleteartikel"])->name('hapus-artikel');
+
     Route::get('/admin/tambah-artikel', [BlogController::class, "tambahartikel"]);
     Route::post('/admin/tambah-artikel/upload-gambar', [BlogController::class, "uploadgambar"])->name('upload-gambar-artikel');
     Route::post('/admin/post-tambah-artikel', [BlogController::class, "posttambahartikel"]);
+
     Route::get('/admin/edit-artikel/{id}', [BlogController::class, "editartikel"]);
     Route::post('/admin/post-edit-artikel', [BlogController::class, "posteditartikel"]);
 });

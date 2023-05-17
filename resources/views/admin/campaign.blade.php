@@ -77,8 +77,8 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <div class="modal fade text-left" id="edit{{ $item->id }}" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel33" aria-hidden="true">
+                                <div class="modal fade text-left" id="edit{{ $item->id }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -90,11 +90,13 @@
                                                     <i data-feather="x"></i>
                                                 </button>
                                             </div>
-                                            <form action="/admin/campaign/daftar-campaign/edit-status-campaign" method="POST">
+                                            <form action="/admin/campaign/daftar-campaign/edit-status-campaign"
+                                                method="POST">
                                                 @csrf
                                                 <div class="modal-body">
                                                     <label>Edit Status</label>
-                                                    <input type="hidden" class="form-control" name="id" value="{{ $item->id }}">
+                                                    <input type="hidden" class="form-control" name="id"
+                                                        value="{{ $item->id }}">
                                                     <div class="form-group">
                                                         <select class="form-select" id="basicSelect" name="status">
                                                             <option disabled selected value="{{ $item->status_campaign }}">

@@ -36,6 +36,10 @@ header.masthead:before {
   opacity: 0.5;
 }
 
+header.masthead .post-heading{
+  margin: 2rem;
+}
+
 header.masthead .page-heading,
 header.masthead .post-heading,
 header.masthead .site-heading {
