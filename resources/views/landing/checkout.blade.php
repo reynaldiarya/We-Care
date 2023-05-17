@@ -34,7 +34,7 @@
             window.snap.pay('{{ $snapToken }}', {
                 onSuccess: function(result) {
                     /* You may add your own implementation here */
-                    window.location.href = '/campaign/{{ $campaign->id }}';
+                    window.location.href = '/campaign/{{ $campaign->slug_campaign }}';
                     alert("payment success!");
                     console.log(result);
                 },

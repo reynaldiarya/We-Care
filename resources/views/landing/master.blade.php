@@ -51,8 +51,6 @@
                         Saya</a>
                     <a href="/campaign-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Campaign
                         Saya</a>
-                    <a href="/verifikasi-akun/{{ Auth::user()->id }}" class="nav-item px-2"
-                        style="color: #ffffff;text-decoration: none;">Verifikasi Akun</a>
                     <div class="dropdown">
                         <button style="color:#ffffff" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -60,16 +58,18 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="/profil"><i class="icon-mid bi bi-person me-2"></i> Profil
-                                    Saya</a>
+                                <a class="dropdown-item" href="/profil"> Profil Saya</a>
+                            </li>
+                            <hr class="dropdown-divider">
+                            <li>
+                                <a class="dropdown-item" href="/verifikasi-akun/{{ Auth::user()->id }}">Verifikasi Akun</a>
                             </li>
                             <hr class="dropdown-divider">
                             </li>
                             <li>
                                 <form action="/logout" method="post">
                                     @csrf
-                                    <button type="submit" class="dropdown-item" href="/logout"><i
-                                            class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</button>
+                                    <button type="submit" class="dropdown-item" href="/logout">Logout</button>
                                 </form>
                             </li>
                         </ul>

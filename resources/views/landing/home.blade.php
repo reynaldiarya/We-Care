@@ -51,6 +51,7 @@
             <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
+                    @if(Auth::user()->role == 2)
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
@@ -105,6 +106,18 @@
                             </form>
                         </div>
                     </div>
+                    @else
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Verifikasi Akun Anda</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <a class="btn" style="border-radius: 50px; background-color:#435ebe; color:#ffffff"
+                                    href="/verifikasi-akun/.{{ Auth::user()->id }}">Verifikasi</a>
+                            </div>
+                        </div>
+                        @endif
                 </div>
             </div>
         @endauth
@@ -264,8 +277,8 @@
         <div style="height:60px"></div>
         <div class="container text-center">
             <h5 class="p-4 mt-2" style="font-weight:bold; color: #435ebe;">Hasil Pencarian</h5>
-            <button class="btn" style="border-radius: 50px; background-color:#435ebe"><a
-                    style="color: #ffffff; text-decoration:none" href="/">
+            <button class="btn" id="back" style="border-radius: 50px; background-color:#435ebe"><a
+                    style="color: #ffffff; text-decoration:none">
                     <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1"
                         viewBox="0 0 1024 1024">
                         <path
@@ -318,8 +331,8 @@
         <div style="height:60px"></div>
         <div class="container text-center">
             <h5 class="p-4 mt-2" style="font-weight:bold; color: #435ebe;">Hasil Pencarian</h5>
-            <button class="btn" style="border-radius: 50px; background-color:#435ebe"><a
-                    style="color: #ffffff; text-decoration:none" href="/">
+            <button class="btn" id="back2" style="border-radius: 50px; background-color:#435ebe"><a
+                    style="color: #ffffff; text-decoration:none">
                     <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1"
                         viewBox="0 0 1024 1024">
                         <path
@@ -364,6 +377,7 @@
     </section>
 @endsection
 @section('script')
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/36.0.1/ckeditor.min.js"
         integrity="sha512-m1b22NPZjHOJ4PEMtKYmqK7s9UOKOQ2o7e+tTMfPLqGDN1jXUeE0JHSOVkuF3UIWDk/tLvbhv/Qjgb3c8G1k6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -442,6 +456,33 @@
 
         }); //end event listener
     </script>
+
+    <script>
+        const back = document.getElementById('back');
+        back.addEventListener('click', function(){
+            items.forEach(function(item) {
+                resultspace.classList.add("d-none");
+                categoryspace.classList.add("d-none");
+                item.style.display = 'block';
+                search2.value='';
+                search.value='';
+            });
+        });
+    </script>
+
+<script>
+    const back2 = document.getElementById('back2');
+    back2.addEventListener('click', function(){
+        items.forEach(function(item) {
+            resultspace.classList.add("d-none");
+            categoryspace.classList.add("d-none");
+            item.style.display = 'block';
+            search2.value='';
+            search.value='';
+        });
+    });
+</script>
+
     <script>
         //Define an adapter to upload the files
         class MyUploadAdapter {

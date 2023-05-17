@@ -14,13 +14,13 @@ class CampaignController extends Controller
     public function index($slug)
     {
         $campaign = Campaign::where('slug_campaign', $slug)->first();
-        $doa = Transaksi::where('campaign_id', $campaign->id)->limit(3)->get();
+        $doa = Transaksi::where('campaign_id', $campaign->id)->limit(3)->latest()->get();
         if ($campaign->status_campaign == 1) {
             return view('landing.campaign', [
                 'campaign'  => $campaign,
                 'doa' => $doa,
             ]);
-        }else{
+        } else {
             return view('errors.404');
         }
     }

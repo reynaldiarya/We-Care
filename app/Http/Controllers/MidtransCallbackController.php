@@ -24,7 +24,7 @@ class MidtransCallbackController extends Controller
                     'status_transaksi' => 1,
                 ]);
                 Campaign::where('id', $transaksi->campaign_id)->update([
-                    'dana_terkumpul' => $dana + ($transaksi->nominal_transaksi - 5000),
+                    'dana_terkumpul' => $dana + ($transaksi->nominal_transaksi),
                 ]);
             }
 
