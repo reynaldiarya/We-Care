@@ -41,13 +41,11 @@
                             <hr>
                             <h6>Doa dari Donatur</h6>
                             @foreach ($doa as $item)
-                                {{-- <ul class="list-group">
-                                    <li class="list-group-item">{{ $item->keterangan }} -{{ $item->nama }}</li>
-                                </ul> --}}
                                 <div class="text-justify mt-4 float-right list-group border px-3 py-3 my-2">
-                                    <h4>{{ $item->nama }}</h4>
+                                    <h4>{{ $item->keterangan }}</h4>
                                     <span>{{$item->tgl_transaksi}}</span>
-                                    <p style="margin: 0px">{{ $item->keterangan }}</p>
+                                    <span>Rp{{$item->nominal_transaksi}}</span>
+                                    <p style="margin: 0px">{{ $item->nama }}</p>
                                 </div>
                             @endforeach
 
