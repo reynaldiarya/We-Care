@@ -16,7 +16,7 @@ class CampaignController extends Controller
     public function index($slug)
     {
         $campaign = Campaign::where('slug_campaign', $slug)->first();
-        $berita = Berita::where('campaign_id', $campaign->id)->get();
+        $berita = Berita::where('campaign_id', $campaign->id)->latest()->get();
         $doa = Transaksi::with('user')->where('campaign_id', $campaign->id)->limit(3)->latest()->get();
         if ($campaign->status_campaign == 1) {
             return view('landing.campaign', [

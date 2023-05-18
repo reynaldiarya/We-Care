@@ -32,13 +32,28 @@
                             </div>
                             <hr>
                             <h6>Berita Campaign</h6>
-                            <p>Informasi terbaru mengenai campaign akan diupdate di sini.</p>
-                            @foreach ($berita as $item)
-                                <a class="text-decoration-none" href="{{ $campaign->slug_campaign }}/berita/{{ $item->slug_berita }}">
-                                    <p class="fw-bold text-dark">{{ $item->judul_berita }}</p>
-                                </a>
-                            @endforeach
+                            <div class="accordion" id="beritaAccordion">
+                                <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                                                Informasi terbaru mengenai campaign akan diupdate di sini.
+                                            </button>
+                                        </h2>
+                                        @foreach ($berita as $key => $item)
+                                        <div id="collapse" class="accordion-collapse collapse" aria-labelledby="heading" data-bs-parent="#beritaAccordion">
+                                            <div class="accordion-body">
+                                                <a class="text-decoration-none" href="{{ $campaign->slug_campaign }}/berita/{{ $item->slug_berita }}">
+                                                    <p class="fw-bold text-dark m-0">{{ $item->judul_berita }}</p>
+                                                    <span style="color: black">{{ $item->tgl_terbit_berita }}</span>
+                                                    <div class="border-bottom mt-1" ></div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                             <hr>
+
                             <h6>Doa dari Donatur</h6>
                             @foreach ($doa as $item)
                                 <div class="text-justify mt-4 float-right list-group border px-3 py-3 my-2">
@@ -62,7 +77,7 @@
     </section>
 
 
-    <div class="modal fade" id="createcampaign" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
