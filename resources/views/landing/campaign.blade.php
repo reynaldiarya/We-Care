@@ -65,7 +65,7 @@
                             @endforeach
 
                             <hr>
-                            <div class="row px-2"><a data-bs-toggle="modal" data-bs-target="#createcampaign" class="btn"
+                            <div class="row px-2"><a data-bs-toggle="modal" @auth data-bs-target="#create" @else data-bs-target="#create" @endif class="btn"
                                     style="background-color: #435ebe; border-radius:50px; color:#ffffff">Donasi
                                     Sekarang</a></div>
                         </div>
