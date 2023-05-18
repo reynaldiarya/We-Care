@@ -15,7 +15,7 @@ class CampaignController extends Controller
     {
         $campaign = Campaign::where('slug_campaign', $slug)->first();
         $berita = Berita::where('campaign_id', $campaign->id)->get();
-        $doa = Transaksi::where('campaign_id', $campaign->id)->limit(3)->latest()->get();
+        $doa = Transaksi::with('user')->where('campaign_id', $campaign->id)->limit(3)->latest()->get();
         if ($campaign->status_campaign == 1) {
             return view('landing.campaign', [
                 'campaign'  => $campaign,
@@ -200,15 +200,6 @@ class CampaignController extends Controller
         }
     }
 
-    // public function buatcampaigndonatur()
-    // {
-    //     $kategori = Kategori::all();
-    //     return view('landing.createcampaign', [
-    //         'title' => 'Kategori - We Care',
-    //         'kategori' => $kategori,
-    //     ]);
-    // }
-
     public function uploadgambarcampaign(Request $request)
     {
 
@@ -235,7 +226,6 @@ class CampaignController extends Controller
                 'judul_campaign' => $request->judul_campaign,
                 'deskripsi_campaign' => $request->deskripsi_campaign,
                 'slug_campaign' => str()->slug($request['judul_campaign']),
-                // 'lokasi_id' => $request->lokasi,
                 'tgl_mulai_campaign' => Carbon::now(),
                 'tgl_akhir_campaign' => $request->tgl_akhir,
                 'target_campaign' => $request->target_campaign,

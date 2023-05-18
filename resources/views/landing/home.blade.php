@@ -179,9 +179,8 @@
                                         <h5>{{ $item->judul_campaign }}</h5>
                                     </div>
                                     <div class="progress" style="height: 10px;">
-                                        <div class="progress-bar w-75" role="progressbar" aria-label="Basic example"
-                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-                                            style="background-color:#435ebe"></div>
+                                        <div class="progress-bar" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                        style="background-color:#435ebe;width:{{ $item->dana_terkumpul / $item->target_campaign *100 }}%"></div>
                                     </div>
                                     <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
                                     <p class="card-text">Aktif hingga :
@@ -306,9 +305,9 @@
                                 <h5>{{ $item->judul_campaign }}</h5>
                             </div>
                             <div class="progress" style="height: 10px;">
-                                <div class="progress-bar w-75" role="progressbar" aria-label="Basic example"
+                                <div class="progress-bar" role="progressbar" aria-label="Basic example"
                                     aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-                                    style="background-color:#435ebe"></div>
+                                    style="background-color:#435ebe; width:{{ $item->dana_terkumpul / $item->target_campaign *100 }}%"></div>
                             </div>
                             <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
                             <p class="card-text">Aktif hingga : {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}
@@ -359,9 +358,9 @@
                             <h5>{{ $item->judul_campaign }}</h5>
                         </div>
                         <div class="progress" style="height: 10px;">
-                            <div class="progress-bar w-75" role="progressbar" aria-label="Basic example"
+                            <div class="progress-bar" role="progressbar" aria-label="Basic example"
                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-                                style="background-color:#435ebe"></div>
+                                style="background-color:#435ebe; width:{{ $item->dana_terkumpul / $item->target_campaign *100 }}%"></div>
                         </div>
                         <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
                         <p class="card-text">Aktif hingga : {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}</p>
