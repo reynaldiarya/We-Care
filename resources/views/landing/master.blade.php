@@ -102,17 +102,21 @@
 
                 <div class="row">
 
-                    <div class="col mx-3">
-                        <a href="mailto:bemfv.unair@email.com"><img src="/assets/img/home-icon-pink.png"
+                    <div class="col mx-1">
+                        <a href="/"><img src="/assets/img/home-icon-pink.png"
                                 alt="" id="chat" style="height: 50px"></a>
                     </div>
 
-                    <div class="col mx-3">
-                        <a href=""><img src="/assets/img/home-icon-pink.png" alt=""
+                    <div class="col mx-1">
+                        <a href="/donasi-saya"><img src="/assets/img/donation.png" alt=""
                                 style="height: 50px"></a>
                     </div>
-                    <div class="col mx-3">
-                        <a href=""
+                    <div class="col mx-1">
+                        <a href="/campaign-saya"><img src="/assets/img/campaign.png" alt=""
+                                style="height: 50px"></a>
+                    </div>
+                    <div class="col mx-1">
+                        <a 
                             @auth data-bs-toggle="modal" data-bs-target="#profile" @else data-bs-toggle="modal" data-bs-target="#pesan" @endauth><img
                                 src="/assets/img/ava-icon-white.png" alt="" style="height: 50px"></a>
                     </div>
@@ -122,6 +126,23 @@
         </div>
     </nav>
 
+    <!-- Modal -->
+    <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <a class="dropdown-item" href="/profil"> Profil Saya</a>
+                    <hr class="dropdown-divider">
+                    <a class="dropdown-item" href="/verifikasi-akun/{{ Auth::user()->id }}">Verifikasi Akun</a>
+                    <hr class="dropdown-divider">
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="dropdown-item" href="/logout">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div>
         @yield('content')
     </div>

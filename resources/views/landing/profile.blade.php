@@ -1,5 +1,6 @@
 @extends('landing.master')
 @section('content')
+<section style=" background-color: rgb(255, 255, 255); border-radius: 20px;">
     <div class="container mt-4 mb-4">
         <h1 class="py-4 mb-4">Profil</h1>
         @if (session()->has('message'))
@@ -98,6 +99,7 @@
             </div>
         </div>
     </div>
+</section>
 @endsection
 @section('script')
     <script src="/assets/extensions/jquery/jquery.min.js"></script>
