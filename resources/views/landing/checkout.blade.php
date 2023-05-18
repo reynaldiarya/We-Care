@@ -4,7 +4,7 @@
         data-filter="item">
         <div class="container d-flex align-items-center justify-content-center">
             <div class="card" style="width: 20rem;">
-                <img src="{{ asset('/storage/' . $campaign->foto_campaign) }}" class="card-img-top" alt="...">
+                <img src="{{ asset('/storage/' . $campaign->foto_campaign) }}" class="card-img-top" alt="..." style="height: 250px; object-fit:cover">
                 <div class="card-body">
                     <h4>{{ $campaign->judul_campaign }}</h4>
                     <p>{!! $campaign->deskripsi_campaign !!}</p>
@@ -30,7 +30,7 @@
     </section>
 @endsection
 @section('script')
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.server_key') }}"></script>
     <script type="text/javascript">
         // For example trigger on button clicked, or any time you need
         var payButton = document.getElementById('pay-button');

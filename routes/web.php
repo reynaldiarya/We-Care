@@ -31,6 +31,8 @@ use Illuminate\Support\Facades\Route;
 /* Halaman Utama */
 
 Route::get('/', [LandingController::class, "index"]);
+Route::get('/campaign-saya', [campaignController::class, "mycampaign"]);
+Route::get('/donasi-saya', [transaksiController::class, "mydonation"]);
 Route::post('/logout', [DashboardController::class, "logout"]);
 
 /* Login & Register */

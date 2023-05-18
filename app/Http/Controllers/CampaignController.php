@@ -8,6 +8,8 @@ use App\Models\Berita;
 use App\Models\Kategori;
 use App\Models\Transaksi;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 class CampaignController extends Controller
 {
@@ -50,6 +52,14 @@ class CampaignController extends Controller
         ]);
     }
 
+    public function mycampaign()
+    {
+        $campaign = Campaign::where('user_id', Auth::user()->id)->get();
+        return view('landing.mycampaign', [
+            'campaign'  => $campaign,
+        ]);
+    }
+
     public function editstatuscampaign(Request $request)
     {
         $valid = $request->validate([
@@ -64,13 +74,6 @@ class CampaignController extends Controller
         return redirect('/admin/campaign/daftar-campaign')->with('message', 'Status berhasil diedit');
     }
 
-    // public function home()
-    // {
-    //     $campaign = Campaign::all();
-    //     return view('landing.home', [
-    //         'campaign'  => $campaign,
-    //     ]);
-    // }
 
     public function news()
     {

@@ -9,7 +9,7 @@
             <h3 style="font-weight:bold; color: #435ebe;">Selamat Datang !</h3>
             <a href="" data-bs-toggle="modal" data-bs-target="#createcampaign" style="text-decoration: none;">
                 <div class="hvr-grow shadow mt-3 d-flex align-items-center"
-                    style="height: 250px; border-radius:25px; background-image: linear-gradient(to right, #435ebe, rgba(231, 231, 231, 0.5)), url('https://images.unsplash.com/photo-1615897570582-285ffe259530?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'); background-size: cover;">
+                    style="height: 250px; border-radius:25px; background-image: linear-gradient(to right, #435ebe, rgba(231, 231, 231, 0.5)), url('https://images.unsplash.com/photo-1516570161787-2fd917215a3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); background-size: cover;">
                     <div class="p-4" style="max-width:80%">
                         <h1 style="font-weight: inherit; color:#ffffff; font-size:35px;">Galang Dana Sekarang</h1>
                     </div>
@@ -28,18 +28,21 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            ...
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus, doloremque aut?
+                            Neque aliquam eos sed alias quidem sunt sapiente doloremque,
+                            molestiae quasi iusto rerum ut commodi cum ipsam corrupti, illo saepe a nesciunt quod. Beatae dolorem quibusdam voluptates reprehenderit! Est, praesentium!
+                            Iusto, dicta. At magnam pariatur, sed accusantium deleniti porro!
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#create">Selanjutnya</button>
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#create" style="background-color: #435ebe; color:#fff">Selanjutnya</button>
                         </div>
                     </div>
                 @else
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Anda perlu login</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Anda Perlu Login</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-center">
@@ -57,7 +60,7 @@
                     @if (Auth::user()->role == 2)
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Galang Dana</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -106,7 +109,7 @@
                                         <input class="form-control" type="file" name="image" id="formFile" required>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button type="submit" class="btn btn-success">Kirim</button>
+                                        <button type="submit" class="btn" style="background-color: #435ebe; color:#fff; border-radius:50px; width:100%">Kirim</button>
                                     </div>
                                 </form>
                             </div>
@@ -161,9 +164,9 @@
 
     <section data-filter="item" class="item splide my-3" aria-labelledby="carousel-heading" id="campaign"
         style="background-color: rgb(253, 253, 253); border-radius: 20px;">
-        <div class="container p-4">
+        <div class="container py-4 px-2">
             <div class="col" style="width: 75%;">
-                <h5 class="p-2" style="font-weight:bold; color: #435ebe;">Penggalangan Dana Mendesak</h5>
+                <h5 class="p-3" style="font-weight:bold; color: #435ebe;">Penggalangan Dana Mendesak</h5>
             </div>
             <div class="splide__track">
                 <ul class="splide__list">
@@ -172,8 +175,7 @@
                             class="splide__slide d-flex justify-content-center px-2 py-1"
                             style="text-decoration: none; color:black">
                             <div class="card hvr-grow" style="width: 95%;  border-color: #435ebe;">
-                                <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top"
-                                    alt="...">
+                                <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
                                 <div class="card-body">
                                     <div class="card-title">
                                         <h5>{{ $item->judul_campaign }}</h5>
@@ -299,7 +301,7 @@
                     <a href="campaign/{{ $item->slug_campaign }}" class="item card hvr-grow m-2"
                         data-filter="{{ $item->judul_campaign }}"
                         style="width: 18rem; padding: 0px;  border-color: #435ebe; text-decoration: none; color:black">
-                        <img src="storage/{{ $item->foto_campaign }}" class="card-img-top" alt="...">
+                        <img src="storage/{{ $item->foto_campaign }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
                         <div class="card-body">
                             <div class="card-title">
                                 <h5>{{ $item->judul_campaign }}</h5>
@@ -352,7 +354,7 @@
                 <a href="campaign/{{ $item->slug_campaign }}" class="item card hvr-grow m-2"
                     data-filter="{{ $item->category_id }}"
                     style="width: 18rem; padding: 0px;  border-color: #435ebe; text-decoration: none; color:black">
-                    <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
                     <div class="card-body">
                         <div class="card-title">
                             <h5>{{ $item->judul_campaign }}</h5>

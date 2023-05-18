@@ -17,7 +17,7 @@
 </head>
 
 
-<body style="font-family: poppins; background-color:#F8F9FA;" id="body">
+<body style="font-family: poppins; background-color:#F7F7F7;" id="body">
     <section class="shadow-sm" id="searchbar">
         <nav class="navbar p-3 mobile" style="background-color:#435ebe;">
             <div class="container justify-content-between">
@@ -117,7 +117,7 @@
                     </div>
                     <div class="col mx-1">
                         <a 
-                            @auth data-bs-toggle="modal" data-bs-target="#profile" @else data-bs-toggle="modal" data-bs-target="#pesan" @endauth><img
+                            data-bs-toggle="modal" @auth data-bs-target="#profile" @else data-bs-target="#createcampaign" @endauth><img
                                 src="/assets/img/ava-icon-white.png" alt="" style="height: 50px"></a>
                     </div>
                 </div>
@@ -127,9 +127,10 @@
     </nav>
 
     <!-- Modal -->
-    <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="profile" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+                @auth
                 <div class="modal-body">
                     <a class="dropdown-item" href="/profil"> Profil Saya</a>
                     <hr class="dropdown-divider">
@@ -140,6 +141,17 @@
                         <button type="submit" class="dropdown-item" href="/logout">Logout</button>
                     </form>
                 </div>
+                @else
+                <div class="modal-head text-center p-3 border-bottom">
+                    <h3 style="margin:0px">
+                        Anda Perlu Login
+                    </h3>
+                </div>
+                <div class="modal-body text-center">
+                    <a class="btn" style="border-radius: 50px; background-color:#435ebe; color:#ffffff"
+                     href="/login">Login</a>
+                </div>
+                @endauth
             </div>
         </div>
     </div>

@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Midtrans\Config;
 use Midtrans\Snap;
+use Illuminate\Support\Facades\Auth;
 use Midtrans\Transaction;
 
 class TransaksiController extends Controller
@@ -28,6 +29,15 @@ class TransaksiController extends Controller
             'campaign'  => $campaign,
         ]);
     }
+
+    public function mydonation()
+    {
+        $transaksi = Transaksi::with('Campaign')->where('user_id', Auth::user()->id)->get();
+        return view('landing.mydonasi', [
+            'transaksi'  => $transaksi,
+        ]);
+    }
+
 
     public function create(Request $request)
     {
@@ -54,9 +64,9 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         $campaign = Campaign::findOrFail($transaksi->campaign_id);
         $user = User::findOrFail($transaksi->user_id);
-
         // Set your Merchant Server Key
-        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        Config::$serverKey = config('midtrans.server_key');
+        // Config::$serverKey = 'SB-Mid-server-mzlZbKG5pog43pNjc8xUVdxT';
 
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         Config::$isProduction = false;

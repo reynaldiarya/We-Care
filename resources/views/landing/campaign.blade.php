@@ -8,7 +8,7 @@
                     <div class="card">
                         {{-- {{ "storage/".Auth::user()->photo }} --}}
                         <img src="{{ asset('/storage/' . $campaign->foto_campaign) }}" class="card-img-top"
-                            alt="Banner Campaign">
+                            alt="Banner Campaign" style="height: 400px; object-fit: cover;">
                         <div class="card-body">
                             <h2 class="card-title fw-bold">{{ $campaign->judul_campaign }}</h2>
                             <p class="card-text">{!! $campaign->deskripsi_campaign !!}</p>
