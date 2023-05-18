@@ -281,7 +281,7 @@
 
     {{-- space search --}}
     <section id="result" class="d-none" style=" background-color: rgb(255, 255, 255); border-radius: 20px;">
-        <div style="height:60px"></div>
+        {{-- <div style="height:60px"></div> --}}
         <div class="container text-center">
             <h5 class="p-4 mt-2" style="font-weight:bold; color: #435ebe;">Hasil Pencarian</h5>
             <button class="btn" id="back" style="border-radius: 50px; background-color:#435ebe"><a
@@ -335,7 +335,7 @@
 
     {{-- space category --}}
     <section id="category" class="d-none" style=" background-color: rgb(255, 255, 255); border-radius: 20px;">
-        <div style="height:60px"></div>
+        {{-- <div style="height:60px"></div> --}}
         <div class="container text-center">
             <h5 class="p-4 mt-2" style="font-weight:bold; color: #435ebe;">Hasil Pencarian</h5>
             <button class="btn" id="back2" style="border-radius: 50px; background-color:#435ebe"><a

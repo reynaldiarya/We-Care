@@ -50,7 +50,7 @@
                             @endforeach
 
                             <hr>
-                            <div class="row px-2"><a data-bs-toggle="modal" data-bs-target="#create" class="btn"
+                            <div class="row px-2"><a data-bs-toggle="modal" data-bs-target="#createcampaign" class="btn"
                                     style="background-color: #435ebe; border-radius:50px; color:#ffffff">Donasi
                                     Sekarang</a></div>
                         </div>
@@ -62,7 +62,7 @@
     </section>
 
 
-    <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="createcampaign" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
