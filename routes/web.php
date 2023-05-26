@@ -28,8 +28,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/cari', [LandingController::class, 'cari'])->name('cari');
+Route::get('/kategori/{kategori}', [LandingController::class, "kategori"]);
 /* Halaman Utama */
-
 Route::get('/', [LandingController::class, "index"]);
 Route::get('/campaign-saya', [campaignController::class, "mycampaign"]);
 Route::get('/donasi-saya', [transaksiController::class, "mydonation"]);

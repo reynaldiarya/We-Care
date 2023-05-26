@@ -140,7 +140,7 @@ class CampaignController extends Controller
         $berita->gambar_berita = $imagename;
         $berita->isi_berita = $request->input('isi');
         $berita->save();
-        return redirect('/admin/campaign/berita')->with('message', 'Artikel berhasil ditambahkan');
+        return redirect('/admin/campaign/berita')->with('message', 'Berita berhasil ditambahkan');
     }
 
     public function posteditberita(Request $request)
@@ -166,7 +166,7 @@ class CampaignController extends Controller
             $berita->save();
         }
 
-        return redirect('/admin/campaign/berita')->with('message', 'Artikel berhasil diedit');
+        return redirect('/admin/campaign/berita')->with('message', 'Berita berhasil diedit');
     }
 
     public function deleteberita()

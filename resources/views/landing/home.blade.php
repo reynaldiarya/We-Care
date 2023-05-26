@@ -7,7 +7,7 @@
         data-filter="item">
         <div class="container p-4">
             <h3 style="font-weight:bold; color: #435ebe;">Selamat Datang !</h3>
-            <a href="" data-bs-toggle="modal" data-bs-target="#createcampaign" style="text-decoration: none;">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#createcampaign" style="text-decoration: none;">
                 <div class="hvr-grow shadow mt-3 d-flex align-items-center"
                     style="height: 250px; border-radius:25px; background-image: linear-gradient(to right, #435ebe, rgba(231, 231, 231, 0.5)), url('https://images.unsplash.com/photo-1516570161787-2fd917215a3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); background-size: cover;">
                     <div class="p-4" style="max-width:80%">
@@ -30,13 +30,14 @@
                         <div class="modal-body">
                             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus, doloremque aut?
                             Neque aliquam eos sed alias quidem sunt sapiente doloremque,
-                            molestiae quasi iusto rerum ut commodi cum ipsam corrupti, illo saepe a nesciunt quod. Beatae dolorem quibusdam voluptates reprehenderit! Est, praesentium!
+                            molestiae quasi iusto rerum ut commodi cum ipsam corrupti, illo saepe a nesciunt quod. Beatae
+                            dolorem quibusdam voluptates reprehenderit! Est, praesentium!
                             Iusto, dicta. At magnam pariatur, sed accusantium deleniti porro!
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn" data-bs-toggle="modal"
-                                data-bs-target="#create" style="background-color: #435ebe; color:#fff">Selanjutnya</button>
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#create"
+                                style="background-color: #435ebe; color:#fff">Selanjutnya</button>
                         </div>
                     </div>
                 @else
@@ -109,7 +110,8 @@
                                         <input class="form-control" type="file" name="image" id="formFile" required>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button type="submit" class="btn" style="background-color: #435ebe; color:#fff; border-radius:50px; width:100%">Kirim</button>
+                                        <button type="submit" class="btn"
+                                            style="background-color: #435ebe; color:#fff; border-radius:50px; width:100%">Kirim</button>
                                     </div>
                                 </form>
                             </div>
@@ -137,52 +139,55 @@
         class="item my-3 py-3">
         <div class="container text-center">
             <div class="row p-4" style="font-size:medium">
-                <button id="button_pendidikan" value="2" class="col hvr-grow"
-                    style="background-color: white; border: none;">
+                <a href="/kategori/pendidikan" class="col hvr-grow"
+                    style="background-color: white; border: none; text-decoration:none; color: #000;">
                     <img src="assets/img/education.svg" alt="" style="height: 90px">
                     <div class="d-flex align-items-center justify-content-center">
                         <p style="margin: 0px;">Pendidikan</p>
                     </div>
-                </button>
-                <button id="button_sosial" value="1" class="col hvr-grow"
-                    style="background-color: white; border: none;">
+                </a>
+                <a href="/kategori/sosial" class="col hvr-grow"
+                    style="background-color: white; border: none; text-decoration:none; color: #000;">
                     <img src="assets/img/social.svg" alt="" style="height: 90px">
                     <div class="d-flex align-items-center justify-content-center">
                         <p style="margin: 0px;">Sosial</p>
                     </div>
-                </button>
-                <button id="button_kesehatan" value="3" class="col hvr-grow"
-                    style="background-color: white; border: none;">
+                </a>
+                <a href="/kategori/kesehatan" value="3" class="col hvr-grow"
+                    style="background-color: white; border: none; text-decoration:none; color: #000;">
                     <img src="assets/img/health.svg" alt="" style="height: 90px">
                     <div class="d-flex align-items-center justify-content-center">
                         <p style="margin: 0px;">Kesehatan</p>
                     </div>
-                </button>
+                </a>
             </div>
         </div>
     </section>
 
-    <section data-filter="item" class="item splide my-3" aria-labelledby="carousel-heading" id="campaign"
+    <section data-filter="item" class="item splide my-3" aria-labelledby="carousel-heading" id="item"
         style="background-color: rgb(253, 253, 253); border-radius: 20px;">
-        <div class="container py-4 px-2">
+        <div class="container item py-4 px-2">
             <div class="col" style="width: 75%;">
                 <h5 class="p-3" style="font-weight:bold; color: #435ebe;">Penggalangan Dana Mendesak</h5>
             </div>
             <div class="splide__track">
                 <ul class="splide__list">
                     @foreach ($campaign as $item)
-                        <a href="campaign/{{ $item->slug_campaign }}"
+                        <a href="/campaign/{{ $item->slug_campaign }}"
                             class="splide__slide d-flex justify-content-center px-2 py-1"
                             style="text-decoration: none; color:black">
                             <div class="card hvr-grow" style="width: 95%;  border-color: #435ebe;">
-                                <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
+                                <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top"
+                                    alt="..." style="height: 250px; object-fit: cover;">
                                 <div class="card-body">
                                     <div class="card-title">
                                         <h5>{{ $item->judul_campaign }}</h5>
                                     </div>
                                     <div class="progress" style="height: 10px;">
-                                        <div class="progress-bar" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-                                        style="background-color:#435ebe;width:{{ $item->dana_terkumpul / $item->target_campaign *100 }}%"></div>
+                                        <div class="progress-bar" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="background-color:#435ebe;width:{{ ($item->dana_terkumpul / $item->target_campaign) * 100 }}%">
+                                        </div>
                                     </div>
                                     <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
                                     <p class="card-text">Aktif hingga :
@@ -279,109 +284,6 @@
         </div>
     </section>
 
-    {{-- space search --}}
-    <section id="result" class="d-none" style=" background-color: rgb(255, 255, 255); border-radius: 20px;">
-        {{-- <div style="height:60px"></div> --}}
-        <div class="container text-center">
-            <h5 class="p-4 mt-2" style="font-weight:bold; color: #435ebe;">Hasil Pencarian</h5>
-            <button class="btn" id="back" style="border-radius: 50px; background-color:#435ebe"><a
-                    style="color: #ffffff; text-decoration:none">
-                    <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1"
-                        viewBox="0 0 1024 1024">
-                        <path
-                            d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"
-                            fill="#ffffff"></path>
-                    </svg>
-                    <span>Kembali</span></a>
-            </button>
-        </div>
-        <div class="container">
-            <div class="row justify-content-center p-4">
-                @foreach ($search as $item)
-                    <a href="campaign/{{ $item->slug_campaign }}" class="item card hvr-grow m-2"
-                        data-filter="{{ $item->judul_campaign }}"
-                        style="width: 18rem; padding: 0px;  border-color: #435ebe; text-decoration: none; color:black">
-                        <img src="storage/{{ $item->foto_campaign }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5>{{ $item->judul_campaign }}</h5>
-                            </div>
-                            <div class="progress" style="height: 10px;">
-                                <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-                                    style="background-color:#435ebe; width:{{ $item->dana_terkumpul / $item->target_campaign *100 }}%"></div>
-                            </div>
-                            <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
-                            <p class="card-text">Aktif hingga : {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}
-                            </p>
-                        </div>
-                    </a>
-                @endforeach
-
-                <!-- dikeep 1 div kosongan buat tumbalnya kalo g gitu gamau kebaca yg paling bawah -->
-                <div class="item card" data-filter="tumbal" style="width: 18rem; padding: 0px;">
-                    <img src="https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">contoh search filter yang tes Lorem ipsum dolor, sit amet consectetur
-                            adipisicing
-                            elit. Autem, dolor.</p>
-                    </div>
-                </div>
-                <div style="height:100px"></div>
-            </div>
-        </div>
-    </section>
-
-    {{-- space category --}}
-    <section id="category" class="d-none" style=" background-color: rgb(255, 255, 255); border-radius: 20px;">
-        {{-- <div style="height:60px"></div> --}}
-        <div class="container text-center">
-            <h5 class="p-4 mt-2" style="font-weight:bold; color: #435ebe;">Hasil Pencarian</h5>
-            <button class="btn" id="back2" style="border-radius: 50px; background-color:#435ebe"><a
-                    style="color: #ffffff; text-decoration:none">
-                    <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1"
-                        viewBox="0 0 1024 1024">
-                        <path
-                            d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"
-                            fill="#ffffff"></path>
-                    </svg>
-                    <span>Kembali</span></a>
-            </button>
-        </div>
-        <div class="row justify-content-center p-4">
-            @foreach ($search as $item)
-                <a href="campaign/{{ $item->slug_campaign }}" class="item card hvr-grow m-2"
-                    data-filter="{{ $item->category_id }}"
-                    style="width: 18rem; padding: 0px;  border-color: #435ebe; text-decoration: none; color:black">
-                    <img src="{{ asset('/storage/' . $item->foto_campaign) }}" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h5>{{ $item->judul_campaign }}</h5>
-                        </div>
-                        <div class="progress" style="height: 10px;">
-                            <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-                                style="background-color:#435ebe; width:{{ $item->dana_terkumpul / $item->target_campaign *100 }}%"></div>
-                        </div>
-                        <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
-                        <p class="card-text">Aktif hingga : {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}</p>
-                    </div>
-                </a>
-            @endforeach
-
-            <!-- dikeep 1 div kosongan buat tumbalnya kalo g gitu gamau kebaca yg paling bawah -->
-            <div class="item card" data-filter="tumbal" style="width: 18rem; padding: 0px;">
-                <img src="https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">contoh search filter yang tes Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Autem, dolor.</p>
-                </div>
-            </div>
-            <div style="height:100px"></div>
-        </div>
-    </section>
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/36.0.1/ckeditor.min.js"
@@ -401,92 +303,6 @@
         });
 
         splide.mount();
-    </script>
-
-    <!-- filter kesehatan -->
-    <script>
-        const kesehatan = document.getElementById('button_kesehatan');
-
-        kesehatan.addEventListener('click', function() {
-            const filter_category = this.value.toLowerCase();
-            items.forEach(function(item) {
-                const filterData = item.getAttribute('data-filter').toLowerCase();
-                if (filterData.includes(filter_category)) {
-                    item.style.display = 'block';
-                    categoryspace.classList.add("d-none");
-                } else {
-                    item.style.display = 'none';
-                    categoryspace.classList.remove("d-none");
-                }
-            });
-
-        }); //end event listener
-    </script>
-
-    <!-- filter pendidikan -->
-    <script>
-        const pendidikan = document.getElementById('button_pendidikan');
-
-        pendidikan.addEventListener('click', function() {
-            const filter_category = this.value.toLowerCase();
-            items.forEach(function(item) {
-                const filterData = item.getAttribute('data-filter').toLowerCase();
-                if (filterData.includes(filter_category)) {
-                    item.style.display = 'block';
-                    categoryspace.classList.add("d-none");
-                } else {
-                    item.style.display = 'none';
-                    categoryspace.classList.remove("d-none");
-                }
-            });
-
-        }); //end event listener
-    </script>
-
-    <!-- filter sosial -->
-    <script>
-        const sosial = document.getElementById('button_sosial');
-
-        sosial.addEventListener('click', function() {
-            const filter_category = this.value.toLowerCase();
-            items.forEach(function(item) {
-                const filterData = item.getAttribute('data-filter').toLowerCase();
-                if (filterData.includes(filter_category)) {
-                    item.style.display = 'block';
-                    categoryspace.classList.add("d-none");
-                } else {
-                    item.style.display = 'none';
-                    categoryspace.classList.remove("d-none");
-                }
-            });
-
-        }); //end event listener
-    </script>
-
-    <script>
-        const back = document.getElementById('back');
-        back.addEventListener('click', function() {
-            items.forEach(function(item) {
-                resultspace.classList.add("d-none");
-                categoryspace.classList.add("d-none");
-                item.style.display = 'block';
-                search2.value = '';
-                search.value = '';
-            });
-        });
-    </script>
-
-    <script>
-        const back2 = document.getElementById('back2');
-        back2.addEventListener('click', function() {
-            items.forEach(function(item) {
-                resultspace.classList.add("d-none");
-                categoryspace.classList.add("d-none");
-                item.style.display = 'block';
-                search2.value = '';
-                search.value = '';
-            });
-        });
     </script>
 
     <script>
