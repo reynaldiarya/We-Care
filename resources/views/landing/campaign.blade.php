@@ -1,7 +1,6 @@
 @extends('landing.master')
 @section('content')
-    <section id="item" style="background-color: rgb(255, 255, 255); border-radius: 20px;" class="item my-3 "
-        data-filter="item">
+    <section id="item" style="background-color: rgb(255, 255, 255);" class="item my-3 " data-filter="item">
         <div class="container p-4">
             <div class="row mt-5">
                 <div class="col-md-8 mx-auto">
@@ -11,7 +10,7 @@
                             alt="Banner Campaign" style="height: 400px; object-fit: cover;">
                         <div class="card-body">
                             <h2 class="card-title fw-bold">{{ $campaign->judul_campaign }}</h2>
-                            <p class="card-text">{!! $campaign->deskripsi_campaign !!}</p>
+                            <p class="card-text">{!! str_replace('<img', '<img style="width: 100%"', $campaign->deskripsi_campaign) !!}</p>
                             <hr>
                             <div class="row d-flex justify-content-between">
                                 <div class="col me-4 my-2">
@@ -34,18 +33,21 @@
                             <h6>Berita Campaign</h6>
                             <div class="accordion" id="beritaAccordion">
                                 <div class="accordion-item">
-                                        <h2 class="accordion-header" id="heading">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
-                                                Informasi terbaru mengenai campaign akan diupdate di sini.
-                                            </button>
-                                        </h2>
-                                        @foreach ($berita as $key => $item)
-                                        <div id="collapse" class="accordion-collapse collapse" aria-labelledby="heading" data-bs-parent="#beritaAccordion">
+                                    <h2 class="accordion-header" id="heading">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                                            Informasi terbaru mengenai campaign akan diupdate di sini.
+                                        </button>
+                                    </h2>
+                                    @foreach ($berita as $key => $item)
+                                        <div id="collapse" class="accordion-collapse collapse" aria-labelledby="heading"
+                                            data-bs-parent="#beritaAccordion">
                                             <div class="accordion-body">
-                                                <a class="text-decoration-none" href="{{ $campaign->slug_campaign }}/berita/{{ $item->slug_berita }}">
+                                                <a class="text-decoration-none"
+                                                    href="{{ $campaign->slug_campaign }}/berita/{{ $item->slug_berita }}">
                                                     <p class="fw-bold text-dark m-0">{{ $item->judul_berita }}</p>
                                                     <span style="color: black">{{ $item->tgl_terbit_berita }}</span>
-                                                    <div class="border-bottom mt-1" ></div>
+                                                    <div class="border-bottom mt-1"></div>
                                                 </a>
                                             </div>
                                         </div>
@@ -58,14 +60,15 @@
                             @foreach ($doa as $item)
                                 <div class="text-justify mt-4 float-right list-group border px-3 py-3 my-2">
                                     <h4>{{ $item->keterangan }}</h4>
-                                    <span>{{$item->tgl_transaksi}}</span>
-                                    <span>Rp{{$item->nominal_transaksi}}</span>
+                                    <span>{{ $item->tgl_transaksi }}</span>
+                                    <span>Rp{{ $item->nominal_transaksi }}</span>
                                     <p style="margin: 0px">{{ $item->nama }}</p>
                                 </div>
                             @endforeach
 
                             <hr>
-                            <div class="row px-2"><a data-bs-toggle="modal" @auth data-bs-target="#create" @else data-bs-target="#create" @endif class="btn"
+                            <div class="row px-2"><a data-bs-toggle="modal"
+                                    @auth data-bs-target="#create" @else data-bs-target="#create" @endif class="btn"
                                     style="background-color: #435ebe; border-radius:50px; color:#ffffff">Donasi
                                     Sekarang</a></div>
                         </div>
@@ -155,27 +158,25 @@
                             <a class="btn" style="border-radius: 50px; background-color:#435ebe; color:#ffffff"
                                 href="/login">Login</a>
                         </div>
-                    </div>
-                @endauth
+                    </div> @endauth
+                                    </div>
+                            </div>
+                        </div>
+                    @endsection
+                    @section('script')
+                        <script>
+                            function addCurrency(element) {
+                                // Ambil nilai input
+                                let value = element.value;
 
-            </div>
-        </div>
-    </div>
-@endsection
-@section('script')
-    <script>
-        function addCurrency(element) {
-            // Ambil nilai input
-            let value = element.value;
+                                // Hapus karakter selain angka
+                                value = value.replace(/[^\d]/g, '');
 
-            // Hapus karakter selain angka
-            value = value.replace(/[^\d]/g, '');
+                                // Tambahkan "Rp." di depan nilai
+                                value = "Rp" + value;
 
-            // Tambahkan "Rp." di depan nilai
-            value = "Rp" + value;
-
-            // Assign nilai yang sudah diubah kembali ke input
-            element.value = value;
-        }
-    </script>
-@endsection
+                                // Assign nilai yang sudah diubah kembali ke input
+                                element.value = value;
+                            }
+                        </script>
+                    @endsection

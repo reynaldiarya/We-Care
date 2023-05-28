@@ -8,7 +8,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Daftar Campaign</h3>
+                    <h3>Data Campaign</h3>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
         <!-- Basic Tables start -->
         <section class="section">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">Daftar Campaign
+                <div class="card-header d-flex justify-content-between">Data Campaign
                 </div>
                 <div class="card-body">
                     <table class="table" id="table1">
@@ -42,7 +42,6 @@
                                 <th>Penggalang Dana</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Tanggal Akhir</th>
-                                <th>Target</th>
                                 <th>Status</th>
                                 <th>Tindakan</th>
                             </tr>
@@ -58,7 +57,6 @@
                                     <td>{{ $item->user->name }}</td>
                                     <td>{{ $item->tgl_mulai_campaign }}</td>
                                     <td>{{ $item->tgl_akhir_campaign }}</td>
-                                    <td>{{ $item->target_campaign }}</td>
                                     <td>
                                         @if ($item->status_campaign == 0)
                                             Pending
@@ -75,6 +73,9 @@
                                             data-bs-target="#edit{{ $item->id }}">
                                             <i class="bi bi-pencil-fill"></i>
                                         </button>
+                                        <a href="/admin/campaign/campaign/lihat/{{ $item->id }}" class="btn">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 <div class="modal fade text-left" id="edit{{ $item->id }}" tabindex="-1"
@@ -90,7 +91,7 @@
                                                     <i data-feather="x"></i>
                                                 </button>
                                             </div>
-                                            <form action="/admin/campaign/daftar-campaign/edit-status-campaign"
+                                            <form action="/admin/campaign/campaign/edit-status-campaign"
                                                 method="POST">
                                                 @csrf
                                                 <div class="modal-body">

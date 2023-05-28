@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="/css/pagination.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/hover.css">
     <link rel="stylesheet" href="/css/landing.css">
@@ -98,8 +99,7 @@
     <nav class="fixed-bottom mb-4 mobile">
         <div class="container-fluid" style="width: 100%;">
             <div class="container d-flex align-items-center justify-content-center shadow"
-                style="background-image: linear-gradient(to bottom right, #364b98, #435ebe); height:75px; border-radius:750px; width: 97%; border: solid #ffffff 5px; margin: 0px; padding: 0px;">
-
+                style="background-image: linear-gradient(to bottom right, #364b98, #435ebe); height:75px; border-radius:750px; width: 100%; border: solid #ffffff 5px; margin: 0px; padding: 0px;">
                 <div class="row">
 
                     <div class="col mx-1">
@@ -128,7 +128,7 @@
         </div>
     </nav>
 
-    <div id="category" class="d-none" style=" background-color: rgb(255, 255, 255); border-radius: 20px;">
+    <div id="category" class="d-none" style="background-color: rgb(255, 255, 255);">
         <div class="container text-center">
             <h5 class="p-4 mt-2" style="font-weight:bold; color: #435ebe;">Hasil Pencarian</h5>
             <button class="btn" id="back" style="border-radius: 50px; background-color:#435ebe"><a
@@ -182,8 +182,7 @@
         @yield('content')
     </div>
 
-    <footer class="py-3" style="background-color: rgb(255, 255, 255); border-radius: 20px 20px 0px 0px;"
-        class="py-3">
+    <footer class="py-3" style="background-color: rgb(255, 255, 255);" class="py-3">
         <p class="text-center text-muted mt-3">&copy; <?php echo date('Y'); ?> We Care</p>
     </footer>
 

@@ -1,6 +1,6 @@
 @extends('landing.master')
 @section('content')
-<section data-filter="item" id="item" style="background-color: rgb(253, 253, 253); border-radius: 20px;">
+<section data-filter="item" id="item" style="background-color: rgb(253, 253, 253);">
 <div class="container">
     <div class="row justify-content-center p-4">
         @foreach ($transaksi as $item)

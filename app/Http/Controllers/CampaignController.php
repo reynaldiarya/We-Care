@@ -48,7 +48,16 @@ class CampaignController extends Controller
         $campaign = Campaign::all();
         return view('admin.campaign', [
             'campaign'  => $campaign,
-            'title' => 'Daftar Campaign - We Care',
+            'title' => 'Data Campaign - We Care',
+        ]);
+    }
+
+    public function lihatcampaign($id)
+    {
+        $campaign = Campaign::where('id', $id)->get();
+        return view('admin.lihatcampaign', [
+            'campaign'  => $campaign,
+            'title' => 'Data Campaign - We Care',
         ]);
     }
 
@@ -71,7 +80,7 @@ class CampaignController extends Controller
             'status_campaign' => $request->input('status'),
         ]);
 
-        return redirect('/admin/campaign/daftar-campaign')->with('message', 'Status berhasil diedit');
+        return redirect('/admin/campaign/campaign')->with('message', 'Status berhasil diedit');
     }
 
 

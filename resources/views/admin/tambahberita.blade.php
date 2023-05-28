@@ -4,7 +4,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Tambah News</h3>
+                    <h3>Tambah Berita</h3>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
                 <div class="col-md-12 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Tambah News</h4>
+                            <h4 class="card-title">Tambah Berita</h4>
                         </div>
                         <div class="card-content">
                             <div class="card-body">

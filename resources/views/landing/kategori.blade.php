@@ -1,6 +1,6 @@
 @extends('landing.master')
 @section('content')
-    <section id="category" style=" background-color: rgb(255, 255, 255); border-radius: 20px;">
+    <section id="category" style=" background-color: rgb(255, 255, 255);">
         {{-- <div style="height:60px"></div> --}}
         <div class="container text-center">
             <h5 class="p-4 mt-2" style="font-weight:bold; color: #435ebe;">Kategori</h5>

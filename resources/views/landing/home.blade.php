@@ -3,8 +3,7 @@
     <link rel="stylesheet" href="/css/splide.min.css">
 @endsection
 @section('content')
-    <section id="item" style="background-color: rgb(255, 255, 255); border-radius: 20px;" class="item my-3 "
-        data-filter="item">
+    <section id="item" style="background-color: rgb(255, 255, 255);" class="item my-3 " data-filter="item">
         <div class="container p-4">
             <h3 style="font-weight:bold; color: #435ebe;">Selamat Datang !</h3>
             <a href="#" data-bs-toggle="modal" data-bs-target="#createcampaign" style="text-decoration: none;">
@@ -135,8 +134,7 @@
 
     </section>
 
-    <section data-filter="item" id="item" style="background-color: rgb(255, 255, 255); border-radius: 20px;"
-        class="item my-3 py-3">
+    <section data-filter="item" id="item" style="background-color: rgb(255, 255, 255);" class="item my-3 py-3">
         <div class="container text-center">
             <div class="row p-4" style="font-size:medium">
                 <a href="/kategori/pendidikan" class="col hvr-grow"
@@ -165,7 +163,7 @@
     </section>
 
     <section data-filter="item" class="item splide my-3" aria-labelledby="carousel-heading" id="item"
-        style="background-color: rgb(253, 253, 253); border-radius: 20px;">
+        style="background-color: rgb(253, 253, 253);">
         <div class="container item py-4 px-2">
             <div class="col" style="width: 75%;">
                 <h5 class="p-3" style="font-weight:bold; color: #435ebe;">Penggalangan Dana Mendesak</h5>
@@ -201,8 +199,7 @@
         </div>
     </section>
 
-    <section data-filter="item" id="item" style="background-color: rgb(255, 255, 255); border-radius: 20px;"
-        class="item my-3 py-3">
+    <section data-filter="item" id="item" style="background-color: rgb(255, 255, 255);" class="item my-3 py-3">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -213,7 +210,7 @@
                     aria-label="Slide 3"></button>
             </div>
             <div class="container p-4">
-                <div class="carousel-inner" style="border-radius: 8px;">
+                <div class="carousel-inner" style="border-radius: 10px;">
                     <div class="carousel-item active">
                         <img src="https://images.unsplash.com/photo-1581059686229-de26e6ae5dc4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
                             class="d-block w-100" alt="..." style="height: 30vh; object-fit: cover">
@@ -253,8 +250,7 @@
         </div>
     </section>
 
-    <section data-filter="item" id="item" style="background-color: rgb(255, 255, 255); border-radius: 20px;"
-        class="item my-3 py-3">
+    <section data-filter="item" id="item" style="background-color: rgb(255, 255, 255);" class="item my-3 py-3">
         <div class="container p-4">
             <div class="col" style="width: 75%;">
                 <h5 class="p-2" style="font-weight:bold; color: #435ebe;">Artikel Terbaru</h5>
@@ -277,13 +273,14 @@
                 @endforeach
             </div>
 
-            <div class="text-center mt-5"><a href="/blog">
-                    <div class="btn p-3" style="background-color: #435ebe; color:#fff">
+            <div class="col-12 text-center mt-5">
+                <a href="/blog">
+                    <div class="btn me-1 mb-1" style="background-color: #435ebe; color:#fff">
                         Artikel Lainnya</div>
-                </a></div>
+                </a>
+            </div>
         </div>
     </section>
-
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/36.0.1/ckeditor.min.js"

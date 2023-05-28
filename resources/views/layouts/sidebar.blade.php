@@ -65,7 +65,7 @@
                 </a>
                 <ul class="submenu">
                     <li class="submenu-item">
-                        <a href="/admin/penggalang-dana/daftar-penggalang-dana">Daftar Penggalang Dana</a>
+                        <a href="/admin/penggalang-dana/penggalang-dana">Penggalang Dana</a>
                     </li>
                     <li class="submenu-item">
                         <a href="/admin/penggalang-dana/verifikasi-akun">Verifikasi Akun</a>
@@ -79,7 +79,7 @@
                 </a>
                 <ul class="submenu">
                     <li class="submenu-item">
-                        <a href="/admin/campaign/daftar-campaign">Daftar Campaign</a>
+                        <a href="/admin/campaign/campaign">Campaign</a>
                     </li>
                     <li class="submenu-item">
                         <a href="/admin/campaign/berita">Berita</a>

@@ -83,48 +83,57 @@
                         <div class="card-header">
                             <h4 class="card-title">Ganti Kata Sandi</h4>
                         </div>
-                        <div class="card-content">
-                            <div class="card-body">
-                                <form class="form form-horizontal" method="POST" action="/admin/password-update"
-                                    data-parsley-validate>
-                                    @csrf
-                                    <div class="form-body">
-                                        <div class="row">
-                                            <input type="hidden" name="email"
-                                                value="{{ old('email', Auth::user()->email) }}" />
-                                            <div class="col-md-4">
-                                                <label>Password Sekarang</label>
-                                            </div>
-                                            <div class="col-md-8 form-group">
-                                                <input type="password" class="form-control" name="password"
-                                                    placeholder="Password Sekarang" data-parsley-minlength="8"
-                                                    data-parsley-error-message="Kata sandi harus lebih besar dari atau sama dengan 8." />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label>Password Baru</label>
-                                            </div>
-                                            <div class="col-md-8 form-group">
-                                                <input type="password" id="password-baru" class="form-control"
-                                                    name="password_baru" placeholder="Password Baru"
-                                                    data-parsley-minlength="8"
-                                                    data-parsley-error-message="Kata sandi harus lebih besar dari atau sama dengan 8." />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label>Konfirmasi Password</label>
-                                            </div>
-                                            <div class="col-md-8 form-group">
-                                                <input type="password" class="form-control" name="konfirmasi_password"
-                                                    placeholder="Konfirmasi Password" data-parsley-equalto="#password-baru"
-                                                    data-parsley-error-message="Kata sandi tidak cocok." />
-                                            </div>
-                                            <div class="col-sm-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-primary me-1 mb-1">Kirim</button>
+                        @if (Auth::user()->google_id == null)
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form class="form form-horizontal" method="POST" action="/admin/password-update"
+                                        data-parsley-validate>
+                                        @csrf
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <input type="hidden" name="email"
+                                                    value="{{ old('email', Auth::user()->email) }}" />
+                                                <div class="col-md-4">
+                                                    <label>Password Sekarang</label>
+                                                </div>
+                                                <div class="col-md-8 form-group">
+                                                    <input type="password" class="form-control" name="password"
+                                                        placeholder="Password Sekarang" data-parsley-minlength="8"
+                                                        data-parsley-error-message="Kata sandi harus lebih besar dari atau sama dengan 8." />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>Password Baru</label>
+                                                </div>
+                                                <div class="col-md-8 form-group">
+                                                    <input type="password" id="password-baru" class="form-control"
+                                                        name="password_baru" placeholder="Password Baru"
+                                                        data-parsley-minlength="8"
+                                                        data-parsley-error-message="Kata sandi harus lebih besar dari atau sama dengan 8." />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>Konfirmasi Password</label>
+                                                </div>
+                                                <div class="col-md-8 form-group">
+                                                    <input type="password" class="form-control" name="konfirmasi_password"
+                                                        placeholder="Konfirmasi Password"
+                                                        data-parsley-equalto="#password-baru"
+                                                        data-parsley-error-message="Kata sandi tidak cocok." />
+                                                </div>
+                                                <div class="col-sm-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary me-1 mb-1">Kirim</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <p>Anda masuk menggunakan akun Google dan saat ini tidak dapat mengubah kata sandi.</p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

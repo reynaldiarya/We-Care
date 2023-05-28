@@ -45,8 +45,12 @@ class LandingController extends Controller
 
     public function cari(Request $request)
     {
+        if (!$request->has('filter')) {
+            return redirect('/');
+        }
         $cari = $request->input('filter');
         $results = Campaign::where('status_campaign', 1)->where('judul_campaign', 'like', "%{$cari}%")->get();
+
         return response()->json($results);
     }
 }

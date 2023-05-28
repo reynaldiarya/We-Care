@@ -22,13 +22,6 @@ class TransaksiController extends Controller
             'transaksi' => $transaksi,
         ]);
     }
-    public function index($id)
-    {
-        $campaign = Campaign::findOrFail($id);
-        return view('landing.donasi', [
-            'campaign'  => $campaign,
-        ]);
-    }
 
     public function mydonation()
     {

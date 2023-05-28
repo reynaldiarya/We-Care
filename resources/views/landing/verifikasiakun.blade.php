@@ -1,12 +1,12 @@
 @extends('landing.master')
 @section('content')
-    <div class="container mt-4 mb-4" >
-        <div class="container" style=" background-color: rgb(255, 255, 255); border-radius: 20px;">
+    <div class="mt-4 mb-4 py-4" style=" background-color: rgb(255, 255, 255);">
+        <div class="container px-4">
             <h1 class="py-4 mb-4">Verifikasi Akun</h1>
         </div>
         @auth
             @if (is_null($verifikasi))
-            <div class="container" style=" background-color: rgb(255, 255, 255); border-radius: 20px;">
+            <div class="container px-4">
                 <form method="post" action="/kirim-verifikasi-akun"enctype="multipart/form-data" data-parsley-validate>
                     @csrf
                     <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->id }}">
@@ -42,7 +42,7 @@
                 </form>
             </div>
             @else
-            <div class="container" style=" background-color: rgb(255, 255, 255); border-radius: 20px;">
+            <div class="container">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Status Verifikasi</h5>
                     <p style="margin-bottom:0px">
