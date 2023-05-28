@@ -15,7 +15,6 @@ class LandingController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        $all_campaign = Campaign::all()->where('status_campaign', 1);
         $campaign = Campaign::where('status_campaign', 1)->orderBy('tgl_akhir_campaign', 'asc')->paginate(6);
         $blog = Blog::latest()->limit(3)->get();
         return view('landing.home', [
@@ -23,22 +22,22 @@ class LandingController extends Controller
             'blog' => $blog,
             'title' => 'We Care',
             'campaign'  => $campaign,
-            'search' => $all_campaign,
         ]);
     }
 
     public function kategori($kategori)
     {
-        if($kategori == 'sosial'){
-            $kat = 0;
-        }elseif($kategori == 'pendidikan'){
+        if($kategori == 'pendidikan'){
             $kat = 1;
-        }elseif($kategori == 'kesehatan'){
+        }elseif($kategori == 'sosial'){
             $kat = 2;
+        }elseif($kategori == 'kesehatan'){
+            $kat = 3;
         }
         $campaign = Campaign::where('category_id', $kat)->where('status_campaign', 1)->orderBy('tgl_akhir_campaign', 'asc')->paginate(6);
         return view('landing.kategori', [
             'campaign' => $campaign,
+            'kat' => $kat,
             'title' => 'We Care',
         ]);
     }

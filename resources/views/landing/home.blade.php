@@ -102,7 +102,8 @@
                                     </div>
                                     <div class="mb-3 mt-3">
                                         <label class="form-label">Tanggal Akhir Campaign</label>
-                                        <input name="tgl_akhir" type="date" class="form-control" required>
+                                        <input name="tgl_akhir" type="date" min="{{ date('Y-m-d') }}"
+                                            class="form-control" required>
                                     </div>
                                     <div class="form-group mt-3">
                                         <strong>Banner Campaign</strong>
@@ -301,7 +302,6 @@
 
         splide.mount();
     </script>
-
     <script>
         //Define an adapter to upload the files
         class MyUploadAdapter {

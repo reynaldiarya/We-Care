@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama');
             $table->foreignId('campaign_id');
             $table->integer('nominal_transaksi');
-            $table->date('tgl_transaksi');
+            $table->datetime('tgl_transaksi');
             $table->string('keterangan');
             $table->integer('status_transaksi');
             $table->timestamps();

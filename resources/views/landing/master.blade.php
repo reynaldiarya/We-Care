@@ -11,14 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="/css/pagination.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/hover.css">
     <link rel="stylesheet" href="/css/landing.css">
 </head>
 
 
-<body style="font-family: poppins; background-color:#F7F7F7;" id="body">
+<body style="font-family: poppins; background-color:#F7F7F7; height:100%" id="body">
     <section class="shadow-sm" id="searchbar">
         <nav class="navbar p-3 mobile" style="background-color:#435ebe;">
             <div class="container justify-content-between">
@@ -182,7 +181,7 @@
         @yield('content')
     </div>
 
-    <footer class="py-3" style="background-color: rgb(255, 255, 255);" class="py-3">
+    <footer class="py-3" style="background-color: rgb(255, 255, 255);">
         <p class="text-center text-muted mt-3">&copy; <?php echo date('Y'); ?> We Care</p>
     </footer>
 
@@ -312,7 +311,7 @@
 
     <script>
         const back = document.getElementById('back');
-        const back2 = document.getElementById('back2');
+        // const back2 = document.getElementById('back2');
         back.addEventListener('click', function() {
             resultSpace.classList.remove('d-none');
             categoryspace.classList.add("d-none");
@@ -325,17 +324,17 @@
             });
         });
 
-        back2.addEventListener('click', function() {
-            resultSpace.classList.remove('d-none');
-            categoryspace.classList.add("d-none");
-            campaigns.forEach(function(campaign) {
-                campaign.style.display = 'block';
-            });
+        // back2.addEventListener('click', function() {
+        //     resultSpace.classList.remove('d-none');
+        //     categoryspace.classList.add("d-none");
+        //     campaigns.forEach(function(campaign) {
+        //         campaign.style.display = 'block';
+        //     });
 
-            items.forEach(function(item) {
-                item.style.display = 'block';
-            });
-        });
+        //     items.forEach(function(item) {
+        //         item.style.display = 'block';
+        //     });
+        // });
     </script>
 
 

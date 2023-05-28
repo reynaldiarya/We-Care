@@ -25,7 +25,7 @@ class TransaksiController extends Controller
 
     public function mydonation()
     {
-        $transaksi = Transaksi::with('Campaign')->where('user_id', Auth::user()->id)->get();
+        $transaksi = Transaksi::with('campaign')->where('user_id', Auth::user()->id)->get();
         return view('landing.mydonasi', [
             'transaksi'  => $transaksi,
         ]);

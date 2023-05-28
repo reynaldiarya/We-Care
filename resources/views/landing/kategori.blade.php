@@ -3,7 +3,16 @@
     <section id="category" style=" background-color: rgb(255, 255, 255);">
         {{-- <div style="height:60px"></div> --}}
         <div class="container text-center">
-            <h5 class="p-4 mt-2" style="font-weight:bold; color: #435ebe;">Kategori</h5>
+            <h5 class="p-4 mt-2" style="font-weight:bold; color: #435ebe;">Kategori @if ($kat == 1)
+                    Pendidikan
+                @endif
+                @if ($kat == 2)
+                    Sosial
+                @endif
+                @if ($kat == 3)
+                    Kesehatan
+                @endif
+            </h5>
             <button class="btn" style="border-radius: 50px; background-color:#435ebe"><a href="/"
                     style="color: #ffffff; text-decoration:none">
                     <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1"
