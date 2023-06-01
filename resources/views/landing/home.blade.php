@@ -188,7 +188,7 @@
                                             style="background-color:#435ebe;width:{{ ($item->dana_terkumpul / $item->target_campaign) * 100 }}%">
                                         </div>
                                     </div>
-                                    <p class="card-text mt-2">Donasi terkumpul : {{ $item->dana_terkumpul }}</p>
+                                    <p class="card-text mt-2">Donasi terkumpul : Rp{{ number_format($campaign->dana_terkumpul, 2, ',', '.') }}</p>
                                     <p class="card-text">Aktif hingga :
                                         {{ date('d-m-Y', strtotime($item->tgl_akhir_campaign)) }}</p>
                                 </div>

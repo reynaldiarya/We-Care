@@ -3,7 +3,6 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-use App\Models\Campaign;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -14,13 +13,14 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+    protected $commands = [
+        Commands\UpdateCampaignStatus::class,
+    ];
+
     protected function schedule(Schedule $schedule)
     {
         // auto update status campaign jadi expired
-        $schedule->call(function () {
-            Campaign::where('tgl_akhir_campaign', '<', now())
-                ->update(['status_campaign' => 2]);
-        })->daily();
+        $schedule->command('campaign:status:update')->dailyAt('00:00');
     }
 
     /**

@@ -67,6 +67,9 @@
                                         @if ($item->status_campaign == 2)
                                             Ditolak
                                         @endif
+                                        @if ($item->status_campaign == 3)
+                                            Selesai
+                                        @endif
                                     </td>
                                     <td>
                                         <button type="button" class="btn" data-bs-toggle="modal"
