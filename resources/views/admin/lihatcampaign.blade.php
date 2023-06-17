@@ -36,18 +36,6 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label for="gambar-vertical">Foto Campaign</label>
-                                                        <img src="/{{ $item->foto_campaign }}" width="100%" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group" style="figure.img{width=10px}">
-                                                        <label for="isi-vertical">Deskripsi Campaign</label>
-                                                        {!! str_replace('<img', '<img style="width: 100%"', $item->deskripsi_campaign) !!}
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
                                                         <label for="isi-vertical">Tanggal Mulai Campaign</label>
                                                         <p>{{ $item->tgl_mulai_campaign }}</p>
                                                     </div>
@@ -62,6 +50,18 @@
                                                     <div class="form-group">
                                                         <label for="isi-vertical">Target Campaign</label>
                                                         <p>Rp{{ number_format($item->target_campaign, 2, ',', '.') }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label for="gambar-vertical">Foto Campaign</label>
+                                                        <img src="/storage/{{ $item->foto_campaign }}" width="100%" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group" style="figure.img{width=10px}">
+                                                        <label for="isi-vertical">Deskripsi Campaign</label>
+                                                        {!! str_replace('<img', '<img style="width: 100%"', $item->deskripsi_campaign) !!}
                                                     </div>
                                                 </div>
                                             </div>

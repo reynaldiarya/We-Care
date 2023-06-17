@@ -142,7 +142,7 @@
                                                         @php $i++ @endphp
                                                         <td>{{ $i }}</td>
                                                         <td class="text-bold-500">{{ $item->user->name }}</td>
-                                                        <td>Rp{{ number_format($item->total, 2, ',', '.') }}</td>
+                                                        <td>{{ $item->total }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

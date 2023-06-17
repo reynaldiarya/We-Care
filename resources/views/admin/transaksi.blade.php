@@ -36,7 +36,7 @@
                                 <tr>
                                     @php $i++ @endphp
                                     <td>{{ $i }}</td>
-                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->user->name }}</td>
                                     <td>{{ $item->campaign->judul_campaign }}</td>
                                     <td>{{ $item->tgl_transaksi }}</td>
                                     <td>{{ $item->nominal_transaksi }}</td>

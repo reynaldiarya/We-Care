@@ -46,42 +46,67 @@
                     <img style="width: 35px; height: 100%" src="/assets/images/logo/logo.png" alt="Logo">
                 </a>
                 @auth
-                    <a href="/donasi-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Donasi
-                        Saya</a>
-                    <a href="/campaign-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Campaign
-                        Saya</a>
-                    <div class="dropdown">
-                        <button style="color:#ffffff" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            {{ Auth::user()->name }}
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="/profil"> Profil Saya</a>
-                            </li>
-                            <hr class="dropdown-divider">
-                            <li>
-                                <a class="dropdown-item" href="/verifikasi-akun/{{ Auth::user()->id }}">Verifikasi Akun</a>
-                            </li>
-                            <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <form action="/logout" method="post">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item" href="/logout">Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                    @if (Auth::user()->role == 0)
+                        <a href="/admin" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Dashboard</a>
+                        <div class="dropdown">
+                            <button style="color:#ffffff" class="btn dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="/admin/profil"> Profil Saya</a>
+                                </li>
+                                <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item" href="/logout">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <a href="/donasi-saya" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Donasi
+                            Saya</a>
+                        <a href="/campaign-saya" class="nav-item px-2"
+                            style="color: #ffffff;text-decoration: none;">Campaign
+                            Saya</a>
+                        <div class="dropdown">
+                            <button style="color:#ffffff" class="btn dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="/profil"> Profil Saya</a>
+                                </li>
+                                <hr class="dropdown-divider">
+                                <li>
+                                    <a class="dropdown-item" href="/verifikasi-akun/{{ Auth::user()->id }}">Verifikasi
+                                        Akun</a>
+                                </li>
+                                <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item" href="/logout">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
                 @else
                     <a href="/#campaign" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Campaign</a>
-                    <a href="/blog" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Artikel</a>
+                    <a href="/blog" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Blog</a>
                     <a href="/login" class="nav-item px-2" style="color: #ffffff;text-decoration: none;">Login</a>
                 @endauth
                 <form class="ms-auto d-flex" role="search">
                     <div class="container-input">
-                        <input type="text" placeholder="Pencarian" name="cari" class="input" aria-label="Search"
-                            id="searchbox2">
+                        <input type="text" placeholder="Pencarian" name="cari" class="input"
+                            aria-label="Search" id="searchbox2">
                         <svg fill="#000000" width="20px" height="20px" viewBox="0 0 1920 1920"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -100,25 +125,23 @@
             <div class="container d-flex align-items-center justify-content-center shadow"
                 style="background-image: linear-gradient(to bottom right, #364b98, #435ebe); height:75px; border-radius:750px; width: 100%; border: solid #ffffff 5px; margin: 0px; padding: 0px;">
                 <div class="row">
-
                     <div class="col mx-1">
                         <a href="/"><img src="/assets/img/home-icon-pink.png" alt="" id="home"
                                 style="height: 50px"></a>
                     </div>
-
                     <div class="col mx-1">
                         <a
-                            @auth href="/donasi-saya" @else data-bs-toggle="modal" data-bs-target="#createcampaign" @endauth><img
+                            @auth href="/donasi-saya" @else data-bs-toggle="modal" data-bs-target="#profile" @endauth><img
                                 src="/assets/img/donation.png" alt="" style="height: 50px"></a>
                     </div>
                     <div class="col mx-1">
                         <a
-                            @auth href="/campaign-saya" @else data-bs-toggle="modal" data-bs-target="#createcampaign" @endauth><img
+                            @auth href="/campaign-saya" @else data-bs-toggle="modal" data-bs-target="#profile" @endauth><img
                                 src="/assets/img/campaign.png" alt="" style="height: 50px"></a>
                     </div>
                     <div class="col mx-1">
                         <a data-bs-toggle="modal"
-                            @auth data-bs-target="#profile" @else data-bs-target="#createcampaign" @endauth><img
+                            @auth data-bs-target="#profile" @else data-bs-target="#profile" @endauth><img
                                 src="/assets/img/ava-icon-white.png" alt="" style="height: 50px"></a>
                     </div>
                 </div>
@@ -153,16 +176,27 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 @auth
-                    <div class="modal-body">
-                        <a class="dropdown-item" href="/profil"> Profil Saya</a>
-                        <hr class="dropdown-divider">
-                        <a class="dropdown-item" href="/verifikasi-akun/{{ Auth::user()->id }}">Verifikasi Akun</a>
-                        <hr class="dropdown-divider">
-                        <form action="/logout" method="post">
-                            @csrf
-                            <button type="submit" class="dropdown-item" href="/logout">Logout</button>
-                        </form>
-                    </div>
+                    @if (Auth::user()->role == 0)
+                        <div class="modal-body">
+                            <a class="dropdown-item" href="/admin/profil"> Profil Saya</a>
+                            <hr class="dropdown-divider">
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button type="submit" class="dropdown-item" href="/logout">Logout</button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="modal-body">
+                            <a class="dropdown-item" href="/profil"> Profil Saya</a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item" href="/verifikasi-akun/{{ Auth::user()->id }}">Verifikasi Akun</a>
+                            <hr class="dropdown-divider">
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button type="submit" class="dropdown-item" href="/logout">Logout</button>
+                            </form>
+                        </div>
+                    @endif
                 @else
                     <div class="modal-head text-center p-3 border-bottom">
                         <h3 style="margin:0px">
@@ -231,10 +265,10 @@
                         <div class="progress" style="height: 10px;">
                             <div class="progress-bar" role="progressbar" aria-label="Basic example" aria-valuenow="75"
                                 aria-valuemin="0" aria-valuemax="100"
-                                style="background-color:#435ebe; width:${result.dana_terkumpul/result.target_campaign} * 100 }}%">
+                                style="background-color:#435ebe; width:${(result.dana_terkumpul/result.target_campaign)*100}%">
                             </div>
                         </div>
-                        <p class="card-text mt-2">Donasi terkumpul : ${result.dana_terkumpul}</p>
+                        <p class="card-text mt-2">Donasi terkumpul : Rp${result.dana_terkumpul.toLocaleString()},00</p>
                         <p class="card-text">Aktif hingga : ${result.tgl_akhir_campaign}</p>
                     </div>
                 </a>
@@ -287,10 +321,10 @@
                         <div class="progress" style="height: 10px;">
                             <div class="progress-bar" role="progressbar" aria-label="Basic example" aria-valuenow="75"
                                 aria-valuemin="0" aria-valuemax="100"
-                                style="background-color:#435ebe; width:${result.dana_terkumpul/result.target_campaign} * 100 }}%">
+                                style="background-color:#435ebe; width:${(result.dana_terkumpul/result.target_campaign)* 100}%">
                             </div>
                         </div>
-                        <p class="card-text mt-2">Donasi terkumpul : ${result.dana_terkumpul}</p>
+                        <p class="card-text mt-2">Donasi terkumpul : Rp${result.dana_terkumpul.toLocaleString()},00</p>
                         <p class="card-text">Aktif hingga : ${result.tgl_akhir_campaign}</p>
                     </div>
                 </a>
